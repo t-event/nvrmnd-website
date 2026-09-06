@@ -6,6 +6,7 @@
 <title>NVRMND | Norwegian Hardstyle Producer</title>
 <meta name="description" content="NVRMND is a hardstyle producer from Norway. Debut single Need Me is out now on Spotify, Apple Music, Tidal and SoundCloud.">
 <meta name="theme-color" content="#0D0410">
+<meta name="format-detection" content="telephone=no">
 <meta name="author" content="NVRMND">
 
 <!-- Full indeksering, og store forhåndsvisningsbilder i søkeresultatene -->
@@ -34,6 +35,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="manifest" href="site.webmanifest">
 
 <!-- Settes før CSS lastes. Uten JavaScript får siden aldri klassen, og da
      vises alt innhold med én gang i stedet for å bli liggende usynlig
@@ -51,6 +53,7 @@
       "@type": "MusicGroup",
       "@id": "https://t-event.github.io/nvrmnd-website/#artist",
       "name": "NVRMND",
+      "alternateName": ["Nevermind", "NVRMND Hardstyle"],
       "genre": ["Hardstyle", "Hardcore", "Electronic"],
       "description": "NVRMND is a hardstyle producer from Norway. Distorted kicks, screeching leads, and long builds, all made in an apartment studio.",
       "url": "https://t-event.github.io/nvrmnd-website/",
@@ -81,6 +84,13 @@
       "datePublished": "2026-08-28",
       "duration": "PT2M24S",
       "genre": "Hardstyle",
+      "inAlbum": {
+        "@type": "MusicAlbum",
+        "name": "Need Me",
+        "albumProductionType": "StudioAlbum",
+        "albumReleaseType": "SingleRelease",
+        "byArtist": { "@id": "https://t-event.github.io/nvrmnd-website/#artist" }
+      },
       "image": "https://t-event.github.io/nvrmnd-website/assets/need-me.jpg",
       "url": "https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ",
       "sameAs": [
@@ -105,9 +115,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260906d">
 </head>
 <body>
+
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ FILM GRAIN OVERLAY ============ -->
 <div class="grain" aria-hidden="true"></div>
@@ -143,6 +155,8 @@
     <a href="#about"   class="nav__link" data-cursor="hover" data-text="About"><span>About</span></a>
     <a href="#follow"  class="nav__link" data-cursor="hover" data-text="Follow"><span>Follow</span></a>
     <a href="#booking" class="nav__link" data-cursor="hover" data-text="Contact"><span>Contact</span></a>
+    <a href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ" target="_blank" rel="noopener"
+       class="nav__link nav__link--cta" data-cursor="hover" data-text="Listen"><span>Listen</span></a>
   </nav>
 
   <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -156,9 +170,10 @@
   <a href="#about"   class="menu__link">About</a>
   <a href="#follow"  class="menu__link">Follow</a>
   <a href="#booking" class="menu__link">Contact</a>
+  <a href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ" target="_blank" rel="noopener" class="menu__link menu__link--cta">Listen ↗</a>
 </div>
 
-<main>
+<main id="main">
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
@@ -171,10 +186,10 @@
 
   <div class="hero__content">
     <p class="hero__eyebrow" data-reveal>
-      <span class="tick"></span> Hardstyle <span class="sep">/</span> Norway <span class="sep">/</span> NVR001 out now
+      <span class="tick"></span> Hardstyle <span class="sep">/</span> Norway <span class="sep">/</span> <a href="#music" class="hero__eyebrow-link" data-cursor="hover">NVR001 out now</a>
     </p>
 
-    <h1 class="hero__title" data-parallax="-0.06">
+    <h1 class="hero__title" data-parallax="-0.06" aria-label="NVRMND">
       <span class="hero__title-line" data-glitch="NVRMND">
         <span class="l">N</span><span class="l">V</span><span class="l">R</span><span class="l">M</span><span class="l">N</span><span class="l">D</span>
       </span>
@@ -218,7 +233,7 @@
 <section class="music" id="music">
   <div class="music__head">
     <p class="label" data-reveal><span class="tick"></span> 01 / Music</p>
-    <h2 class="music__title" data-reveal data-delay="1">Out <em>now</em></h2>
+    <h2 class="music__title" data-reveal data-delay="1" data-split>Out <em>now</em></h2>
   </div>
 
   <article class="featured">
@@ -296,7 +311,7 @@
   <div class="music__sticky">
     <div class="music__head">
       <p class="label" data-reveal><span class="tick"></span> 01 / Releases</p>
-      <h2 class="music__title" data-reveal data-delay="1">Latest<br><em>drops</em></h2>
+      <h2 class="music__title" data-reveal data-delay="1" data-split>Latest<br><em>drops</em></h2>
       <p class="music__hint" data-reveal data-delay="2">Keep scrolling →</p>
     </div>
 
@@ -340,7 +355,7 @@
 
   <div class="about__text">
     <p class="label" data-reveal><span class="tick"></span> 02 / About</p>
-    <h2 class="about__title" data-reveal data-delay="1">Built for<br><em>the drop</em></h2>
+    <h2 class="about__title" data-reveal data-delay="1" data-split>Built for<br><em>the drop</em></h2>
 
     <!-- PLASSHOLDER: bio-utkast. Marius bør lese gjennom og gjøre teksten til sin egen. -->
     <div class="about__body">
@@ -387,14 +402,14 @@
   <div class="follow__inner">
     <div class="follow__text">
       <p class="label" data-reveal><span class="tick"></span> 03 / Follow</p>
-      <h2 class="follow__title" data-reveal data-delay="1">Next one<br><em>drops here</em></h2>
+      <h2 class="follow__title" data-reveal data-delay="1" data-split>Next one<br><em>drops here</em></h2>
       <p class="follow__desc" data-reveal data-delay="2">
         New music, shows and whatever happens in the studio.
         Instagram first, the rest follows.
       </p>
     </div>
     <div class="socials" data-reveal data-delay="2">
-      <a href="https://www.instagram.com/nvrmnd.hardstyle" target="_blank" rel="noopener" class="social social--primary" data-magnetic data-cursor="hover"><span>Instagram</span><i>↗</i></a>
+      <a href="https://www.instagram.com/nvrmnd.hardstyle" target="_blank" rel="me noopener" class="social social--primary" data-magnetic data-cursor="hover"><span>Instagram</span><i>↗</i></a>
       <a href="https://soundcloud.com/marius-hagensen" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>SoundCloud</span><i>↗</i></a>
       <a href="https://open.spotify.com/artist/6vSV3iI3VMqzfy0wnWcI8E" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a>
       <a href="https://music.apple.com/no/artist/nvrmnd/6806555186" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Apple Music</span><i>↗</i></a>
@@ -412,7 +427,7 @@
 <section class="booking" id="booking">
   <div class="booking__inner">
     <p class="label" data-reveal><span class="tick"></span> 04 / Contact</p>
-    <h2 class="booking__title" data-reveal data-delay="1">Let's make it<br><em>loud</em></h2>
+    <h2 class="booking__title" data-reveal data-delay="1" data-split>Let's make it<br><em>loud</em></h2>
 
     <!--
       PLASSHOLDER: booking-e-post er ikke satt opp ennå.
@@ -440,7 +455,6 @@
   <div class="footer__row">
     <!-- Årstallet settes av JS. 2026 står her som fallback uten JavaScript. -->
     <span>© <span id="year">2026</span> NVRMND</span>
-    <span>Norway</span>
     <a href="privacy.html" class="footer__link" data-cursor="hover">Privacy</a>
     <button type="button" class="footer__link footer__reset" id="consentReset" data-cursor="hover">Cookie choice</button>
     <span class="footer__credit">
@@ -475,6 +489,6 @@
   </div>
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20260906d"></script>
 </body>
 </html>

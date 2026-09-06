@@ -297,6 +297,18 @@ verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
 
+**6. sep 2026.** Finpuss og SEO etter ny titt på landonorris.com. Hentet:
+ordvis avsløring på seksjonsoverskriftene, en fast «Listen»-lenke i menyen
+(hans har butikken der), og eyebrow-teksten «NVR001 out now» som lenke til
+musikken. Bildetekster med sted og år kommer med mosaikken. SEO: manifest,
+alternateName «Nevermind» i strukturerte data, MusicAlbum for singelen,
+rel="me" på Instagram, aria-label på h1. Tilgjengelighet: hopp-lenke og
+synlig tastaturfokus. Versjonsnummer på CSS og JS, fordi Pages bufrer i ti
+minutter og Mathias så gammel stil. «Norway» tatt ut av footeren, alt annet
+der er lenker. Ikke hentet fra Lando: nyhetsbrev, butikk, partnerlogoer,
+scroll-låsing og lys/mørk-bytte per seksjon. Alt det ville gjort siden til
+det vurderingen advarte mot.
+
 **6. sep 2026.** Follow og Contact byttet plass. Rekkefølgen er nå Music,
 About, Follow, Contact, nummerert 01 til 04, og menyen følger.
 

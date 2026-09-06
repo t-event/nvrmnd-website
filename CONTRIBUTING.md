@@ -132,6 +132,19 @@ Systempekeren ble aldri skjult, så brukeren så både OS-pilen og
 ringen vår samtidig. Skjuler den nå via body.has-cursor.
 ```
 
+### Versjonsnummer på CSS og JS
+
+GitHub Pages ber nettlesere bufre filer i ti minutter. Endrer du `style.css`
+eller `main.js`, bump versjonen i alle tre HTML-filene, ellers ser folk
+gammel stil en stund:
+
+```html
+<link rel="stylesheet" href="css/style.css?v=20260906d">
+<script src="js/main.js?v=20260906d"></script>
+```
+
+Bruk dato pluss en bokstav. Samme verdi i begge lenker, i alle tre filer.
+
 ### Publisering
 
 Push til `main` går live automatisk etter omtrent ett minutt. Det finnes ingen

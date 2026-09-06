@@ -420,6 +420,39 @@
   }
 
 
+  /* ---------- 5b. ORDVIS AVSLØRING PÅ OVERSKRIFTER ------------------------ */
+
+  // Hvert ord i en [data-split]-overskrift pakkes i en span med egen
+  // forsinkelse, så ordene lander ett og ett. <em> og <br> beholdes.
+  function splitWords() {
+    if (reduced) return;
+
+    $$('[data-split]').forEach(heading => {
+      let i = 0;
+      const wrap = (node) => {
+        [...node.childNodes].forEach(child => {
+          if (child.nodeType === Node.TEXT_NODE) {
+            const frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach(part => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+              const w = document.createElement('span');
+              w.className = 'w';
+              w.style.setProperty('--d', (i++ * 0.07) + 's');
+              w.textContent = part;
+              frag.appendChild(w);
+            });
+            child.replaceWith(frag);
+          } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+            wrap(child);
+          }
+        });
+      };
+      wrap(heading);
+    });
+  }
+
+
   /* ---------- 6. TEKST-SCRAMBLE ------------------------------------------ */
 
   const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&@*/\\';
@@ -647,6 +680,7 @@
   const yearEl = $('#year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  splitWords();          // før initReveal, så observatøren ser ordene
   initCursor();
   initMagnetic();
   initEmbeds();

@@ -1556,3 +1556,65 @@ a.booking__soon-text:hover{ color:var(--red); }
   }
   .footer__word{ font-size:clamp(4rem,26vw,10rem); }
 }
+
+/* ==========================================================================
+   FINPUSS: hopp-lenke, fokus, meny-CTA, ordvis avsløring
+   ========================================================================== */
+
+/* Hopp til innhold: usynlig til den får tastaturfokus */
+.skip{
+  position:fixed;
+  top:.75rem; left:.75rem;
+  z-index:10001;
+  padding:.7rem 1rem;
+  background:var(--red);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  transform:translateY(-200%);
+  transition:transform .3s var(--ease);
+}
+.skip:focus{ transform:none; outline:none; }
+
+/* Tastaturfokus skal synes, og skal se ut som resten av siden */
+:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:3px;
+}
+.hero__title .l:focus-visible{ outline:none; }
+
+/* Listen i menyen: en fast, liten oppfordring, slik Lando har butikken */
+.nav__link--cta{
+  padding-bottom:2px;
+  border-bottom:1px solid var(--red);
+}
+.nav__link--cta::before{ display:none; }
+.menu__link--cta{ color:var(--red); }
+
+/* Eyebrow-lenka i hero */
+.hero__eyebrow-link{
+  color:var(--text);
+  border-bottom:1px solid var(--red);
+  transition:color .3s;
+}
+.hero__eyebrow-link:hover{ color:var(--red); }
+
+/* Ordvis avsløring: JS pakker hvert ord i .w, og gir hvert en liten
+   forsinkelse. Selve overskriften avsløres ikke som blokk, ordene gjør det. */
+.js [data-split][data-reveal]{
+  opacity:1;
+  transform:none;
+}
+.js [data-split] .w{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(.45em);
+  transition:opacity .7s var(--ease), transform .8s var(--ease);
+  transition-delay:var(--d, 0s);
+}
+.js [data-split].is-in .w{
+  opacity:1;
+  transform:none;
+}

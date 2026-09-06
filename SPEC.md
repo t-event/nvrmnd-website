@@ -34,6 +34,7 @@ css/style.css     All styling. Fargevariabler ligger i :root øverst.
 js/main.js        Alle animasjoner og samtykkelogikk.
 assets/           Cover, pressebilde, delingsbilde, ikoner.
 favicon.ico       Ikon i fanen. Nettlesere ber om denne uansett.
+site.webmanifest  Navn, farger og ikoner for «legg til på hjemskjerm».
 robots.txt        Åpner for søkemotorer og språkmodeller.
 sitemap.xml       Nettstedskart.
 ```
@@ -84,6 +85,7 @@ Alle ligger i `js/main.js`, nummerert i samme rekkefølge som her.
 | 3 | Magnetiske knapper | `mousemove` regner avstand fra sentrum, ganger med `0.32` |
 | 4 | Nav + meny | Klasse-toggling, `clip-path` på mobilmenyen |
 | 5 | Scroll-avsløring | `IntersectionObserver`, `unobserve` etter første treff |
+| 5b | Ordvis avsløring | Overskrifter med `data-split` deles i ord, hvert med egen forsinkelse |
 | 6 | Tekst-scramble | rAF som bytter ut bokstaver til de "lander" fra venstre |
 | 7 | Marquee | `translate3d` per frame, hopper tilbake én elementbredde. Skjevstilles av scroll-farten |
 | 8 | Parallakse | Avstand fra skjermsenter × `data-parallax`-verdi, lerpet |
