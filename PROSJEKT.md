@@ -192,8 +192,22 @@ bilder, og telleren går dobbelt så fort. Minifisering av CSS og JS er
 bevisst ikke gjort: gevinsten er noen få KiB etter gzip, prisen er et
 bygg-steg. Buffer-TTL på ti minutter er GitHub Pages sin regel.
 
+Lighthouse etter alt dette (23:29): mobil 88 / 100 / 100 / 92, desktop
+99 / 100 / 100 / 92. Gjenstående funn og hva som ble gjort: linje 60 i
+main.js, `window.scrollY`, var den første geometri-lesingen og tvang fram
+hele den første layouten synkront i skriptet, 289 til 372 ms i én lang
+oppgave. Initialiseringen kjører nå etter to rAF-kall, så nettleseren
+tegner preloaderen først, og skriptet har `defer`. SEO 92 skyldtes
+lenketeksten «Read more», nå «Read the privacy policy». Tilgjengelighet
+flagget like lenketekster med ulik adresse (Spotify til låten og Spotify
+til profilen); alle plattform- og follow-lenker har fått aria-label som
+skiller dem. Ikke gjort: minifisering (5 KiB, krever bygg-steg),
+buffer-TTL (Pages), CSP-hoder (kan ikke settes på Pages, og en meta-CSP
+risikerer å knekke spillerne).
+
 Det som gjenstår på treg linje er skriftene fra Google Fonts, som
-preloaderen venter på. Selvhosting ble valgt bort tidligere. Det valget
+preloaderen venter på: 68 KiB fordelt på tre filer, og FCP på mobil er i
+praksis tiden det tar å hente dem. Selvhosting ble valgt bort tidligere. Det valget
 kan tas opp igjen hvis treg linje viser seg å være et reelt problem.
 
 ### Aggressivitets-runde

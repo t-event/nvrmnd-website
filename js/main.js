@@ -859,24 +859,32 @@
   const yearEl = $('#year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  watchFrameRate();      // først, så målingen går mens preloaderen står på
-  splitWords();          // før initReveal, så observatøren ser ordene
-  prepareLabels();       // samme grunn
-  initTapEffects();
-  initGyro();
-  initCursor();
-  initMagnetic();
-  initEmbeds();
-  initConsentReset();
-  initNav();
-  initReveal();
-  initScramble();
+  // Alt under leser geometri, og den første lesingen tvinger fram hele
+  // sidens første layout synkront, midt i skriptet. Med to rAF-kall får
+  // nettleseren tegne preloaderen først, og layouten skjer der den hører
+  // hjemme, i tegnepipelinen. Preloaderen er ren CSS fram til da.
+  function init() {
+    watchFrameRate();      // først, så målingen går mens preloaderen står på
+    splitWords();          // før initReveal, så observatøren ser ordene
+    prepareLabels();       // samme grunn
+    initTapEffects();
+    initGyro();
+    initCursor();
+    initMagnetic();
+    initEmbeds();
+    initConsentReset();
+    initNav();
+    initReveal();
+    initScramble();
 
-  // Måles én gang nå, og på nytt når skrifter og bilder er ferdig lastet,
-  // siden begge deler kan endre høyder og bredder.
-  window.addEventListener('load', measureAll);
-  measureAll();
+    // Måles én gang nå, og på nytt når skrifter og bilder er ferdig lastet,
+    // siden begge deler kan endre høyder og bredder.
+    window.addEventListener('load', measureAll);
+    measureAll();
 
-  runPreloader();
-  if (!reduced) requestAnimationFrame(loop);
+    runPreloader();
+    if (!reduced) requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(() => requestAnimationFrame(init));
 })();
