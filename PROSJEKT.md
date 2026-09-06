@@ -205,9 +205,9 @@ bare Marius kan levere, og to ting distributøren må rette.
 **Neste gang, i prioritert rekkefølge:**
 
 1. Booking-e-post opprettes og legges inn
-2. Marius skriver bioen med egne ord
-3. SoundCloud-brukernavnet endres til `nvrmnd`
-4. Permanent pressebilde
+2. 2 til 4 bilder eller korte klipp: artistfoto, studio, live. Ikke flere.
+3. Marius skriver bioen med egne ord
+4. SoundCloud-brukernavnet endres til `nvrmnd`
 5. Meld fra til distributøren om YouTube-kanalen og Amazon-profilen
 6. Vurder eget domene
 
@@ -273,6 +273,13 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Ekstern vurdering mottatt: 8,5/10. Sterk identitet og
+språk, men for «under construction» på booking, Instagram burde stikke ut,
+og siden trenger 2 til 4 bilder til. Booking-boksen lenker nå direkte til
+Instagram-DM og Instagram-knappen er fylt rød. Bilder og e-post venter på
+Marius. Vurderingen advarte samtidig mot å overdesigne, og mot å gjøre den
+til «enda en DJ-side» med Upcoming events, Follow me og lignende.
 
 **6. sep 2026.** Ny gjennomgang med designforbedringer: større hero-tittel som
 fyller bredden, plattformlenker som rutenett (3x2 desktop, 2x3 mobil),

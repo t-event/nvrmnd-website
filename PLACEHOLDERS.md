@@ -12,8 +12,8 @@ Status per 6. september 2026.
 ### Booking-e-post
 
 **Hvor:** `index.html`, kontaktseksjonen, blokken `.booking__soon`
-**Nå:** En boks med teksten «Booking email / Coming soon. DM on Instagram
-in the meantime»
+**Nå:** «Booking and press / DM @nvrmnd.hardstyle on Instagram», som lenke.
+Instagram er dermed den offisielle bookingkanalen inntil e-posten finnes.
 
 Adressen er ikke satt opp. Når den finnes:
 

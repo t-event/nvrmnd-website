@@ -1270,8 +1270,20 @@ body.has-cursor .footer__reset{ cursor:none; }
 .booking__soon-text{
   font-family:var(--font-mono);
   font-size:clamp(.8125rem,1.6vw,1rem);
-  color:var(--muted);
+  color:var(--text);
+  transition:color .3s;
 }
+a.booking__soon-text:hover{ color:var(--red); }
+
+/* Instagram er kanalen for booking akkurat nå, og skal skille seg ut */
+.social--primary{
+  background:var(--red);
+  border-color:var(--red);
+  color:#fff;
+}
+.social--primary i{ color:#fff; }
+.social--primary:hover{ background:var(--text); border-color:var(--text); color:var(--bg); }
+.social--primary:hover i{ color:var(--bg); }
 
 .socials{
   display:flex;
