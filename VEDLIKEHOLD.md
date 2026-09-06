@@ -39,7 +39,10 @@ som synes mest kommer først.
 **Musikkseksjonen, `index.html`**
 - [ ] Coveret: originalen i `assets/` som `<navn>.jpg` (1400 px, til deling
       og strukturerte data), og varianter laget med `tools/images.mjs`:
-      600 og 1100 px, både WebP og JPEG. Bruksanvisning står øverst i fila.
+      640, 1100 og 1400 px i WebP, 640 og 1100 i JPEG. Bruksanvisning står
+      øverst i fila. Trinnene er valgt slik at hver skjermtetthet får riktig
+      fil: 1x henter 640, telefon på 3x henter 1100, retina-skjerm 1400.
+      Endrer du `sizes` i HTML-en, må trinnene vurderes på nytt.
 - [ ] `<picture>`-blokka rundt coveret: begge `srcset` og `alt`
 - [ ] Lenka rundt coveret (Spotify-sporet)
 - [ ] Etiketten med format, dato og spilletid

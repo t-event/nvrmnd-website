@@ -544,9 +544,12 @@
 
   // Tekstbitene i .label og .hero__eyebrow pakkes i .scr-spans, så scramble
   // kan bytte bokstaver uten å rive med seg streken, skilletegnene og lenkene.
+  // Etiketter med data-no-scramble står stille. Utgivelsesdato og spilletid
+  // er informasjon folk faktisk skal lese, og en halv seksjonstittel som
+  // stokker seg er kul, mens «28 AUG JA%D» bare ser ut som en feil.
   function prepareLabels() {
     if (reduced) return;
-    $$('.label, .hero__eyebrow').forEach(label => {
+    $$('.label:not([data-no-scramble]), .hero__eyebrow').forEach(label => {
       [...label.childNodes].forEach(node => {
         if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) return;
         const span = document.createElement('span');

@@ -416,8 +416,27 @@ Speed Index, som er intro-animasjonen selv.
 Mo i Rana skal ikke inn i hero eller tekstbånd. Bioen er godkjent slik
 den står, og nevner ikke navnet hans.
 
+### Ekstern gjennomgang 7. september, og hva som ble gjort
+
+Mathias ba Claude og ChatGPT om terningkast. Claude ga 5 av 6. Punktene,
+og hva de førte til:
+
+| Påstand | Konklusjon |
+|---|---|
+| Scramble ligger på utgivelsesdato og spilletid | Stemte. Etiketter med `data-no-scramble` står nå stille |
+| Coveret er 576 px og blir mykt på retina | Feillesing. `naturalWidth` er tetthetskorrigert, fila er 600 px. Men målingen viste at 2x manglet oppløsning, så 1400 px WebP er lagt til |
+| Pressebildet er for lite | Stemmer, men 1178 px er originalen. Løses først med nytt pressebilde |
+| Statistikkraden har ingen tall å vise | Enig. Den bør ut eller fylles, se avsnitt 11 |
+| Booking kun via Instagram-DM | Kjent, står som blokkerende i `PLACEHOLDERS.md` |
+| localStorage deles på tvers av t-event.github.io | Gjelder andre T-Event-prosjekter. Denne siden bruker `nvrmnd:embeds` og er trygg. Eget domene fjerner problemet |
+| Kjøp domene | Enig, står som punkt 7 |
+
 ## 11. Åpne spørsmål
 
+- [ ] Statistikkraden: «01 Release / 2026 Debut / NVR001 Catalogue» teller
+      ting som ikke er verdt å telle ennå. Enten ut til katalogen vokser,
+      eller bytt til tall som betyr noe, for eksempel avspillinger. Mathias
+      avgjør
 - [ ] Booking-e-post opprettes, så byttes plassholderen ut
 - [ ] Marius døper om SoundCloud til `soundcloud.com/nvrmnd`, så oppdateres lenkene
 - [ ] Pressebilde

@@ -117,7 +117,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/anton-400-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/jetbrains-mono-variable-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/space-grotesk-variable-latin.woff2">
-<link rel="stylesheet" href="css/style.css?v=202609070116">
+<link rel="stylesheet" href="css/style.css?v=202609070124">
 </head>
 <body>
 
@@ -267,23 +267,24 @@
        target="_blank" rel="noopener"
        data-cursor="play" data-reveal data-wipe
        aria-label="Listen to Need Me on Spotify">
-      <!-- WebP der det støttes, JPEG ellers. 1100 px holder for 2x-skjermer
-           når bildet vises i rundt 550 px. Originalen på 1400 brukes bare
-           til deling og strukturerte data. -->
+      <!-- WebP der det støttes, JPEG ellers. Coveret vises i rundt 610 px, så
+           en 2x-skjerm ber om 1215. Derfor finnes 1400 i WebP. JPEG stopper på
+           1100: den varianten hentes bare av nettlesere uten WebP-støtte, og
+           originalen på 513 KiB er for tung å sende dit. -->
       <picture>
         <source type="image/webp"
-                srcset="assets/need-me-600.webp 600w, assets/need-me-1100.webp 1100w"
-                sizes="(max-width: 900px) 90vw, 40vw">
-        <img src="assets/need-me-600.jpg"
-             srcset="assets/need-me-600.jpg 600w, assets/need-me-1100.jpg 1100w"
-             sizes="(max-width: 900px) 90vw, 40vw"
+                srcset="assets/need-me-640.webp 640w, assets/need-me-1100.webp 1100w, assets/need-me-1400.webp 1400w"
+                sizes="(max-width: 900px) 90vw, 42vw">
+        <img src="assets/need-me-640.jpg"
+             srcset="assets/need-me-640.jpg 640w, assets/need-me-1100.jpg 1100w"
+             sizes="(max-width: 900px) 90vw, 42vw"
              alt="Cover art for NVRMND, Need Me"
              width="1100" height="1100" loading="lazy" decoding="async">
       </picture>
     </a>
 
     <div class="featured__info">
-      <p class="label" data-reveal data-delay="1">Debut single <span class="dot">·</span> 28 Aug 2026 <span class="dot">·</span> 2:24</p>
+      <p class="label" data-no-scramble data-reveal data-delay="1">Debut single <span class="dot">·</span> 28 Aug 2026 <span class="dot">·</span> 2:24</p>
       <h3 class="featured__title" data-reveal data-delay="2">Need Me</h3>
       <p class="featured__desc" data-reveal data-delay="3">
         The first one out. A kick tuned until it stopped sounding like a sample,
@@ -529,6 +530,6 @@
   </div>
 </div>
 
-<script src="js/main.js?v=202609070116" defer></script>
+<script src="js/main.js?v=202609070124" defer></script>
 </body>
 </html>

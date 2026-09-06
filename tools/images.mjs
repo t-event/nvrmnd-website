@@ -24,10 +24,11 @@ await send('Page.navigate',{url:'http://localhost:8765/'});
 await new Promise(r=>setTimeout(r,1500));
 // [kilde, bredde, format, kvalitet, utfil]
 const jobs=[
+  ['assets/need-me.jpg',1400,'image/webp',0.78,'assets/need-me-1400.webp'],
   ['assets/need-me.jpg',1100,'image/webp',0.80,'assets/need-me-1100.webp'],
   ['assets/need-me.jpg',1100,'image/jpeg',0.80,'assets/need-me-1100.jpg'],
-  ['assets/need-me.jpg', 600,'image/webp',0.82,'assets/need-me-600.webp'],
-  ['assets/need-me.jpg', 600,'image/jpeg',0.82,'assets/need-me-600.jpg'],
+  ['assets/need-me.jpg', 640,'image/webp',0.82,'assets/need-me-640.webp'],
+  ['assets/need-me.jpg', 640,'image/jpeg',0.82,'assets/need-me-640.jpg'],
   ['assets/press.jpg',  1178,'image/webp',0.78,'assets/press-1178.webp'],
   ['assets/press.jpg',  1178,'image/jpeg',0.80,'assets/press-1178.jpg'],
   ['assets/press.jpg',   700,'image/webp',0.80,'assets/press-700.webp'],
