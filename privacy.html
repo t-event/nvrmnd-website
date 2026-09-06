@@ -72,7 +72,7 @@
   <div class="cursor__ring"><span class="cursor__label"></span></div>
 </div>
 
-<header class="nav">
+<header class="nav" id="top">
   <a href="index.html" class="nav__logo" data-cursor="hover">NVRMND</a>
   <nav class="nav__links" aria-label="Main">
     <a href="index.html#music" class="nav__link" data-cursor="hover" data-text="Music"><span>Music</span></a>
@@ -191,13 +191,17 @@
 </main>
 
 <footer class="footer">
+  <div class="footer__word" aria-hidden="true">NVRMND</div>
   <div class="footer__row">
+    <!-- Årstallet settes av JS. 2026 står her som fallback uten JavaScript. -->
     <span>© <span id="year">2026</span> NVRMND</span>
     <span>Norway</span>
+    <a href="privacy.html" class="footer__link" data-cursor="hover">Privacy</a>
+    <button type="button" class="footer__link footer__reset" id="consentReset" data-cursor="hover">Cookie choice</button>
     <span class="footer__credit">
       Site by <a href="https://t-event.no" target="_blank" rel="noopener" data-cursor="hover">T-Event</a>
     </span>
-    <a href="index.html" data-cursor="hover" class="footer__top">Back to site ↑</a>
+    <a href="#top" class="footer__top" data-cursor="hover">Back to top ↑</a>
   </div>
 </footer>
 

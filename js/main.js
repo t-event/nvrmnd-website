@@ -175,6 +175,26 @@
     if (banner) banner.hidden = true;
   }
 
+  // Ligger utenfor initEmbeds, fordi knappen står i footeren på alle sider,
+  // også de som ikke har spillere.
+  function initConsentReset() {
+    const reset = $('#consentReset');
+    if (!reset) return;
+
+    reset.addEventListener('click', () => {
+      consent.clear();
+
+      const boxes = $$('.embed[data-embed-src]');
+      if (boxes.length && banner) {
+        boxes.forEach(blockEmbed);
+        banner.hidden = false;
+      } else {
+        // Ingen spillere på denne siden. Send brukeren dit valget gjelder.
+        window.location.href = 'index.html#music';
+      }
+    });
+  }
+
   function initEmbeds() {
     const boxes = $$('.embed[data-embed-src]');
     if (!boxes.length) return;
@@ -197,17 +217,6 @@
       consent.set(choice);
       applyConsent(choice);
     });
-
-    // Lenke i footeren for å ombestemme seg
-    const reset = $('#consentReset');
-    if (reset && banner) {
-      reset.addEventListener('click', () => {
-        consent.clear();
-        $$('.embed[data-embed-src]').forEach(blockEmbed);
-        banner.hidden = false;
-        banner.scrollIntoView({ block: 'nearest' });
-      });
-    }
 
     initFrameCursor();
   }
@@ -342,7 +351,9 @@
 
   /* ---------- 4. NAV + MOBILMENY ----------------------------------------- */
 
-  const nav    = $('#nav');
+  // Klasse, ikke id: headeren har id="top" som ankerpunkt for "Back to top",
+  // og den er lik på alle sider.
+  const nav    = $('.nav');
   const toggle = $('#navToggle');
   const menu   = $('#menu');
   const bar    = $('.progress__bar');
@@ -637,6 +648,7 @@
   initCursor();
   initMagnetic();
   initEmbeds();
+  initConsentReset();
   initNav();
   initReveal();
   initScramble();

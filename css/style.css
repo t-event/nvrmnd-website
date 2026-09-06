@@ -902,12 +902,16 @@ body.has-cursor .embed__out{ cursor:none; }
 .consent{
   position:fixed;
   left:0; right:0; bottom:0;
-  z-index:9996;
+  /* Over korn-laget, ellers blir banneret dempet av det. Under preloaderen. */
+  z-index:9998;
   background:var(--bg-2);
   border-top:2px solid var(--red);
   box-shadow:0 -20px 60px rgba(13,4,16,.8);
   animation:consentUp .6s var(--ease) .4s both;
 }
+
+/* Mobilmenyen dekker skjermen. Da skal ikke banneret ligge oppå den. */
+body.is-locked .consent{ display:none; }
 @keyframes consentUp{
   from{ transform:translateY(100%); }
   to  { transform:translateY(0); }
@@ -919,7 +923,11 @@ body.has-cursor .embed__out{ cursor:none; }
   justify-content:space-between;
   gap:clamp(1.25rem,4vw,3rem);
   flex-wrap:wrap;
+  /* env(safe-area-inset-bottom) holder knappene klar av hjemindikatoren og
+     nettleserlinja nederst på iPhone. Uten den havner de under og blir
+     vanskelige eller umulige å treffe. */
   padding:1.35rem var(--pad);
+  padding-bottom:calc(1.35rem + env(safe-area-inset-bottom, 0px));
   max-width:1400px;
   margin-inline:auto;
 }
@@ -944,8 +952,22 @@ body.has-cursor .embed__out{ cursor:none; }
 .consent__actions .btn{ padding:.85rem 1.5rem; }
 
 @media (max-width:620px){
-  .consent__inner{ flex-direction:column; align-items:stretch; }
-  .consent__actions .btn{ flex:1; justify-content:center; }
+  .consent__inner{
+    flex-direction:column;
+    align-items:stretch;
+    gap:1.1rem;
+    padding:1.1rem var(--pad);
+    padding-bottom:calc(1.1rem + env(safe-area-inset-bottom, 0px));
+  }
+  .consent__body{ font-size:.875rem; }
+  .consent__actions{ gap:.6rem; }
+  .consent__actions .btn{
+    flex:1;
+    justify-content:center;
+    padding:.9rem 1rem;
+  }
+  /* Uten dette brøt «Allow players» over to linjer og knappen ble skjev */
+  .consent__actions .btn__label{ white-space:nowrap; }
 }
 
 /* Knapp som ser ut som en lenke, for å ombestemme seg i footeren */
