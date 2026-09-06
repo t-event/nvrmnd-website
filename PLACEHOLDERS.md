@@ -20,43 +20,49 @@ Adressen er ikke satt opp. Når den finnes:
 1. Slett hele `<p class="booking__soon">`-blokken
 2. Fjern kommentaren rundt `<a class="booking__mail">` rett over
 3. Bytt ut `ADRESSE` begge steder, i `href="mailto:"` og i `data-scramble-hover`
+4. Legg adressen inn i `privacy.html` under Contact
 
 Forslag: `booking@nvrmnd.no` hvis dere kjøper domenet, ellers en egen Gmail
 som ikke er hans private.
 
-### Pressebilde
-
-**Hvor:** `index.html`, om-seksjonen, `<div class="about__img">`
-**Nå:** Grå boks med teksten «PRESS PHOTO»
-
-Trenger ett stående bilde, gjerne 3:4, mørkt og kontrastrikt så det matcher
-resten. Legg det som `assets/press.jpg` og bytt ut div-en:
-
-```html
-<img src="assets/press.jpg" alt="NVRMND" width="900" height="1200">
-```
-
 ---
 
 ## 🟡 Bør fikses, men siden fungerer
+
+### Pressebildet er midlertidig
+
+**Hvor:** `index.html`, om-seksjonen, `assets/press.jpg`
+**Nå:** Et bilde fra en spillejobb, 1178x747
+
+Bildet er tatt i grønt scenelys, som ikke passer paletten. Derfor ligger det et
+fargelag over det (`.about__frame::before` i CSS-en) som trekker det mot lilla
+og rødt. Kommer det et permanent pressebilde uten grønnstikk, kan du fjerne den
+regelen og bildet vises som det er.
+
+Bytt fila i `assets/`, behold navnet, og oppdater `width`/`height` i taggen så
+plassen holdes av mens det lastes.
+
+⚠️ Bildet viser gjenkjennelige publikummere. Det er et situasjonsbilde fra et
+arrangement, som normalt er greit å publisere, men blir noen ubekvemme skal det
+tas ned. `privacy.html` har et avsnitt om dette.
 
 ### Bio-teksten
 
 **Hvor:** `index.html`, om-seksjonen, `.about__body`
 **Nå:** Et utkast. Ikke skrevet av Marius selv
 
-Teksten er faktisk riktig (Mo i Rana, leilighetsstudio, Need Me som debut),
-men den er ikke hans stemme. Han bør lese den og gjøre den til sin. Holdt
-bevisst anonym, navnet hans står ikke der.
+Innholdet stemmer (Mo i Rana, leilighetsstudio, Need Me som debut), men det er
+ikke hans stemme. Han bør skrive den om. Holdt bevisst anonym, navnet hans står
+ikke der.
 
 ### SoundCloud-brukernavnet
 
-**Hvor:** `index.html`, to lenker, featured-seksjonen og sosiale medier
+**Hvor:** `index.html`, fire steder, og i de strukturerte dataene i `<head>`
 **Nå:** `soundcloud.com/marius-hagensen`
 
 Navnet hans står i URL-en, selv om bioen er anonym. Marius skal døpe om
-profilen til `soundcloud.com/nvrmnd`. Når det er gjort, oppdater begge lenkene,
-inkludert direktelenken til remixen.
+profilen til `soundcloud.com/nvrmnd`. Når det er gjort, oppdater alle
+forekomstene, inkludert lenken inne i SoundCloud-spillerens `data-embed-src`.
 
 ⚠️ Gamle SoundCloud-lenker slutter å virke når brukernavnet endres. Gjør det
 før låtene deles bredt.
@@ -66,7 +72,8 @@ før låtene deles bredt.
 **Hvor:** `index.html`, sosiale medier, utkommentert lenke
 **Nå:** Skjult
 
-Profilen finnes ikke ennå. Når den gjør det: fjern kommentaren og sett inn URL.
+Profilen finnes ikke ennå. Når den gjør det: fjern kommentaren, sett inn URL,
+og legg den også i `sameAs` i de strukturerte dataene.
 
 ---
 
@@ -97,7 +104,7 @@ Til orientering, så ingen tror dette er plassholdere:
 
 | Element | Kilde |
 |---|---|
-| Coverbildet | Hentet fra Apple Musics katalog, 1400×1400 |
+| Coverbildet | Hentet fra Apple Musics katalog, 1400x1400 |
 | Katalognummer NVR001 | Står på coveret |
 | Utgivelsesdato 28. aug 2026 | Apple Music |
 | Spilletid 2:24 | Apple Music |
@@ -105,6 +112,7 @@ Til orientering, så ingen tror dette er plassholdere:
 | Instagram | `@nvrmnd.hardstyle` |
 | Remixen | Random Nostalgia (NVRMND Remix), kun på SoundCloud |
 | Mo i Rana | Bekreftet |
+| Delingsbildet | Laget fra coveret, 1200x630 |
 
 ---
 

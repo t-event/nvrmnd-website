@@ -57,7 +57,10 @@ Vi har ingen belønningsordning. Vi kan tilby en takk, og kreditering hvis du vi
 
 - Manglende `Content-Security-Policy` og andre sikkerhetsheadere. Vi kan ikke
   sette headere på GitHub Pages. Vi vet.
-- «Nettsiden bruker Google Fonts.» Ja, det er et bevisst valg.
+- «Nettsiden bruker Google Fonts.» Ja, det er et bevisst valg, og det står
+  forklart i personvernerklæringen.
+- «Spillerne setter informasjonskapsler.» Ja, og derfor lastes de ikke uten
+  samtykke. Finner du en måte å omgå det på, vil vi svært gjerne vite det.
 - Rapporter fra automatiske skannere uten at du har vist at det faktisk
   kan utnyttes
 - Feil på tredjepartsplattformene (Spotify, YouTube, Amazon). Meld dem til dem.
@@ -72,9 +75,11 @@ Vi har ingen belønningsordning. Vi kan tilby en takk, og kreditering hvis du vi
 - **Alle eksterne lenker** bruker `rel="noopener"` så målsiden ikke får tilgang
   til vår `window`.
 - **HTTPS er påtvunget** via GitHub Pages.
-- **Ingen sporing.** Ingen analytics, ingen informasjonskapsler, ingen
-  tredjepartsskript utover Google Fonts. Ingen persondata samles inn, så det
-  finnes heller ingen å miste.
+- **Ingen sporing fra oss.** Ingen analytics, ingen egne informasjonskapsler.
+  Ingen persondata samles inn, så det finnes heller ingen å miste.
+- **Tredjepartsinnhold er gated.** Spotify- og SoundCloud-spillerne lastes
+  ikke før den besøkende har sagt ja. Iframene settes inn av JavaScript, aldri
+  fra rå brukerinput, og alle får `referrerpolicy` og en avgrenset `allow`.
 
 ## Anbefalinger til kontoeierne
 

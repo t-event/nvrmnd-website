@@ -27,11 +27,20 @@ høy kontrast, uten at det går ut over de tre punktene over.
 ## 3. Filer
 
 ```
-index.html        Hele siden. Alle seksjoner, all markup.
+index.html        Forsiden. Alle seksjoner, all markup.
+404.html          Feilside. GitHub Pages plukker den opp automatisk.
+privacy.html      Personvernerklæring.
 css/style.css     All styling. Fargevariabler ligger i :root øverst.
-js/main.js        Alle animasjoner. Delt i 11 nummererte seksjoner.
-assets/           Coverbilder og pressebilder.
+js/main.js        Alle animasjoner og samtykkelogikk.
+assets/           Cover, pressebilde, delingsbilde, ikoner.
+favicon.ico       Ikon i fanen. Nettlesere ber om denne uansett.
+robots.txt        Åpner for søkemotorer og språkmodeller.
+sitemap.xml       Nettstedskart.
 ```
+
+De tre HTML-sidene deler `style.css` og `main.js`. Footeren er identisk på
+alle tre. `main.js` tåler at elementer mangler, slik at undersidene uten
+preloader, mobilmeny eller spillere ikke feiler.
 
 Ingen av filene importerer hverandre utover de tre `<link>`/`<script>`-taggene
 i `index.html`. Det er med vilje: én fil per bekymring, ingen byggkjede.
@@ -69,7 +78,7 @@ Alle ligger i `js/main.js`, nummerert i samme rekkefølge som her.
 
 | # | Effekt | Teknikk |
 |---|---|---|
-| 1 | Preloader | `setTimeout`-kjede med tilfeldige intervaller, så CSS-keyframe på gardinen |
+| 1 | Preloader | Venter på `document.fonts.ready`, coveret og `window.load`. Telleren viser reell framdrift |
 | 2 | Egendefinert markør | Prikk følger eksakt, ring lerper etter på `0.24`. Systempekeren skjules via `body.has-cursor` |
 | 3 | Magnetiske knapper | `mousemove` regner avstand fra sentrum, ganger med `0.32` |
 | 4 | Nav + meny | Klasse-toggling, `clip-path` på mobilmenyen |
@@ -83,6 +92,29 @@ Alle ligger i `js/main.js`, nummerert i samme rekkefølge som her.
 
 **Én løkke, ikke fem.** Alt som må kjøre hver frame ligger i `loop()`. Det er
 forskjellen på jevn 60 fps og en side som hakker.
+
+## 5b. Samtykke og innebygde spillere
+
+Spotify- og SoundCloud-spillerne setter tredjeparts informasjonskapsler.
+Derfor ligger de ikke i HTML-en som ferdige `iframe`-er, men som tomme
+`div`-er med `data-embed-src`. JavaScript setter inn iframen først når
+samtykke finnes.
+
+| Tilstand | Hva skjer |
+|---|---|
+| Ikke svart | Ingenting lastes. Banneret vises. Spillerne står som blokkert |
+| Sagt ja | Iframene settes inn med en gang, og ved alle senere besøk |
+| Sagt nei | Spillerne står blokkert, med lenke ut til plattformen |
+
+Svaret lagres i `localStorage` under `nvrmnd:embeds`. All bruk av
+`localStorage` er pakket i try/catch, siden det kaster i privat modus og når
+nettleseren blokkerer lagring.
+
+Verifisert med nettverkslogg: null kall til Spotify og SoundCloud før svar,
+to etter.
+
+**Poenget:** et samtykkebanner som ikke faktisk stopper lastingen er bare
+pynt, fordi informasjonskapslene da allerede er satt når spørsmålet stilles.
 
 ## 6. Farger
 
@@ -123,7 +155,12 @@ er lesbar før skriftene er nede, og hvis de aldri kommer.
 - **`prefers-reduced-motion`** slår av alt: grain, markør, parallakse, marquee,
   scroll-avsløring. Den horisontale raden blir en vanlig scrollbar rad.
 - **Egendefinert markør** vises kun ved `pointer: fine`. Systempekeren kommer
-  tilbake så snart brukeren trykker Tab.
+  tilbake så snart brukeren trykker Tab, og over de innebygde spillerne, der
+  iframen er et eget dokument som ikke sender musebevegelser til oss.
+- **Mobilmenyen** er `visibility:hidden` når den er lukket, så lenkene ikke
+  ligger i tabulator-rekkefølgen på store skjermer.
+- **Samtykkebanneret** har `env(safe-area-inset-bottom)` slik at knappene
+  ikke havner under hjemindikatoren på iPhone.
 - **Alle bilder** har `alt`-tekst. Dekorative lag har `aria-hidden`.
 - **Semantisk markup**: `header`, `nav`, `main`, `section`, `article`, `footer`.
 - Kjente svakheter: fokusmarkering er ikke egendesignet, og fargekontrasten på
@@ -154,6 +191,8 @@ omtrent ett minutt.
 ## 12. Kjente begrensninger
 
 - **Ingen analytics.** Vi vet ikke hvor mange som besøker siden.
+- **Skriftene kommer fra Google Fonts.** Det sender de besøkendes IP til
+  Google. Selvhosting ble vurdert og valgt bort. Forklart i `privacy.html`.
 - **Ingen nyhetsbrev.** Ingen måte å samle e-postadresser på.
 - **Ingen konsertoversikt.** Ikke bygget, legges til når det er datoer.
 - **Ingen CMS.** Nytt innhold krever at noen endrer HTML og pusher.

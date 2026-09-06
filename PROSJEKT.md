@@ -1,7 +1,7 @@
 # NVRMND, nettside
 
 Prosjektnotater. Denne fila er «hukommelsen» vår: alt vi blir enige om skrives ned her.
-Sist oppdatert: 6. september 2026
+Sist oppdatert: 6. september 2026, ved dagens slutt
 
 ---
 
@@ -127,6 +127,9 @@ NVRMND nettside/
 ├── js/main.js            Alle animasjoner, 11 nummererte seksjoner
 ├── 404.html              Egen feilside
 ├── privacy.html          Personvernerklæring
+├── robots.txt            Åpner for søkemotorer og språkmodeller
+├── sitemap.xml           Nettstedskart
+├── favicon.ico           Ikon i fanen
 ├── assets/               Coverbilder, favicon og delingsbilde
 ├── favicon.ico           Ikon i fanen
 ├── robots.txt            Åpner for søkemotorer og språkmodeller
@@ -185,7 +188,30 @@ nederst på forsiden.
 **Dette er hele poenget med banneret:** et banner som ikke faktisk stopper
 lastingen er bare pynt, siden informasjonskapslene da allerede er satt.
 
-## 10. Åpne spørsmål
+## 10. Status ved dagens slutt
+
+Siden er **ferdig og live**. Alt av struktur, design, animasjon, SEO,
+personvern og dokumentasjon er på plass. Det som gjenstår er innhold som
+bare Marius kan levere, og to ting distributøren må rette.
+
+**Verifisert:**
+
+- Null konsollfeil på forsiden, 404-siden og personvernsiden
+- Ingen vannrett scroll på 1440px og 390px
+- Ingen kall til Spotify eller SoundCloud før samtykke er gitt
+- Alle lenker klikkbare, testet med treffpunkt-måling
+- Alle filer svarer 200 på den publiserte adressen
+
+**Neste gang, i prioritert rekkefølge:**
+
+1. Booking-e-post opprettes og legges inn
+2. Marius skriver bioen med egne ord
+3. SoundCloud-brukernavnet endres til `nvrmnd`
+4. Permanent pressebilde
+5. Meld fra til distributøren om YouTube-kanalen og Amazon-profilen
+6. Vurder eget domene
+
+## 11. Åpne spørsmål
 
 - [ ] Booking-e-post opprettes, så byttes plassholderen ut
 - [ ] Marius døper om SoundCloud til `soundcloud.com/nvrmnd`, så oppdateres lenkene
@@ -196,7 +222,7 @@ lastingen er bare pynt, siden informasjonskapslene da allerede er satt.
 - [ ] Eget domene? (Settings → Pages → Custom domain)
 - [x] ~~Skal siden publiseres?~~ Live siden 6. september 2026
 
-## 11. Slik publiseres endringer
+## 12. Slik publiseres endringer
 
 Alt som pushes til `main` går live etter ca. ett minutt.
 
@@ -206,7 +232,7 @@ git commit -m "beskrivelse av endringen"
 git push
 ```
 
-## 12. Feil funnet i gjennomgangen 6. september
+## 13. Feil funnet i gjennomgangen 6. september
 
 Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
 
@@ -224,8 +250,12 @@ Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
 | Pressebildet ble en tynn stripe på mobil | 16:10 er for flatt på smal skjerm. Nå 4:3 under 900px og kvadratisk under 520px. |
 | Markøren frøs over spillerne | En iframe er et eget dokument og sender ingen musebevegelser til oss. Ringen skjules mens pekeren er over. |
 | SoundCloud-spilleren var hvit | Den vanlige widgeten har ingen mørk modus. Byttet til visual=true, som bruker coveret som mørk bakgrunn. |
+| SoundCloud-spilleren tok for mye plass | Flyttet til egen kolonne, 480x278. Widgetens hvite bunnstripe beskjæres ved at iframen får 300px og beholderen 278px. |
+| Footeren var ulik på de tre sidene | 404 og personvern manglet NVRMND-ordet, og lenkene varierte. Nå identisk overalt. |
+| Cookie choice virket bare på forsiden | Håndteringen lå inne i initEmbeds. Flyttet ut, og sender nå brukeren til musikkseksjonen fra sider uten spillere. |
+| Samtykkebanneret på mobil | Manglet env(safe-area-inset-bottom), lå under korn-laget, og la seg oppå mobilmenyen. |
 
-## 13. Beslutningslogg
+## 14. Beslutningslogg
 
 **6. sep 2026.** Oppstart, tom mappe. Alle valgene i tabellen over avklart gjennom
 tre avklaringsrunder. Bygget første versjon med alle åtte effektene.
@@ -241,6 +271,9 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Footeren ensrettet på alle tre sider. Samtykkebanneret rettet
+for mobil. Alle .md-filer oppdatert. Dagen avsluttet med siden live og verifisert.
 
 **6. sep 2026.** Innebygde spillere fra Spotify og SoundCloud lagt inn, styrt av
 et samtykkebanner. Verifisert at ingenting kontakter dem før samtykke er gitt.

@@ -41,6 +41,7 @@ Noen nettlesere er sære med lokale filer.
 | Skal du endre… | Åpne |
 |---|---|
 | Tekst, lenker, seksjoner | `index.html` |
+| Feilside eller personvern | `404.html`, `privacy.html` |
 | Farger, typografi, layout | `css/style.css` |
 | Animasjoner og oppførsel | `js/main.js` |
 | Bilder | `assets/` |
@@ -80,6 +81,25 @@ if (reduced) return;
 
 Dette er ikke valgfritt. Noen får migrene eller kvalme av bevegelse på nett.
 
+### Skrivestil på siden
+
+**Ingen lange tankestreker i teksten.** Bruk hele setninger, punktum eller
+skråstrek som skilletegn. Det gjelder også `<title>`, meta-beskrivelser og
+alt-tekster.
+
+### Footeren skal være lik overalt
+
+De tre HTML-sidene har identisk footer. Endrer du den ett sted, endre den alle
+tre stedene.
+
+### Nytt tredjepartsinnhold må gjennom samtykke
+
+Legger du inn noe som lastes fra en annen tjeneste, en spiller, et kart, en
+video, skal det ikke stå som en ferdig `iframe` i HTML-en. Bruk samme mønster
+som spillerne: en tom `div` med `data-embed-src`, som JavaScript fyller først
+når samtykke finnes. Ellers settes informasjonskapslene før noen har fått
+velge, og samtykkebanneret blir meningsløst.
+
 ### Stil på koden
 
 - To mellomrom innrykk
@@ -93,6 +113,8 @@ Dette er ikke valgfritt. Noen får migrene eller kvalme av bevegelse på nett.
 Det finnes ingen testsuite. Gå gjennom dette for hånd:
 
 - [ ] Fungerer siden i Chrome, Safari og Firefox?
+- [ ] Er footeren fortsatt lik på index, 404 og privacy?
+- [ ] Laster spillerne fortsatt ingenting før man har sagt ja?
 - [ ] Ser den riktig ut på mobil? (smal skjerm, ingen vannrett scroll)
 - [ ] Slå på «Reduser bevegelse» i systeminnstillingene, er siden fortsatt brukbar?
 - [ ] Virker alle lenker, og åpnes de eksterne i ny fane?
