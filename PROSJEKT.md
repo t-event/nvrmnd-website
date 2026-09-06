@@ -126,6 +126,7 @@ NVRMND nettside/
 ├── css/style.css         All styling, variabler øverst
 ├── js/main.js            Alle animasjoner, 11 nummererte seksjoner
 ├── 404.html              Egen feilside
+├── privacy.html          Personvernerklæring
 ├── assets/               Coverbilder, favicon og delingsbilde
 ├── favicon.ico           Ikon i fanen
 ├── robots.txt            Åpner for søkemotorer og språkmodeller
@@ -169,7 +170,22 @@ de tross alt fører til musikken:
 
 Begge må meldes til distributøren.
 
-## 9. Åpne spørsmål
+## 9. Samtykke og personvern
+
+Google Fonts beholdes, med personvernerklæring som forklarer at IP-adressen
+sendes til Google. Selvhosting ble vurdert og valgt bort.
+
+Spotify- og SoundCloud-spillerne setter tredjeparts informasjonskapsler, og
+lastes derfor ikke før den besøkende har sagt ja i banneret. Svaret lagres
+lokalt under nøkkelen `nvrmnd:embeds` og sendes ingen steder. Sier man ja,
+lastes spillerne umiddelbart ved alle senere besøk. Sier man nei, vises en
+lenke ut til plattformen i stedet. Valget kan endres via «Cookie choice»
+nederst på forsiden.
+
+**Dette er hele poenget med banneret:** et banner som ikke faktisk stopper
+lastingen er bare pynt, siden informasjonskapslene da allerede er satt.
+
+## 10. Åpne spørsmål
 
 - [ ] Booking-e-post opprettes, så byttes plassholderen ut
 - [ ] Marius døper om SoundCloud til `soundcloud.com/nvrmnd`, så oppdateres lenkene
@@ -180,7 +196,7 @@ Begge må meldes til distributøren.
 - [ ] Eget domene? (Settings → Pages → Custom domain)
 - [x] ~~Skal siden publiseres?~~ Live siden 6. september 2026
 
-## 10. Slik publiseres endringer
+## 11. Slik publiseres endringer
 
 Alt som pushes til `main` går live etter ca. ett minutt.
 
@@ -190,7 +206,7 @@ git commit -m "beskrivelse av endringen"
 git push
 ```
 
-## 11. Feil funnet i gjennomgangen 6. september
+## 12. Feil funnet i gjennomgangen 6. september
 
 Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
 
@@ -205,8 +221,11 @@ Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
 | Siden ble usynlig uten JavaScript | Preloader og scroll-avsløring skjulte alt. Nå gated på klassen `.js`. |
 | Mobilmenyens lenker lå i tabulator-rekkefølgen | Menyen var klippet bort, men ikke skjult. Fikk `visibility:hidden`. |
 | 404 på favicon.ico | Nettlesere ber om den uansett. Ekte ICO-fil lagt i rotmappa. |
+| Pressebildet ble en tynn stripe på mobil | 16:10 er for flatt på smal skjerm. Nå 4:3 under 900px og kvadratisk under 520px. |
+| Markøren frøs over spillerne | En iframe er et eget dokument og sender ingen musebevegelser til oss. Ringen skjules mens pekeren er over. |
+| SoundCloud-spilleren var hvit | Den vanlige widgeten har ingen mørk modus. Byttet til visual=true, som bruker coveret som mørk bakgrunn. |
 
-## 12. Beslutningslogg
+## 13. Beslutningslogg
 
 **6. sep 2026.** Oppstart, tom mappe. Alle valgene i tabellen over avklart gjennom
 tre avklaringsrunder. Bygget første versjon med alle åtte effektene.
@@ -222,6 +241,11 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Innebygde spillere fra Spotify og SoundCloud lagt inn, styrt av
+et samtykkebanner. Verifisert at ingenting kontakter dem før samtykke er gitt.
+Personvernerklæring skrevet. Pressebilde lagt inn midlertidig. REMEMBER tatt ut
+av tekstbåndene. Geografien i hero rettet.
 
 **6. sep 2026.** Full gjennomgang med headless Chrome. Ni feil funnet og rettet,
 se avsnitt 12. SEO lagt inn: strukturerte data, robots.txt, sitemap, kanonisk

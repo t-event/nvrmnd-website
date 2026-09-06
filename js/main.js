@@ -112,28 +112,125 @@
   }
 
 
-  /* ---------- 1b. INNEBYGDE SPILLERE, LASTES VED KLIKK ------------------- */
+  /* ---------- 1b. SAMTYKKE OG INNEBYGDE SPILLERE -------------------------- */
 
-  // Ingenting hentes fra Spotify eller SoundCloud før den besøkende trykker.
-  // Det holder siden rask og unngår tredjeparts informasjonskapsler for alle
-  // som bare leser.
-  function initEmbeds() {
+  // Spotify og SoundCloud setter sine egne informasjonskapsler. Derfor lastes
+  // spillerne først når den besøkende har sagt ja. Svaret lagres lokalt i
+  // nettleseren, så neste besøk laster dem umiddelbart uten å spørre igjen.
+  const CONSENT_KEY = 'nvrmnd:embeds';
+
+  // localStorage kaster i privat modus og når nettleseren blokkerer lagring,
+  // så all bruk må tåle å feile.
+  const consent = {
+    get() {
+      try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
+    },
+    set(v) {
+      try { localStorage.setItem(CONSENT_KEY, v); } catch { /* ikke kritisk */ }
+    },
+    clear() {
+      try { localStorage.removeItem(CONSENT_KEY); } catch { /* ikke kritisk */ }
+    }
+  };
+
+  const banner = $('#consent');
+
+  function loadEmbed(box) {
+    if ($('iframe', box)) return;
+
+    const frame = document.createElement('iframe');
+    frame.className = 'embed__frame';
+    frame.src = box.dataset.embedSrc;
+    frame.title = box.dataset.embedTitle || 'Player';
+    frame.height = box.dataset.embedHeight || '166';
+    frame.loading = 'lazy';
+    frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+
+    box.replaceChildren(frame);
+    box.classList.add('is-loaded');
+  }
+
+  // Sagt nei: vi viser en enkel plass med lenke ut i stedet for spilleren
+  function blockEmbed(box) {
+    const name = box.dataset.embedName || 'the platform';
+    box.classList.remove('is-loaded');
+    box.innerHTML =
+      '<div class="embed__blocked">' +
+        '<p class="embed__blocked-text">Player blocked. ' +
+          'You chose not to allow cookies from ' + name + '.</p>' +
+        '<div class="embed__blocked-actions">' +
+          '<button type="button" class="embed__allow" data-consent="granted">Allow players</button>' +
+          '<a class="embed__out" href="' + box.dataset.embedFallback + '" ' +
+             'target="_blank" rel="noopener">Open on ' + name + ' ↗</a>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function applyConsent(state) {
     $$('.embed[data-embed-src]').forEach(box => {
-      const btn = $('.embed__load', box);
-      if (!btn) return;
-
-      btn.addEventListener('click', () => {
-        const frame = document.createElement('iframe');
-        frame.src = box.dataset.embedSrc;
-        frame.title = box.dataset.embedTitle || 'Player';
-        frame.height = box.dataset.embedHeight || '166';
-        frame.loading = 'lazy';
-        frame.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture';
-        frame.referrerPolicy = 'strict-origin-when-cross-origin';
-
-        box.replaceChildren(frame);
-      }, { once: true });
+      if (state === 'granted') loadEmbed(box);
+      else blockEmbed(box);
     });
+    if (banner) banner.hidden = true;
+  }
+
+  function initEmbeds() {
+    const boxes = $$('.embed[data-embed-src]');
+    if (!boxes.length) return;
+
+    const saved = consent.get();
+
+    if (saved === 'granted')      applyConsent('granted');
+    else if (saved === 'denied')  applyConsent('denied');
+    else {
+      // Ikke bestemt seg: ingenting lastes, og banneret vises
+      boxes.forEach(blockEmbed);
+      if (banner) banner.hidden = false;
+    }
+
+    // Ett klikk-oppsett for både banneret og knappene inne i blokkerte spillere
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      const choice = btn.dataset.consent;
+      consent.set(choice);
+      applyConsent(choice);
+    });
+
+    // Lenke i footeren for å ombestemme seg
+    const reset = $('#consentReset');
+    if (reset && banner) {
+      reset.addEventListener('click', () => {
+        consent.clear();
+        $$('.embed[data-embed-src]').forEach(blockEmbed);
+        banner.hidden = false;
+        banner.scrollIntoView({ block: 'nearest' });
+      });
+    }
+
+    initFrameCursor();
+  }
+
+  // En iframe er et eget dokument. Så snart pekeren er inne i den slutter
+  // mousemove å nå oss, og ringen ble stående fast midt på spilleren.
+  // Vi skjuler den mens pekeren er over, og lar systempekeren overta.
+  function initFrameCursor() {
+    if (!cursor) return;
+
+    $$('.embed').forEach(box => {
+      box.addEventListener('mouseenter', () => {
+        cursor.classList.add('is-over-frame');
+        cursor.classList.remove('is-hover', 'is-label');
+      });
+      box.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-over-frame');
+      });
+    });
+
+    // Sikkerhetsnett: tar spilleren fokus rekker vi ikke alltid å få
+    // mouseleave. Da rydder vi opp når vinduet får fokus tilbake.
+    window.addEventListener('focus', () => cursor.classList.remove('is-over-frame'));
   }
 
   function startHero() {

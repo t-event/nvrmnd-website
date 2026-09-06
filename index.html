@@ -199,10 +199,10 @@
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track" data-marquee>
-    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
-    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
-    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
-    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> NVRMND <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> NVRMND <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> NVRMND <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> NVRMND <i>◆</i> Hardstyle <i>◆</i></span>
   </div>
 </div>
 
@@ -242,7 +242,17 @@
         one beat longer than it should.
       </p>
 
-      <ul class="platforms" data-reveal data-delay="4">
+      <!-- Spilleren settes inn av JS så snart samtykke finnes. Har den
+           besøkende sagt ja før, skjer det umiddelbart ved sidelasting. -->
+      <div class="embed" data-reveal data-delay="4"
+           data-embed-src="https://open.spotify.com/embed/track/4iiM7v8EZcTVfnWacZ7ghQ?utm_source=generator&amp;theme=0"
+           data-embed-height="152"
+           data-embed-title="Spotify player for Need Me by NVRMND"
+           data-embed-name="Spotify"
+           data-embed-fallback="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ">
+      </div>
+
+      <ul class="platforms" data-reveal data-delay="5">
         <li><a class="platform" href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a></li>
         <li><a class="platform" href="https://music.apple.com/no/album/need-me/6806555357?i=6806555358" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Apple Music</span><i>↗</i></a></li>
         <li><a class="platform" href="https://tidal.com/track/556694168" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Tidal</span><i>↗</i></a></li>
@@ -250,21 +260,6 @@
         <li><a class="platform" href="https://www.youtube.com/watch?v=Cu71go7IyKI" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>YouTube</span><i>↗</i></a></li>
         <li><a class="platform" href="https://music.amazon.com/tracks/B0HH3XDYPG" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Amazon Music</span><i>↗</i></a></li>
       </ul>
-
-      <!-- Spilleren lastes først når noen trykker. Ingenting hentes fra
-           Spotify før det, så det settes heller ingen informasjonskapsler. -->
-      <div class="embed" data-reveal data-delay="5"
-           data-embed-src="https://open.spotify.com/embed/track/4iiM7v8EZcTVfnWacZ7ghQ?utm_source=generator&amp;theme=0"
-           data-embed-height="152"
-           data-embed-title="Spotify player for Need Me by NVRMND">
-        <button class="embed__load" type="button" data-cursor="hover">
-          <span class="embed__play" aria-hidden="true">▶</span>
-          <span class="embed__text">
-            <span class="embed__label">Play on Spotify</span>
-            <span class="embed__note">Loads a Spotify player. Spotify may set cookies.</span>
-          </span>
-        </button>
-      </div>
     </div>
   </article>
 
@@ -281,18 +276,12 @@
       </a>
     </div>
 
-    <!-- Samme prinsipp: ingenting lastes fra SoundCloud før noen trykker -->
     <div class="embed"
-         data-embed-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/marius-hagensen/random-nostalgia-nvrmnd-remix&amp;color=%23ff1f3d&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=false"
-         data-embed-height="166"
-         data-embed-title="SoundCloud player for Random Nostalgia, NVRMND Remix">
-      <button class="embed__load" type="button" data-cursor="hover">
-        <span class="embed__play" aria-hidden="true">▶</span>
-        <span class="embed__text">
-          <span class="embed__label">Play the remix here</span>
-          <span class="embed__note">Loads a SoundCloud player. SoundCloud may set cookies.</span>
-        </span>
-      </button>
+         data-embed-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/marius-hagensen/random-nostalgia-nvrmnd-remix&amp;color=%23ff1f3d&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true"
+         data-embed-height="320"
+         data-embed-title="SoundCloud player for Random Nostalgia, NVRMND Remix"
+         data-embed-name="SoundCloud"
+         data-embed-fallback="https://soundcloud.com/marius-hagensen/random-nostalgia-nvrmnd-remix">
     </div>
   </aside>
 </section>
@@ -379,10 +368,10 @@
 <!-- ============ MARQUEE 2 ============ -->
 <div class="marquee marquee--red" aria-hidden="true">
   <div class="marquee__track" data-marquee data-direction="-1">
-    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i></span>
-    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i></span>
-    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i></span>
-    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i></span>
+    <span class="marquee__item">NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i> Hardstyle <i>◆</i></span>
+    <span class="marquee__item">NVRMND <i>◆</i> Norway <i>◆</i> 2026 <i>◆</i> Hardstyle <i>◆</i></span>
   </div>
 </div>
 
@@ -431,12 +420,38 @@
     <span>© <span id="year">2026</span> NVRMND</span>
     <span>Norway</span>
     <a href="privacy.html" data-cursor="hover" class="footer__link">Privacy</a>
+    <button type="button" class="footer__link footer__reset" id="consentReset" data-cursor="hover">Cookie choice</button>
     <span class="footer__credit">
       Site by <a href="https://t-event.no" target="_blank" rel="noopener" data-cursor="hover">T-Event</a>
     </span>
     <a href="#hero" data-cursor="hover" class="footer__top">Back to top ↑</a>
   </div>
 </footer>
+
+<!-- ============ SAMTYKKE FOR INNEBYGDE SPILLERE ============
+     Vises kun til den som ikke har valgt ennå. Valget lagres lokalt i
+     nettleseren og sendes ingen steder. -->
+<div class="consent" id="consent" role="dialog" aria-modal="false"
+     aria-labelledby="consentTitle" hidden>
+  <div class="consent__inner">
+    <div class="consent__text">
+      <p class="consent__title" id="consentTitle">Players from Spotify and SoundCloud</p>
+      <p class="consent__body">
+        To play music here we load a player from Spotify and SoundCloud. They
+        set their own cookies. Nothing else on this site tracks you.
+        <a href="privacy.html">Read more</a>.
+      </p>
+    </div>
+    <div class="consent__actions">
+      <button class="btn btn--ghost" type="button" data-consent="denied" data-cursor="hover">
+        <span class="btn__label">No thanks</span>
+      </button>
+      <button class="btn" type="button" data-consent="granted" data-cursor="hover">
+        <span class="btn__label">Allow players</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>

@@ -794,7 +794,7 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .featured__desc{
   color:var(--muted);
   max-width:44ch;
-  margin:0 0 2.5rem;
+  margin:0 0 2rem;
 }
 /* Denne etiketten har ingen strek, bare tekst og skilletegn. Som flex ble
    hvert tekststykke et eget flex-element, og gap-en dro linja fra hverandre. */
@@ -832,67 +832,134 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .platform:hover{ background:var(--red); border-color:var(--red); color:#fff; }
 .platform:hover i{ transform:translate(2px,-2px); color:#fff; }
 
-/* --- Klikk for å laste: innebygde spillere --------------------------------
-   Ingenting hentes fra Spotify eller SoundCloud før noen trykker. Det holder
-   siden rask, og gjør at det ikke settes tredjeparts informasjonskapsler
-   uten at den besøkende har bedt om det. */
+/* --- Innebygde spillere --------------------------------------------------- */
 
-.embed{ margin-top:2rem; }
-
-.embed__load{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  width:100%;
-  text-align:left;
-  padding:1rem 1.25rem;
-  background:rgba(242,233,247,.03);
-  border:1px dashed var(--line);
-  color:var(--text);
-  font-family:inherit;
-  cursor:pointer;
-  transition:border-color .35s var(--ease), background-color .35s var(--ease);
+.embed{
+  margin:0 0 1.75rem;
+  overflow:hidden;
 }
-.embed__load:hover{
-  border-color:var(--red);
-  border-style:solid;
-  background:rgba(255,31,61,.07);
-}
-body.has-cursor .embed__load{ cursor:none; }
-
-.embed__play{
-  flex:0 0 auto;
-  width:38px; height:38px;
-  display:grid;
-  place-items:center;
-  background:var(--red);
-  border-radius:50%;
-  color:#fff;
-  font-size:.75rem;
-  padding-left:2px;
-  transition:transform .35s var(--ease);
-}
-.embed__load:hover .embed__play{ transform:scale(1.1); }
-
-.embed__text{ display:flex; flex-direction:column; gap:.2rem; min-width:0; }
-.embed__label{
-  font-family:var(--font-mono);
-  font-size:.75rem;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-.embed__note{
-  font-family:var(--font-mono);
-  font-size:.625rem;
-  letter-spacing:.06em;
-  color:var(--muted);
-}
-
-.embed iframe{
+/* Spotify og SoundCloud tegner sin egen ramme med runde hjørner. En firkantet
+   ramme fra oss rundt den så bare rotete ut, så den vises kun i blokkert
+   tilstand, der vi tegner innholdet selv. */
+.embed:not(.is-loaded){ border:1px solid var(--line); }
+.embed__frame{
   display:block;
   width:100%;
   border:0;
 }
+
+/* Innsiden av en iframe er et eget dokument. Vi får ingen musebevegelser
+   derfra, så den egendefinerte ringen ville frosset midt på spilleren.
+   Den skjules mens pekeren er over, og systempekeren slipper til. */
+.cursor.is-over-frame{ opacity:0; }
+body.has-cursor .embed.is-loaded,
+body.has-cursor .embed.is-loaded *{ cursor:auto; }
+
+/* Tilstanden når den besøkende har sagt nei til spillerne */
+.embed__blocked{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.25rem;
+  flex-wrap:wrap;
+  padding:1.15rem 1.35rem;
+  background:rgba(242,233,247,.03);
+}
+.embed__blocked-text{
+  margin:0;
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.08em;
+  color:var(--muted);
+  max-width:44ch;
+}
+.embed__blocked-actions{ display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+
+.embed__allow,
+.embed__out{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  background:none;
+  border:0;
+  padding:0;
+  color:var(--red);
+  border-bottom:1px solid transparent;
+  cursor:pointer;
+  transition:border-color .3s;
+  white-space:nowrap;
+}
+.embed__allow:hover,
+.embed__out:hover{ border-bottom-color:var(--red); }
+body.has-cursor .embed__allow,
+body.has-cursor .embed__out{ cursor:none; }
+
+/* ==========================================================================
+   SAMTYKKEBANNER
+   ========================================================================== */
+
+.consent{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:9996;
+  background:var(--bg-2);
+  border-top:2px solid var(--red);
+  box-shadow:0 -20px 60px rgba(13,4,16,.8);
+  animation:consentUp .6s var(--ease) .4s both;
+}
+@keyframes consentUp{
+  from{ transform:translateY(100%); }
+  to  { transform:translateY(0); }
+}
+
+.consent__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(1.25rem,4vw,3rem);
+  flex-wrap:wrap;
+  padding:1.35rem var(--pad);
+  max-width:1400px;
+  margin-inline:auto;
+}
+.consent__title{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin:0 0 .4rem;
+}
+.consent__body{
+  margin:0;
+  color:var(--muted);
+  font-size:.9375rem;
+  max-width:62ch;
+}
+.consent__body a{ color:var(--text); border-bottom:1px solid var(--red); }
+.consent__body a:hover{ color:var(--red); }
+
+.consent__actions{ display:flex; gap:.75rem; flex-wrap:wrap; }
+.consent__actions .btn{ padding:.85rem 1.5rem; }
+
+@media (max-width:620px){
+  .consent__inner{ flex-direction:column; align-items:stretch; }
+  .consent__actions .btn{ flex:1; justify-content:center; }
+}
+
+/* Knapp som ser ut som en lenke, for å ombestemme seg i footeren */
+.footer__reset{
+  background:none;
+  border:0;
+  padding:0;
+  font:inherit;
+  color:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  cursor:pointer;
+}
+body.has-cursor .footer__reset{ cursor:none; }
 
 /* --- Remix-blokk under featured --- */
 .more{
@@ -1303,9 +1370,24 @@ body.has-cursor .embed__load{ cursor:none; }
 
 @media (max-width:900px){
   .about{ grid-template-columns:1fr; }
-  .about__media{ margin-bottom:3rem; margin-inline:0; }
+  .about__media{ margin-bottom:2rem; margin-inline:0; }
   .featured{ grid-template-columns:1fr; }
   .featured__art{ max-width:420px; }
+
+  /* På smal skjerm blir 16:10 bare en tynn stripe. Høyere format gir bildet
+     tilbake tyngden, og beskjærer bare litt i sidene. */
+  .about__frame img{ aspect-ratio:4/3; }
+
+  /* Etiketten er fast størrelse, og tok derfor en tredjedel av et lite bilde */
+  .about__cap{
+    font-size:.5625rem;
+    letter-spacing:.16em;
+    padding:.35rem .6rem;
+  }
+}
+
+@media (max-width:520px){
+  .about__frame img{ aspect-ratio:1; }
 }
 
 @media (max-width:720px){
