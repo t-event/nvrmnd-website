@@ -532,7 +532,9 @@
     parallaxItems.forEach(p => {
       // Hvor langt elementets midtpunkt er fra skjermens midtpunkt
       const offset = (p.baseMid - scrollY) - vh / 2;
-      p.target  = offset * p.speed;
+      // Begrenset, så elementer langt utenfor skjermen aldri får absurde
+      // forskyvninger som kan legge dem oppå naboene når de ruller inn
+      p.target  = clamp(offset * p.speed, -90, 90);
       p.current = lerp(p.current, p.target, 0.1);
       p.el.style.transform = `translate3d(0, ${p.current.toFixed(2)}px, 0)`;
     });

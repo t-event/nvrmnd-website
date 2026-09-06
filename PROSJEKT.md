@@ -254,6 +254,8 @@ Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
 | Footeren var ulik på de tre sidene | 404 og personvern manglet NVRMND-ordet, og lenkene varierte. Nå identisk overalt. |
 | Cookie choice virket bare på forsiden | Håndteringen lå inne i initEmbeds. Flyttet ut, og sender nå brukeren til musikkseksjonen fra sider uten spillere. |
 | Samtykkebanneret på mobil | Manglet env(safe-area-inset-bottom), lå under korn-laget, og la seg oppå mobilmenyen. |
+| Statistikkraden brakk på mobil | Etikettene («Release out now») var bredere enn tallene. Kortere etiketter, og raden er nå et rutenett med tre like kolonner. |
+| Parallakse kunne flytte elementer oppå naboer | Elementer langt utenfor skjermen fikk store forskyvninger. Nå begrenset til ±90px. |
 
 ## 14. Beslutningslogg
 
@@ -271,6 +273,11 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Ny gjennomgang med designforbedringer: større hero-tittel som
+fyller bredden, plattformlenker som rutenett (3x2 desktop, 2x3 mobil),
+statistikk som rutenett, pressebildet i 3:2 med mer plass, kortere hero på
+mobil, footer i kolonne på mobil. To feil rettet, se tabellen.
 
 **6. sep 2026.** Footeren ensrettet på alle tre sider. Samtykkebanneret rettet
 for mobil. Alle .md-filer oppdatert. Dagen avsluttet med siden live og verifisert.

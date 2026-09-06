@@ -511,7 +511,7 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .hero__title{
   margin:0 0 3rem;
   font-family:var(--font-display);
-  font-size:clamp(5rem,22.5vw,19rem);
+  font-size:clamp(5rem,24vw,23rem);
   line-height:.78;
   letter-spacing:-.02em;
   will-change:transform;
@@ -811,13 +811,14 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .platforms{
   list-style:none;
   margin:0; padding:0;
-  display:flex;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:.6rem;
 }
 .platform{
-  display:inline-flex;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:.5rem;
   padding:.75rem 1.3rem;
   border:1px solid var(--line);
@@ -1115,7 +1116,7 @@ body.has-cursor .footer__reset{ cursor:none; }
 .about{
   position:relative;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1.1fr 1fr;
   gap:clamp(2rem,6vw,6rem);
   align-items:center;
   padding:clamp(6rem,14vh,11rem) var(--pad);
@@ -1139,11 +1140,11 @@ body.has-cursor .footer__reset{ cursor:none; }
   box-shadow:0 30px 80px rgba(13,4,16,.6);
   will-change:transform;
 }
-/* Liggende format, tett på originalens 1178x747. Nesten ingen beskjæring. */
+/* 3:2 er nær originalens 1178x747, og gir bildet mer høyde enn 16:10. */
 .about__frame img{
   width:100%;
   height:auto;
-  aspect-ratio:16/10;
+  aspect-ratio:3/2;
   object-fit:cover;
 }
 
@@ -1195,9 +1196,9 @@ body.has-cursor .footer__reset{ cursor:none; }
 }
 
 .stats{
-  display:flex;
-  gap:clamp(1.5rem,4vw,3.5rem);
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(1rem,3vw,2.5rem);
   margin-top:3rem;
   padding-top:2rem;
   border-top:1px solid var(--line);
@@ -1414,13 +1415,16 @@ body.has-cursor .footer__reset{ cursor:none; }
   .nav__links{ display:none; }
   .nav__toggle{ display:block; }
   .hero__scroll{ display:none; }
-  .hero{ padding-bottom:4rem; }
+  /* Full skjermhøyde ga over halve skjermen tom på mobil. Litt kortere,
+     så tittelen kommer høyere opp uten å miste luften over. */
+  .hero{ min-height:88svh; padding-top:6rem; padding-bottom:3.5rem; }
   .hero__foot{ align-items:flex-start; flex-direction:column; }
   .music--rail{ height:300vh; }
   .music--rail .music__sticky{ justify-content:flex-start; padding-top:6.5rem; }
   .release{ width:70vw; }
-  .stats{ gap:1.75rem; }
-  .more__head{ flex-direction:column; align-items:flex-start; }
+  .platforms{ grid-template-columns:repeat(2,1fr); }
+  .stat__num{ font-size:clamp(1.75rem,8vw,2.5rem); }
+  .stat__label{ font-size:.5625rem; letter-spacing:.14em; }
 }
 
 /* Peker-enheter uten mus: skjul egendefinert markør */
@@ -1473,4 +1477,15 @@ body.has-cursor .footer__reset{ cursor:none; }
 
 @media (max-width:900px){
   .more{ grid-template-columns:1fr; }
+}
+
+/* Footeren på smal skjerm: én kolonne i stedet for seks elementer som
+   brekker ujevnt over tre linjer */
+@media (max-width:620px){
+  .footer__row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.7rem;
+  }
+  .footer__word{ font-size:clamp(4rem,26vw,10rem); }
 }
