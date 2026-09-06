@@ -112,6 +112,15 @@ iPhone tegner ↗ ↑ ↓ og lignende som emoji. Bruk SVG-ikonene som ligger
 Tilgjengelig: `i-ne` (utlenke), `i-up`, `i-down`. Trenger du et nytt, legg
 det til i symbolblokka i alle tre filene.
 
+### To ting som ser uskyldige ut, men knekker siden
+
+`<meta name="color-scheme" content="dark">` gir hvit bakgrunn bak
+Spotify-spillerens runde hjørner. Ikke legg den inn igjen.
+
+Nye overskrifter i Anton må ha `font-weight: 400`. `h1` til `h3` har det
+allerede via `style.css`. Bruker du Anton på et annet element med fet
+standardvekt, får du kunstig fetning som ser ulik ut i Chrome og Safari.
+
 ### Stil på koden
 
 - To mellomrom innrykk

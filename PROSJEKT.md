@@ -1,7 +1,7 @@
 # NVRMND, nettside
 
 Prosjektnotater. Denne fila er «hukommelsen» vår: alt vi blir enige om skrives ned her.
-Sist oppdatert: 6. september 2026, ved dagens slutt
+Sist oppdatert: 7. september 2026, ved dagens slutt
 
 ---
 
@@ -370,29 +370,42 @@ til «enda en DJ-side», og fire bilder er grensen.
 **Filer:** Legg dem i `assets/` som `photo-1.jpg` og så videre, helst
 1600px på lengste side. Klipp som `.mp4`, H.264, under 3 MB.
 
-## 10. Status ved dagens slutt
+## 10. Status ved dagens slutt, 7. september
 
-Siden er **ferdig og live**. Alt av struktur, design, animasjon, SEO,
-personvern og dokumentasjon er på plass. Det som gjenstår er innhold som
-bare Marius kan levere, og to ting distributøren må rette.
+Siden er **ferdig, live og målt**. Lighthouse: desktop 100 på alle fire,
+mobil 96 / 100 / 100 / 100. Det eneste som holder mobil under 100 er
+Speed Index, som er intro-animasjonen selv.
 
-**Verifisert:**
+**Verifisert i dag:**
 
-- Null konsollfeil på forsiden, 404-siden og personvernsiden
-- Ingen vannrett scroll på 1440px og 390px
-- Ingen kall til Spotify eller SoundCloud før samtykke er gitt
-- Alle lenker klikkbare, testet med treffpunkt-måling
-- Alle filer svarer 200 på den publiserte adressen
+- Null konsollfeil på forside, 404 og personvernside
+- W3C-validering uten feil på alle tre sider
+- Alle 19 eksterne lenker svarer
+- Null kall til Google, skriftene er selvhostet
+- Ingen kall til Spotify eller SoundCloud før samtykke
+- Alle Anton-overskrifter i vekt 400 uten syntese, likt i alle nettlesere
+- Overføring fra eget domene: 275 KiB på 2x-skjerm, 196 på 1x
+
+**Ikke verifisert herfra, må sjekkes i ekte nettleser:**
+
+- Spotify-spillerens hjørner. Headless Chrome tegner ikke kryssdomene-
+  iframes i skjermbilder. Mathias meldte at alt ser bra ut, så det regnes
+  som i orden.
+- Gyro på Android og trykk-effekter på ekte telefon.
 
 **Neste gang, i prioritert rekkefølge:**
 
-1. Booking-e-post opprettes og legges inn
-2. 2 til 4 bilder eller korte klipp, se avsnitt 9b. Venter på Marius.
-3. Bioen er skrevet om med fakta fra Mathias. Gjenstår: historien bak
-   navnet, når Marius selv vil fortelle den.
-4. SoundCloud-brukernavnet endres til `nvrmnd`
-5. Meld fra til distributøren om YouTube-kanalen og Amazon-profilen
-6. Vurder eget domene
+1. Booking-e-post opprettes og legges inn, se `PLACEHOLDERS.md`
+2. 2 til 4 bilder eller korte klipp til mosaikken, se avsnitt 9b
+3. SoundCloud-brukernavnet endres til `nvrmnd`, så kjør
+   `sh tools/check-links.sh` og oppdater fem steder
+4. Historien bak navnet, når Marius vil fortelle den
+5. Google Search Console: registrer siden, send inn sitemap
+6. Lenk til siden fra Instagram-bio, Spotify og SoundCloud
+7. Eget domene, med `sh tools/set-domain.sh`
+
+Mo i Rana skal ikke inn i hero eller tekstbånd. Bioen er godkjent slik
+den står, og nevner ikke navnet hans.
 
 ## 11. Åpne spørsmål
 

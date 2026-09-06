@@ -154,6 +154,10 @@ tredje hovedfarge.
 | Space Grotesk | Brødtekst | `space-grotesk-variable-latin.woff2` |
 | JetBrains Mono | Etiketter, metadata, knappetekst | `jetbrains-mono-variable-latin.woff2` |
 
+Selvhostet i `assets/fonts/`, 68 KiB totalt, latin-delsett, med OFL-
+lisenstekstene ved siden av. `h1` til `h3` har vekt 400 og `html` har
+`font-synthesis: none`: Anton finnes bare i én vekt, og uten dette lager
+hver nettleser sin egen kunstige fetning, ulikt fra Chrome til Safari.
 Selvhostet i `assets/fonts/`, 68 KiB totalt, latin-delsett. `@font-face`
 ligger øverst i `style.css` med `font-display: swap`, og filene forhånds-
 lastes i `<head>` så de kommer samtidig med stilarket. Ingen kall til
@@ -195,6 +199,15 @@ Regler som holder resten billig: animer kun `transform` og `opacity`, aldri
 - `fetchpriority="high"` på coveret, `loading="lazy"` på bildet i om-seksjonen.
 - `will-change` er satt kun på elementer som faktisk animeres hver frame.
 - Alt av animasjon bruker `transform` og `opacity`, aldri `top`/`left`/`width`.
+
+### Ikke gjør dette
+
+- **Ikke sett `color-scheme: dark` på siden.** Chrome maler da en
+  ugjennomsiktig hvit flate bak kryssdomene-iframes med annen ordning,
+  og den stikker fram bak Spotify-spillerens runde hjørner.
+- **Ikke la overskrifter arve fet vekt.** Se typografi.
+- **Ikke bruk Unicode-piler.** iPhone tegner dem som emoji. Se ikoner
+  i `CONTRIBUTING.md`.
 
 ## 10. Nettlesere
 
