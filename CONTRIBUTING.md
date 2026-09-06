@@ -109,8 +109,21 @@ iPhone tegner ↗ ↑ ↓ og lignende som emoji. Bruk SVG-ikonene som ligger
 <svg class="ico" aria-hidden="true"><use href="#i-ne"></use></svg>
 ```
 
-Tilgjengelig: `i-ne` (utlenke), `i-up`, `i-down`. Trenger du et nytt, legg
-det til i symbolblokka i alle tre filene.
+Tilgjengelig: `i-ne` (utlenke), `i-up`, `i-down`, `i-right`. Trenger du et
+nytt, legg det til i symbolblokka i `index.html` og kjør `tools/sync-shared.py`.
+
+Merkeikonene for strømmetjenestene ligger i en egen blokk rett under, kun i
+`index.html`, og brukes med klassen `brand` i stedet for `ico`:
+
+```html
+<svg class="brand" aria-hidden="true"><use href="#b-spotify"></use></svg>
+```
+
+Tilgjengelig: `b-spotify`, `b-applemusic`, `b-tidal`, `b-soundcloud`,
+`b-youtube`, `b-amazonmusic`, `b-instagram`, `b-tiktok`. Nye hentes fra
+[Simple Icons](https://simpleicons.org/): kopier `d`-attributtet inn i et
+`<symbol>` med `viewBox="0 0 24 24"`. Sjekk at det er lesbart i 12 px før
+du bruker det. Ordmerker er det ikke.
 
 ### To ting som ser uskyldige ut, men knekker siden
 

@@ -27,6 +27,8 @@ python3 tools/sync-shared.py
 ```
 
 Kopierer `<footer>` og SVG-symbolblokka til `404.html` og `privacy.html`.
+Merkeikonene for strømmetjenestene (blokka med `class="brand-defs"`) blir
+ikke kopiert. De brukes bare på forsiden.
 
 ## Ny utgivelse
 
@@ -43,7 +45,8 @@ som synes mest kommer først.
 - [ ] Etiketten med format, dato og spilletid
 - [ ] Tittel og beskrivelse
 - [ ] Spotify-spillerens `data-embed-src` og `data-embed-fallback`
-- [ ] De seks plattformlenkene
+- [ ] De seks plattformlenkene. Ny tjeneste trenger også et merkeikon,
+      se `CONTRIBUTING.md`
 - [ ] Remix-blokken, hvis den fortsatt er relevant
 
 **Resten av forsiden**

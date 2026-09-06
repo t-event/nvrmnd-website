@@ -24,6 +24,9 @@ GitHub Pages krever det på gratiskonto, ikke fordi innholdet er fritt.
 - **Skriftene** (Anton, Space Grotesk, JetBrains Mono) i `assets/fonts/` er
   lisensiert under [SIL Open Font License](https://openfontlicense.org/) av
   sine respektive opphavspersoner. De omfattes ikke av lisensen over.
+- **Merkeikonene** for strømmetjenestene i `index.html` er hentet fra
+  [Simple Icons](https://simpleicons.org/) (CC0). Selve merkene tilhører
+  tjenestene, og skal bare brukes til å lenke til dem.
 - **Coverbildet** i `assets/` er hentet fra Apple Musics offentlige katalog-API
   og tilhører NVRMND som utgivende artist.
 - **Pressebildet** i `assets/` er tatt på et arrangement og tilhører

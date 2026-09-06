@@ -125,6 +125,15 @@ derfor ikke kan scrolles til; ankeret ligger nå på `<main>`.
   iPhone, og så uprofesjonelt ut i hamburgermenyen. Tre symboler ligger
   øverst i hver HTML-fil, brukt med `<use href="#i-ne">`. Fargen arves fra
   teksten, så hover-reglene virker som før. Ikke bruk Unicode-piler.
+- **Merkeikoner på strømmetjenestene (7. september).** Spotify, Apple
+  Music, Tidal, SoundCloud, YouTube, Amazon Music, Instagram og TikTok
+  ligger som `b-<navn>`-symboler i en egen blokk i `index.html`, rett
+  under pilene. Formene er fra Simple Icons (CC0). Amazon Music sitt
+  ordmerke var uleselig i 12 px, så der er Amazon-smilet tegnet for hånd
+  som strek. Blokka synkes ikke til 404 og personvern, de trenger den ikke.
+  Samtidig fikk alle lenkeboksene i musikk- og Follow-seksjonen samme mål,
+  også Instagram, som før var større enn de andre. Under 720 px skjules
+  pila i boksene, ellers får ikke «Amazon Music» plass i to kolonner.
 
 ### Favicon og footer-ord (6. september, sent)
 

@@ -872,20 +872,23 @@ body.has-cursor [data-cursor]{ cursor:none; }
   grid-template-columns:repeat(3,1fr);
   gap:.6rem;
 }
+/* Samme mål som lenkeboksene i Follow-seksjonen, se .follow .social */
 .platform{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:.5rem;
-  padding:.75rem 1.3rem;
+  gap:.7rem;
+  padding:.9rem 1.2rem;
   border:1px solid var(--line);
   font-family:var(--font-mono);
   font-size:.6875rem;
   letter-spacing:.16em;
   text-transform:uppercase;
+  white-space:nowrap;
   transition:background-color .4s var(--ease), border-color .4s, color .4s;
   will-change:transform;
 }
+.platform span{ flex:1 1 auto; }
 .platform i{ font-style:normal; color:var(--red); transition:transform .4s var(--ease), color .4s; }
 .platform:hover{ background:var(--red); border-color:var(--red); color:var(--bg); }
 .platform:hover i{ transform:translate(2px,-2px); color:var(--bg); }
@@ -1343,7 +1346,8 @@ a.booking__soon-text:hover{ color:var(--red); }
   color:var(--bg);
 }
 .social.social--primary i{ color:var(--bg); }
-.social--primary:hover{ background:var(--text); border-color:var(--text); color:var(--bg); }
+/* Dobbel klasse, ellers vinner .social:hover lenger ned og boksen blir rød */
+.social.social--primary:hover{ background:var(--text); border-color:var(--text); color:var(--bg); }
 .social.social--primary:hover i{ color:var(--bg); }
 
 .socials{
@@ -1356,7 +1360,7 @@ a.booking__soon-text:hover{ color:var(--red); }
 .social{
   display:inline-flex;
   align-items:center;
-  gap:.5rem;
+  gap:.7rem;
   padding:.7rem 1.35rem;
   border:1px solid var(--line);
   border-radius:100px;
@@ -1428,17 +1432,17 @@ a.booking__soon-text:hover{ color:var(--red); }
   gap:.6rem;
   margin-top:0;
 }
+/* Alle boksene har samme høyde, skrift og luft, også Instagram. Målene er
+   de samme som plattformlenkene i musikkseksjonen. */
 .follow .social{
   justify-content:space-between;
   border-radius:0;
-  padding:1rem 1.25rem;
-  font-size:.75rem;
+  padding:.9rem 1.2rem;
+  font-size:.6875rem;
+  white-space:nowrap;
 }
-.follow .social--primary{
-  grid-column:1 / -1;
-  padding:1.25rem 1.5rem;
-  font-size:.8125rem;
-}
+.follow .social span{ flex:1 1 auto; }
+.follow .social--primary{ grid-column:1 / -1; }
 
 @media (max-width:900px){
   .follow__inner{ grid-template-columns:1fr; }
@@ -1563,6 +1567,13 @@ a.booking__soon-text:hover{ color:var(--red); }
   .music--rail .music__sticky{ justify-content:flex-start; padding-top:6.5rem; }
   .release{ width:70vw; }
   .platforms{ grid-template-columns:repeat(2,1fr); }
+  /* To kolonner på en smal skjerm: «Amazon Music» med to ikoner får ikke
+     plass. Merkeikonet bærer identiteten, så pila ryker, og luften i sidene
+     strammes litt. */
+  .platform,
+  .follow .social{ padding:.9rem 1rem; letter-spacing:.12em; }
+  .platform i,
+  .follow .social i{ display:none; }
   .stat__num{ font-size:clamp(1.75rem,8vw,2.5rem); }
   .stat__label{ font-size:.5625rem; letter-spacing:.14em; }
 }
@@ -1752,6 +1763,15 @@ a.booking__soon-text:hover{ color:var(--red); }
 /* I lenkerader er teksten liten, så ikonet får litt mer plass enn teksten */
 .social i .ico,
 .platform i .ico{ width:1.05em; height:1.05em; }
+
+/* Merkeikonene er fylte former, ikke streker. Fargen følger teksten, så de
+   blir mørke på rød bakgrunn akkurat som resten av boksen. */
+.brand{
+  width:1.25em;
+  height:1.25em;
+  fill:currentColor;
+  flex:0 0 auto;
+}
 
 
 /* Footer-ordet: konturen blir stående. Ved scroll-inn stiger bokstavene inn
