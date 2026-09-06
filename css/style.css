@@ -839,17 +839,6 @@ body.has-cursor [data-cursor]{ cursor:none; }
   filter:saturate(1.15) contrast(1.05);
 }
 
-.featured__cat{
-  position:absolute;
-  left:0; bottom:0;
-  z-index:2;
-  background:var(--red);
-  color:var(--bg);
-  font-family:var(--font-mono);
-  font-size:.6875rem;
-  letter-spacing:.22em;
-  padding:.5rem .9rem;
-}
 
 .featured__title{
   font-family:var(--font-display);

@@ -40,7 +40,6 @@ som synes mest kommer først.
       600 og 1100 px, både WebP og JPEG. Bruksanvisning står øverst i fila.
 - [ ] `<picture>`-blokka rundt coveret: begge `srcset` og `alt`
 - [ ] Lenka rundt coveret (Spotify-sporet)
-- [ ] Katalognummeret i `.featured__cat`
 - [ ] Etiketten med format, dato og spilletid
 - [ ] Tittel og beskrivelse
 - [ ] Spotify-spillerens `data-embed-src` og `data-embed-fallback`
