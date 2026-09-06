@@ -8,9 +8,23 @@
 //   3. Kjør:  node tools/images.mjs "$PWD"
 //
 // Jobbene står i lista under. Legg til nye linjer for et nytt cover.
-// Størrelser: 600 og 1100 til coveret (vises i ca. 550 px), 700 og 1178 til
-// liggende bilder. WebP rundt 0.80 i kvalitet er usynlig fra JPEG på denne
-// siden, som uansett har skannelinjer over bildene.
+//
+// Coveret vises i rundt 610 px på desktop, og trinnene 640, 1100 og 1400 er
+// valgt slik at hver skjermtetthet henter riktig fil og ikke mer:
+//
+//   vanlig 1x   ber om  607 px  ->  640   (54 KiB)
+//   telefon 3x  ber om 1163 px  -> 1100  (128 KiB)
+//   retina 2x   ber om 1215 px  -> 1400  (171 KiB)
+//
+// Endrer du `sizes` i HTML-en, flytter grensene seg og trinnene må vurderes
+// på nytt. Mål det med skjermbilde-verktøyet, og husk å tømme hurtiglageret:
+// Chrome gjenbruker en større variant den allerede har lastet ned.
+//
+// JPEG stopper på 1100. Den varianten hentes bare av nettlesere uten
+// WebP-støtte, og de er så godt som borte i 2026.
+//
+// Liggende bilder: 700 og 1178 px. WebP rundt 0.80 i kvalitet er usynlig fra
+// JPEG på denne siden, som uansett har skannelinjer over bildene.
 import fs from 'node:fs';
 const list=await (await fetch('http://127.0.0.1:9333/json/list')).json();
 const page=list.find(t=>t.type==='page');

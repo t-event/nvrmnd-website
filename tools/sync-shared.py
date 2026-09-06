@@ -24,6 +24,18 @@ def block(text, start, end):
 footer = block(src, '<footer class="footer">', '</footer>')
 icons  = block(src, '<svg width="0" height="0"', '</svg>')
 
+# index.html har to SVG-blokker: pilene, som deles med de andre sidene, og
+# merkeikonene for strømmetjenestene, som bare forsiden bruker. De skilles
+# på åpningsmerket: merkeblokka har class="brand-defs" først. Bytter noen om
+# på det, ville denne kopiert feil blokk til de andre sidene uten å si fra.
+if 'id="i-ne"' not in icons:
+    sys.exit('STOPP: fant feil SVG-blokk. Pilene skal ligge i blokka som\n'
+             'starter med <svg width="0" height="0". Merkeikonene skal ha\n'
+             'class="brand-defs" foran width, slik at de ikke matcher her.')
+if 'brand-defs' in icons:
+    sys.exit('STOPP: merkeikonene ble fanget opp i pilblokka. De skal ikke\n'
+             'kopieres til 404.html og privacy.html.')
+
 changed = 0
 for f in ['404.html', 'privacy.html']:
     t = io.open(f, encoding='utf-8').read()

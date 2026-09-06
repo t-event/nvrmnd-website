@@ -385,6 +385,14 @@ Siden er **ferdig, live og målt**. Lighthouse: desktop 100 på alle fire,
 mobil 96 / 100 / 100 / 100. Det eneste som holder mobil under 100 er
 Speed Index, som er intro-animasjonen selv.
 
+**Gjort sist på dagen:**
+
+- NVR001-merket over coveret fjernet. Nummeret står på coveret selv
+- Merkeikoner på alle strømmetjenestene, se avsnitt 5
+- Lik størrelse på alle lenkebokser i musikk- og Follow-seksjonen
+- Faktalinjen under coveret stokker seg ikke lenger, se avsnitt 10 under
+- Coveret i tre trinn, så retina-skjermer får nok oppløsning
+
 **Verifisert i dag:**
 
 - Null konsollfeil på forside, 404 og personvernside
@@ -394,6 +402,9 @@ Speed Index, som er intro-animasjonen selv.
 - Ingen kall til Spotify eller SoundCloud før samtykke
 - Alle Anton-overskrifter i vekt 400 uten syntese, likt i alle nettlesere
 - Overføring fra eget domene: 275 KiB på 2x-skjerm, 196 på 1x
+- Riktig coverfil på hver skjermtetthet, målt med hurtiglager av
+- Faktalinjen viste én variant gjennom hele avsløringen, seksjonstittelen 13
+- Live HTML har alle 14 merkeikoner, og de nye bildefilene svarer med 200
 
 **Ikke verifisert herfra, må sjekkes i ekte nettleser:**
 
@@ -401,20 +412,52 @@ Speed Index, som er intro-animasjonen selv.
   iframes i skjermbilder. Mathias meldte at alt ser bra ut, så det regnes
   som i orden.
 - Gyro på Android og trykk-effekter på ekte telefon.
+- Merkeikonene i ekte størrelse på en telefon. De er sjekket i 12, 24 og
+  64 px i nettleser, men små fylte former oppfører seg av og til annerledes
+  på en skjerm med høy tetthet.
 
 **Neste gang, i prioritert rekkefølge:**
 
-1. Booking-e-post opprettes og legges inn, se `PLACEHOLDERS.md`
-2. 2 til 4 bilder eller korte klipp til mosaikken, se avsnitt 9b
-3. SoundCloud-brukernavnet endres til `nvrmnd`, så kjør
+1. Låt nummer to. Dette er den virkelige grensen nå. Siden er teknisk
+   ferdig, og alt som gjenstår handler om innhold
+2. Booking-e-post opprettes og legges inn, se `PLACEHOLDERS.md`
+3. 2 til 4 bilder eller korte klipp til mosaikken, se avsnitt 9b
+4. SoundCloud-brukernavnet endres til `nvrmnd`, så kjør
    `sh tools/check-links.sh` og oppdater fem steder
-4. Historien bak navnet, når Marius vil fortelle den
-5. Google Search Console: registrer siden, send inn sitemap
-6. Lenk til siden fra Instagram-bio, Spotify og SoundCloud
-7. Eget domene, med `sh tools/set-domain.sh`
+5. Ekte pressebilde, så fargelaget i CSS-en kan fjernes
+6. Historien bak navnet, når Marius vil fortelle den
+7. Google Search Console: registrer siden, send inn sitemap
+8. Lenk til siden fra Instagram-bio, Spotify og SoundCloud
+9. Eget domene, med `sh tools/set-domain.sh`
+
+Punkt 1 til 5 er innhold og avhenger av Marius. Punkt 7 til 9 kan Mathias
+gjøre uten at noe annet er klart.
 
 Mo i Rana skal ikke inn i hero eller tekstbånd. Bioen er godkjent slik
 den står, og nevner ikke navnet hans.
+
+### Verktøyene gjennomgått 7. september
+
+Alle verktøyene ble kjørt og lest gjennom før avslutning. Tre gap ble funnet
+og tettet:
+
+- `set-domain.sh` rørte ikke `llms.txt`. Den er en publisert fil som
+  språkmodeller leser, så en gammel adresse der ville sendt dem feil vei.
+  Dokumentasjonen ble heller ikke oppdatert, så «Live:» i README ville pekt
+  til den gamle adressen. Begge deler er med nå, og verktøyet skriver ut hva
+  som står igjen.
+- `check-links.sh` sjekket bare `href=`. Spilleradressene i `data-embed-src`
+  sto utenfor, selv om det er nettopp de som knekker når SoundCloud-navnet
+  endres. Delingsbildet sto også utenfor, og et delingsbilde som gir 404 er
+  en stille feil. Nå sjekkes 22 adresser mot 19 før.
+- `sync-shared.py` skiller de to SVG-blokkene i `index.html` på åpningsmerket
+  alene. Fjernet noen `class="brand-defs"`, ville merkeikonene blitt kopiert
+  til de andre sidene uten et pip. Nå stopper verktøyet med en forklaring.
+  Sperren er testet ved å faktisk bytte om blokkene i en kopi.
+
+Kommentaren øverst i `images.mjs` beskrev fortsatt de gamle bildetrinnene.
+Den forklarer nå hvorfor 640, 1100 og 1400 er valgt, og at hurtiglageret må
+tømmes når man måler hvilken variant som lastes.
 
 ### Ekstern gjennomgang 7. september, og hva som ble gjort
 

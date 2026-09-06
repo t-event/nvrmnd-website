@@ -92,7 +92,10 @@ Facebooks Sharing Debugger og trykk «Scrape again».
 sh tools/set-domain.sh https://nvrmnd.no
 ```
 
-Bytter adressen i HTML, sitemap og robots. I tillegg, for hånd:
+Bytter adressen i alle publiserte filer, `llms.txt` medregnet, og i
+dokumentasjonen. Verktøyet skriver ut hva som eventuelt står igjen.
+I tillegg, for hånd:
+- [ ] `sh tools/bump.sh` etterpå
 - [ ] Fil `CNAME` i rotmappa med bare domenenavnet
 - [ ] Settings → Pages → Custom domain på GitHub, og «Enforce HTTPS»
 - [ ] DNS hos domeneleverandøren, slik GitHub beskriver
@@ -136,7 +139,16 @@ av og til, og alltid etter en ny utgivelse:
 sh tools/check-links.sh
 ```
 
-Alle eksterne lenker på de tre sidene sjekkes. `FEIL` betyr at noe må rettes.
+Sjekker 22 adresser på de tre sidene. `FEIL` betyr at noe må rettes.
+
+Tre slags adresser dekkes, ikke bare vanlige lenker:
+
+- `href=`, altså lenkene
+- `data-embed-src`, altså Spotify- og SoundCloud-spillerne. Disse er lette å
+  glemme, for de står ikke som lenker i markupen, og SoundCloud-adressen
+  ligger URL-kodet inni spilleradressen
+- `content=`, altså delingsbildet og canonical. Et delingsbilde som gir 404
+  er en stille feil, kortet blir bare tomt
 
 ## Favicon
 

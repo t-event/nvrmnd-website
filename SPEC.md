@@ -32,7 +32,7 @@ index.html        Forsiden. Alle seksjoner, all markup.
 privacy.html      Personvernerklæring.
 css/style.css     All styling. Fargevariabler ligger i :root øverst.
 js/main.js        Alle animasjoner og samtykkelogikk.
-assets/           Cover, pressebilde, delingsbilde, ikoner.
+assets/           Cover, pressebilde, delingsbilde, ikoner, skrifter.
 favicon.ico       Ikon i fanen. Nettlesere ber om denne uansett.
 site.webmanifest  Navn, farger og ikoner for «legg til på hjemskjerm».
 robots.txt        Åpner for søkemotorer og språkmodeller.
@@ -87,7 +87,7 @@ Alle ligger i `js/main.js`, nummerert i samme rekkefølge som her.
 | 5 | Scroll-avsløring | `IntersectionObserver`, `unobserve` etter første treff |
 | 5b | Ordvis avsløring | Overskrifter med `data-split` deles i ord, hvert med egen forsinkelse |
 | 5b2 | Bilde-wipe | `data-wipe` klippes med clip-path og åpnes fra rAF-løkka. Observatøren ser ikke klippede elementer |
-| 5c | Etikett-scramble | Tekstbiter i `.label` pakkes i `.scr` og stokkes på plass ved avsløring |
+| 5c | Etikett-scramble | Tekstbiter i `.label` pakkes i `.scr` og stokkes på plass ved avsløring. `data-no-scramble` holder en etikett stille |
 | 5d | Trykk-effekter | Kun `pointer: coarse`. Skjevstilling på bokstaver, glitch på pressebildet |
 | 5e | Cover: zoom og gyro | Scroll-drevet zoom 1.12 til 1.0, og `deviceorientation` på mobil. Skriver CSS-variabler |
 | 6 | Tekst-scramble | rAF som bytter ut bokstaver til de "lander" fra venstre |
@@ -195,7 +195,9 @@ Regler som holder resten billig: animer kun `transform` og `opacity`, aldri
 
 
 - Ingen JS-biblioteker. `main.js` er ~13 kB ukomprimert.
-- Coveret lastes i to størrelser: 1400px til featured, 600px som favicon.
+- Coveret finnes i tre trinn, 640, 1100 og 1400 px, valgt slik at hver
+  skjermtetthet henter riktig fil og ikke mer: 54, 128 eller 171 KiB.
+  Originalen på 1400 px brukes til deling og strukturerte data.
 - `fetchpriority="high"` på coveret, `loading="lazy"` på bildet i om-seksjonen.
 - `will-change` er satt kun på elementer som faktisk animeres hver frame.
 - Alt av animasjon bruker `transform` og `opacity`, aldri `top`/`left`/`width`.
@@ -208,6 +210,12 @@ Regler som holder resten billig: animer kun `transform` og `opacity`, aldri
 - **Ikke la overskrifter arve fet vekt.** Se typografi.
 - **Ikke bruk Unicode-piler.** iPhone tegner dem som emoji. Se ikoner
   i `CONTRIBUTING.md`.
+- **Ikke la scramble ligge på informasjon folk skal lese.** Effekten er
+  fin på seksjonstitler, men utgivelsesdato og spilletid som bytter
+  bokstaver ser ut som en feil. Slike etiketter merkes `data-no-scramble`.
+- **Ikke gjør én lenkeboks større enn de andre.** Instagram var lenge
+  høyere enn resten i Follow-seksjonen. Skal en boks skille seg ut, gjør
+  det med farge og bredde, ikke med egen størrelse.
 
 ## 10. Nettlesere
 

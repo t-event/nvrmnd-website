@@ -3,7 +3,7 @@
 Alt som fortsatt er midlertidig på siden, og hva som skal til for å fjerne det.
 Søk etter `PLASSHOLDER` i `index.html` for å finne dem i koden.
 
-Status per 6. september 2026.
+Status per 7. september 2026.
 
 ---
 
@@ -40,7 +40,11 @@ og rødt. Kommer det et permanent pressebilde uten grønnstikk, kan du fjerne de
 regelen og bildet vises som det er.
 
 Bytt fila i `assets/`, behold navnet, og oppdater `width`/`height` i taggen så
-plassen holdes av mens det lastes.
+plassen holdes av mens det lastes. Kjør deretter `node tools/images.mjs` for
+å lage variantene på nytt.
+
+Originalen er 1178 px bred, og det er akkurat i knappeste laget: en
+retina-skjerm ber om rundt 1250. Et nytt bilde bør være minst 1600 px.
 
 ⚠️ Bildet viser gjenkjennelige publikummere. Det er et situasjonsbilde fra et
 arrangement, som normalt er greit å publisere, men blir noen ubekvemme skal det
@@ -73,7 +77,9 @@ før låtene deles bredt.
 **Nå:** Skjult
 
 Profilen finnes ikke ennå. Når den gjør det: fjern kommentaren, sett inn URL,
-og legg den også i `sameAs` i de strukturerte dataene.
+og legg den også i `sameAs` i de strukturerte dataene. Merkeikonet
+(`#b-tiktok`) ligger allerede klart i symbolblokka, så lenken virker med
+en gang kommentaren fjernes.
 
 ---
 

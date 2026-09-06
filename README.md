@@ -38,6 +38,7 @@ sitemap.xml         Nettstedskart
 
 | Fil | Innhold |
 |---|---|
+| [CLAUDE.md](CLAUDE.md) | Kort brief: regler, verktøy og kjente feller. Start her |
 | [SPEC.md](SPEC.md) | Teknisk spesifikasjon. Hvordan siden er bygget og hvorfor |
 | [PLACEHOLDERS.md](PLACEHOLDERS.md) | Hva som fortsatt er midlertidig |
 | [VEDLIKEHOLD.md](VEDLIKEHOLD.md) | Sjekklister: ny utgivelse, nytt domene, delte blokker. Verktøyene i `tools/` |
