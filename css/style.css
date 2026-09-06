@@ -63,6 +63,13 @@
 
 *,*::before,*::after{ box-sizing:border-box; }
 
+/* Anton finnes bare i vekt 400, men h1 til h3 er fete som standard. Da lager
+   hver nettleser sin egen kunstige fetning, og Safari og Chrome gjorde det
+   ulikt: 3,5 % bredere tittel i Safari. Ingen syntese, og overskriftene
+   ber om den vekten som faktisk finnes. */
+html{ font-synthesis:none; }
+h1,h2,h3{ font-weight:400; }
+
 html{
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;

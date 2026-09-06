@@ -205,6 +205,20 @@ skiller dem. Ikke gjort: minifisering (5 KiB, krever bygg-steg),
 buffer-TTL (Pages), CSP-hoder (kan ikke settes på Pages, og en meta-CSP
 risikerer å knekke spillerne).
 
+**7. september, natt: to feil jeg selv laget, og én gammel.** `color-scheme:
+dark`-metaen fra «det vi ikke hadde tenkt på» ga hvit bakgrunn bak Spotify-
+spillerens runde hjørner: Chrome maler en ugjennomsiktig flate bak et
+kryssdomene-iframe som har annen fargeordning enn elementet rundt.
+Metaen er fjernet, og iframene har `color-scheme: normal` i tillegg.
+Headless Chrome tegner ikke slike iframes i skjermbilder, så dette kan
+bare bekreftes i en ekte nettleser. Teksten i headeren så ulik ut i
+Chrome og Safari: `h1` til `h3` er fete som standard, Anton finnes bare i
+400, og hver nettleser laget sin egen kunstige fetning, Safari 3,5 %
+bredere. `font-synthesis: none` og vekt 400 på overskriftene; nå måler
+alle 400 uten syntese. «NVR001 out now» var blokkert av tittelens
+tekst-treffområde, som følger skriftens mål og stakk 70 px over boksen;
+eyebrow-linja fikk z-index. «Need Me» i bioen er lenke til musikken.
+
 **7. september, natt: det vi ikke hadde tenkt på.** SIL Open Font License
 krever at lisensteksten følger med skriftfilene; tre OFL-filer ligger nå i
 `assets/fonts/`. `llms.txt` lagt til for språkmodeller, som Lighthouse
