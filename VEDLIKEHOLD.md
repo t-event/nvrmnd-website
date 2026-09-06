@@ -35,8 +35,10 @@ rundt 40 steder. Alt under må vurderes. Rekkefølgen er valgt slik at det
 som synes mest kommer først.
 
 **Musikkseksjonen, `index.html`**
-- [ ] Coveret: ny fil i `assets/`, i to størrelser (1400 og 600 px)
-- [ ] `srcset` og `alt` på coverbildet
+- [ ] Coveret: originalen i `assets/` som `<navn>.jpg` (1400 px, til deling
+      og strukturerte data), og varianter laget med `tools/images.mjs`:
+      600 og 1100 px, både WebP og JPEG. Bruksanvisning står øverst i fila.
+- [ ] `<picture>`-blokka rundt coveret: begge `srcset` og `alt`
 - [ ] Lenka rundt coveret (Spotify-sporet)
 - [ ] Katalognummeret i `.featured__cat`
 - [ ] Etiketten med format, dato og spilletid

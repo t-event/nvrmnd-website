@@ -173,6 +173,14 @@ Mathias meldte at siden er treg på gamle enheter. Funnet og rettet:
   gardinen åpner. Preloaderen dekker lasting, ikke tegning, og kan ikke i
   seg selv gjøre siden raskere etterpå. Men den er et godt sted å måle.
 
+Målt med DevTools etterpå: coveret alene var 502 av 633 KiB, fordi
+2x-skjermer valgte 1400-versjonen. Nå WebP med JPEG-reserve i 600 og
+1100 px: 127 KiB på 2x, 47 på 1x. Pressebildet fra 107 til 32 KiB. Totalt
+fra eget domene: 275 KiB på 2x, 196 på 1x. Google Fonts-CSS-en blokkerte
+tegningen i 750 ms, og lastes nå uten å blokkere, siden preloaderen
+uansett venter på skriftene. Fire målefunksjoner som hver tvang fram
+layout er slått sammen til én. Verktøy for bildevarianter: `tools/images.mjs`.
+
 Det som gjenstår på treg linje er skriftene fra Google Fonts, som
 preloaderen venter på. Selvhosting ble valgt bort tidligere. Det valget
 kan tas opp igjen hvis treg linje viser seg å være et reelt problem.

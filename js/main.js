@@ -475,8 +475,11 @@
 
   // Kjøres etter preloader: alt som allerede er i view skal vises med en gang
   function revealVisible() {
-    revealItems.forEach(el => {
-      if (el.getBoundingClientRect().top < vh * 0.92) {
+    // Les alle posisjoner først, skriv klasser etterpå. Blandet lesing og
+    // skriving tvinger fram én layout per element.
+    const tops = revealItems.map(el => el.getBoundingClientRect().top);
+    revealItems.forEach((el, i) => {
+      if (tops[i] < vh * 0.92) {
         el.classList.add('is-in');
         scrambleLabels(el);
       }
@@ -523,16 +526,6 @@
   // IntersectionObserver. Derfor sjekkes disse for hånd hver frame.
   const wipeItems = $$('[data-wipe]').map(el => ({ el, baseTop: 0 }));
 
-  // Posisjonen måles én gang, og på nytt ved resize. Å lese
-  // getBoundingClientRect hver frame tvinger fram layout hver frame.
-  function measureWipes() {
-    wipeItems.forEach(w => {
-      const t = w.el.style.transform;
-      w.el.style.transform = 'none';
-      w.baseTop = w.el.getBoundingClientRect().top + window.scrollY;
-      w.el.style.transform = t;
-    });
-  }
 
   function updateWipes() {
     wipeItems.forEach(({ el, baseTop }) => {
@@ -608,16 +601,6 @@
   const coverImg = $('.featured__art img');
   const cover = { baseTop: 0, height: 0, zoom: 1.12, gx: 0, gy: 0, tgx: 0, tgy: 0 };
 
-  function measureCover() {
-    if (!coverImg) return;
-    const art = coverImg.closest('.featured__art');
-    const t = art.style.transform;
-    art.style.transform = 'none';
-    const r = art.getBoundingClientRect();
-    cover.baseTop = r.top + window.scrollY;
-    cover.height  = r.height;
-    art.style.transform = t;
-  }
 
   function updateCover() {
     if (!coverImg) return;
@@ -714,17 +697,6 @@
     dir: Number(track.dataset.direction || 1)
   }));
 
-  function measureMarquees() {
-    marquees.forEach(m => {
-      if (!m.el.children[0]) { m.itemW = 0; return; }
-      // Nullstill transformasjonen før måling. Med skjevstillingen på ga
-      // getBoundingClientRect en for bred verdi, og båndet fikk et hopp.
-      const t = m.el.style.transform;
-      m.el.style.transform = 'none';
-      m.itemW = m.el.children[0].getBoundingClientRect().width;
-      m.el.style.transform = t;
-    });
-  }
 
   function updateMarquees() {
     // Skjevstilling som følger scroll-farten, gir fart og aggresjon
@@ -752,18 +724,6 @@
     target: 0
   }));
 
-  // Måles med transformasjonen av. Leste vi posisjonen mens elementet allerede
-  // var forskjøvet, gikk verdien inn i sin egen utregning og ga en annen
-  // effektiv hastighet enn den som står i data-parallax.
-  function measureParallax() {
-    parallaxItems.forEach(p => {
-      const t = p.el.style.transform;
-      p.el.style.transform = 'none';
-      const r = p.el.getBoundingClientRect();
-      p.baseMid = r.top + window.scrollY + r.height / 2;
-      p.el.style.transform = t;
-    });
-  }
 
   function updateParallax() {
     parallaxItems.forEach(p => {
@@ -785,16 +745,6 @@
   const railBar      = $('[data-rail-progress]');
   const railState    = { distance: 0, current: 0, target: 0 };
 
-  function measureRail() {
-    if (!musicSection || !rail || reduced) return;
-
-    rail.style.transform = 'translate3d(0,0,0)';
-    const pad = parseFloat(getComputedStyle(rail).paddingLeft) || 32;
-
-    railState.distance = Math.max(0, rail.scrollWidth - vw + pad);
-    // Seksjonshøyden bestemmer hvor lenge den sidelengs bevegelsen varer
-    musicSection.style.height = (vh + railState.distance * 1.15) + 'px';
-  }
 
   function updateRail() {
     if (!musicSection || !rail || reduced || !railState.distance) return;
@@ -868,14 +818,39 @@
 
   /* ---------- OPPSTART --------------------------------------------------- */
 
+  // Hver målefunksjon nullstiller transform, leser og gjenoppretter. Kjørt
+  // hver for seg gir det én tvungen layout per element. Her gjøres alle
+  // skrivingene først, så alle lesingene, så gjenopprettingen: én layout.
+  function measureAll() {
+    const els = [
+      ...marquees.map(m => m.el),
+      ...parallaxItems.map(p => p.el),
+      ...wipeItems.map(w => w.el),
+      coverImg ? coverImg.closest('.featured__art') : null,
+      rail
+    ].filter(Boolean);
+
+    const saved = els.map(el => el.style.transform);
+    els.forEach(el => el.style.transform = 'none');
+
+    // Kun lesing herfra
+    marquees.forEach(m => { m.itemW = m.el.children[0] ? m.el.children[0].getBoundingClientRect().width : 0; });
+    parallaxItems.forEach(p => { const r = p.el.getBoundingClientRect(); p.baseMid = r.top + window.scrollY + r.height / 2; });
+    wipeItems.forEach(w => { w.baseTop = w.el.getBoundingClientRect().top + window.scrollY; });
+    if (coverImg) { const r = coverImg.closest('.featured__art').getBoundingClientRect(); cover.baseTop = r.top + window.scrollY; cover.height = r.height; }
+    if (musicSection && rail && !reduced) {
+      const pad = parseFloat(getComputedStyle(rail).paddingLeft) || 32;
+      railState.distance = Math.max(0, rail.scrollWidth - vw + pad);
+    }
+
+    els.forEach((el, i) => el.style.transform = saved[i]);
+    if (musicSection && rail && !reduced) musicSection.style.height = (vh + railState.distance * 1.15) + 'px';
+  }
+
   function onResize() {
     vh = window.innerHeight;
     vw = window.innerWidth;
-    measureMarquees();
-    measureParallax();
-    measureCover();
-    measureWipes();
-    measureRail();
+    measureAll();
   }
 
   let resizeTimer;
@@ -903,18 +878,8 @@
 
   // Måles én gang nå, og på nytt når skrifter og bilder er ferdig lastet,
   // siden begge deler kan endre høyder og bredder.
-  window.addEventListener('load', () => {
-    measureMarquees();
-    measureParallax();
-    measureCover();
-    measureWipes();
-    measureRail();
-  });
-  measureMarquees();
-  measureParallax();
-  measureCover();
-  measureWipes();
-  measureRail();
+  window.addEventListener('load', measureAll);
+  measureAll();
 
   runPreloader();
   if (!reduced) requestAnimationFrame(loop);

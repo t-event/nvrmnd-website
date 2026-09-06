@@ -15,8 +15,12 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=202609062312">
+<!-- Lastes uten å blokkere tegningen. Preloaderen venter uansett på
+     skriftene, så byttet fra reserveskrift er usynlig. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="css/style.css?v=202609062320">
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -214,6 +218,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=202609062312"></script>
+<script src="js/main.js?v=202609062320"></script>
 </body>
 </html>
