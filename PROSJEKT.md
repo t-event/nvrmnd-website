@@ -26,7 +26,9 @@ scroll-avsløring, tekst-scramble, marquee, parallakse, horisontal scroll).
 | Bildemateriell | Ingen ekte bilder ennå — abstrakt generert grafikk + plassholdere |
 | Innhold | Plassholdertekst (dummy låtnavn, bio, e-post) — byttes ut senere |
 | Uttrykk | **Kraftig og aggressivt** — glitch, harde kontraster, rask marquee, stor typografi |
-| GitHub | Repo `nvrmnd-website`, **offentlig**. Verktøy: `gh` (installert via Homebrew) |
+| GitHub | [t-event/nvrmnd-website](https://github.com/t-event/nvrmnd-website) — offentlig |
+| Live | **https://t-event.github.io/nvrmnd-website/** (GitHub Pages, `main` / rot) |
+| Commit-forfatter | Mathias &lt;mathias@t-event.no&gt; — bekreftet riktig |
 
 ## 3. Farger
 
@@ -109,7 +111,19 @@ Alle er merket med `<!-- PLASSHOLDER -->` i `index.html`:
 - [ ] Bio-tekst på engelsk
 - [ ] Pressebilder / cover-artwork
 - [ ] Skal det inn en konsert-/turnéseksjon senere? (ikke valgt nå)
-- [ ] Skal siden publiseres? (Netlify/Vercel drag-and-drop fungerer rett ut av boksen)
+- [x] ~~Skal siden publiseres?~~ Live på GitHub Pages siden 2026-09-06
+- [ ] Eget domene? (f.eks. nvrmnd.no — settes opp under Settings → Pages → Custom domain)
+
+## Slik publiseres endringer
+
+Alt som pushes til `main` går automatisk live på
+https://t-event.github.io/nvrmnd-website/ etter ca. ett minutt.
+
+```bash
+git add -A
+git commit -m "beskrivelse av endringen"
+git push
+```
 
 ## 9. Samtalelogg
 
@@ -117,9 +131,9 @@ Alle er merket med `<!-- PLASSHOLDER -->` i `index.html`:
 tre spørsmålsrunder. Bygget første versjon av siden med alle åtte effektene.
 
 **2026-09-06** — Mathias ba om GitHub-kobling. `gh` installert via Homebrew,
-`git init` kjørt, første commit laget lokalt (branch `main`). Repo skal hete
-`nvrmnd-website` og være offentlig. Venter på at Mathias kjører `gh auth login`
-før repoet kan opprettes og pushes.
+`git init` kjørt, første commit laget lokalt (branch `main`). Repo opprettet som
+offentlig under kontoen **t-event**, pushet, og GitHub Pages slått på fra `main`
+(rotmappa). Første bygg gikk grønt — siden er live.
 
 **2026-09-06** — Etter førsteinntrykk: uttrykket skrudd opp til «kraftigere /
 mer aggressivt». Se avsnittet over.

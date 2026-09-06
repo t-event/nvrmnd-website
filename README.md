@@ -2,6 +2,8 @@
 
 Offisiell nettside for hardstyle-artisten **NVRMND**.
 
+**Live:** https://t-event.github.io/nvrmnd-website/
+
 Én lang, animasjonstung side bygget i ren HTML, CSS og JavaScript — ingen
 rammeverk, ingen npm, ingen bygg-steg.
 
@@ -40,5 +42,11 @@ Se `PROSJEKT.md` for full liste.
 
 ## Publisering
 
-Mappa kan dras rett inn i Netlify eller Vercel, eller slås på som GitHub Pages
-under Settings → Pages → Deploy from branch.
+Siden ligger på GitHub Pages. Alt som pushes til `main` går live automatisk
+etter ca. ett minutt:
+
+```bash
+git add -A
+git commit -m "beskrivelse av endringen"
+git push
+```
