@@ -25,6 +25,8 @@ scroll-avsløring, tekst-scramble, marquee, parallakse, horisontal scroll).
 | Seksjoner | Hero/intro, Musikk/releases, Om artisten, Booking/kontakt |
 | Bildemateriell | Ingen ekte bilder ennå — abstrakt generert grafikk + plassholdere |
 | Innhold | Plassholdertekst (dummy låtnavn, bio, e-post) — byttes ut senere |
+| Uttrykk | **Kraftig og aggressivt** — glitch, harde kontraster, rask marquee, stor typografi |
+| GitHub | Repo `nvrmnd-website`, **offentlig**. Verktøy: `gh` (installert via Homebrew) |
 
 ## 3. Farger
 
@@ -68,6 +70,17 @@ Hentes fra Google Fonts. Fallback-stack er satt, så siden fungerer offline ogs�
 Alt respekterer `prefers-reduced-motion`: brukere som har slått av animasjoner
 i systemet får en rolig, statisk versjon.
 
+### Aggressivitets-runde (valgt 2026-09-06)
+
+Etter første gjennomsyn ble uttrykket skrudd opp:
+
+- **Glitch på hero-tittelen** — rød/lilla kanaldeling som blinker ca. hvert 7. sekund
+- **Kick-puls** — rødt glød i booking-seksjonen pumper i takt med 150 BPM (0,4 s)
+- **Raskere marquee** — nesten dobbel grunnfart, og båndene skjevstilles med scroll-farten
+- **Større typografi** — hero opp til 22,5vw, footer-ordet med rød kontur i stedet for grå
+- **Hardere kanter** — 2px røde rammer på marquee og cover, rød glød på hover
+- **Skjeve kort** — release-raden lener seg i fartsretningen når den scroller sidelengs
+
 ## 6. Filstruktur
 
 ```
@@ -102,3 +115,11 @@ Alle er merket med `<!-- PLASSHOLDER -->` i `index.html`:
 
 **2026-09-06** — Oppstart. Tom mappe. Avklart alle valgene i tabellen over gjennom
 tre spørsmålsrunder. Bygget første versjon av siden med alle åtte effektene.
+
+**2026-09-06** — Mathias ba om GitHub-kobling. `gh` installert via Homebrew,
+`git init` kjørt, første commit laget lokalt (branch `main`). Repo skal hete
+`nvrmnd-website` og være offentlig. Venter på at Mathias kjører `gh auth login`
+før repoet kan opprettes og pushes.
+
+**2026-09-06** — Etter førsteinntrykk: uttrykket skrudd opp til «kraftigere /
+mer aggressivt». Se avsnittet over.
