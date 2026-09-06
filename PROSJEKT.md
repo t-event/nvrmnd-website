@@ -126,6 +126,25 @@ derfor ikke kan scrolles til; ankeret ligger nå på `<main>`.
   øverst i hver HTML-fil, brukt med `<use href="#i-ne">`. Fargen arves fra
   teksten, så hover-reglene virker som før. Ikke bruk Unicode-piler.
 
+### Favicon og footer-ord (6. september, sent)
+
+- **Nytt favicon.** Coveret nedskalert til 64 px ble en uleselig klatt.
+  Nå: hvit N i Anton med rød strek under, på mørk lilla. Valgt av Mathias
+  blant tre kandidater, som den minst Netflix-aktige. Kilde i
+  `tools/favicon.html`. Størrelser: favicon.ico 64, favicon.png 192,
+  apple-touch-icon 180, icon-512 til manifestet.
+- **Footer-ordet har effekt.** Bokstavene starter som kontur og fylles med
+  rødt én og én når footeren ruller inn, tømmes igjen ved scroll opp.
+  Ligger i den delte footeren, så alle tre sider har den.
+
+### Vedlikeholdsfeller, målt og håndtert
+
+Adressen lå 19 steder, singelen 38 steder i forsiden, footer og ikoner i
+tre filer, og kilden til delingsbildet i en midlertidig mappe. Verktøy i
+`tools/` og sjekklister i `VEDLIKEHOLD.md`. Listen i menyen og knappen på
+404 peker på Spotify-artistprofilen, ikke låten, så de slipper å endres
+ved ny musikk.
+
 ### Aggressivitets-runde
 
 Etter første gjennomsyn ble uttrykket skrudd opp:

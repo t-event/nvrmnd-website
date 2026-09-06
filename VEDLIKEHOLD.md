@@ -119,3 +119,16 @@ den vises bare uten JavaScript.
 `privacy.html` har «Last updated» nederst. Oppdater datoen hvis innholdet
 endres, for eksempel når booking-e-posten kommer eller nye tredjeparter
 legges til.
+
+## Favicon
+
+Kilden er `tools/favicon.html`, kandidat c. Rendre den ruta i 512x512 og
+lag størrelsene:
+
+```bash
+sips -Z 192 assets/icon-512.png --out assets/favicon.png
+sips -Z 180 assets/icon-512.png --out assets/apple-touch-icon.png
+```
+
+`favicon.ico` er en ICO-beholder rundt en 64 px PNG. Oppskriften ligger i
+git-historikken, søk etter «favicon.ico skrevet».

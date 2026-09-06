@@ -1413,9 +1413,6 @@ a.booking__soon-text:hover{ color:var(--red); }
   line-height:.78;
   letter-spacing:-.02em;
   text-align:center;
-  color:transparent;
-  -webkit-text-stroke:2px var(--red);
-  opacity:.55;
   margin-bottom:2rem;
   user-select:none;
   /* Den lave line-height gjør at bokstavene strekker seg ned over raden
@@ -1709,3 +1706,23 @@ a.booking__soon-text:hover{ color:var(--red); }
 /* I lenkerader er teksten liten, så ikonet får litt mer plass enn teksten */
 .social i .ico,
 .platform i .ico{ width:1.05em; height:1.05em; }
+
+
+/* Footer-ordet: kontur som fylles bokstav for bokstav når footeren ruller
+   inn, og tømmes igjen når man scroller opp. Ordet som helhet er alltid
+   synlig, det er fyllet som er effekten. */
+.js .footer__word[data-reveal]{ opacity:.55; transform:none; }
+.footer__word .l{
+  display:inline-block;
+  color:transparent;
+  -webkit-text-stroke:2px var(--red);
+  transition:color .7s var(--ease), transform .7s var(--ease), opacity .7s var(--ease);
+  transform:translateY(.12em);
+  opacity:.6;
+}
+.footer__word.is-in .l{ color:var(--red); transform:none; opacity:1; }
+.footer__word .l:nth-child(2){ transition-delay:.06s }
+.footer__word .l:nth-child(3){ transition-delay:.12s }
+.footer__word .l:nth-child(4){ transition-delay:.18s }
+.footer__word .l:nth-child(5){ transition-delay:.24s }
+.footer__word .l:nth-child(6){ transition-delay:.30s }
