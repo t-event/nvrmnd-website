@@ -1,15 +1,18 @@
-# NVRMND — nettside
+# NVRMND, nettside
 
 Prosjektnotater. Denne fila er «hukommelsen» vår: alt vi blir enige om skrives ned her.
-Sist oppdatert: 2026-09-06
+Sist oppdatert: 6. september 2026
 
 ---
 
 ## 1. Kort oppsummert
 
 Én lang, animasjonstung one-pager for hardstyle-artisten **NVRMND**, inspirert av
-landonorris.com — spesielt de bevegelige elementene (preloader, egendefinert markør,
+landonorris.com, særlig de bevegelige elementene (preloader, egendefinert markør,
 scroll-avsløring, tekst-scramble, marquee, parallakse, horisontal scroll).
+
+Bak NVRMND står Marius Hågensen fra Mo i Rana. **Navnet hans står ikke på siden.**
+Bioen er bevisst holdt anonym, slik mange hardstyle-artister gjør det.
 
 ---
 
@@ -17,107 +20,165 @@ scroll-avsløring, tekst-scramble, marquee, parallakse, horisontal scroll).
 
 | Tema | Valg |
 |---|---|
-| Artistnavn | **NVRMND** (skrives i versaler) |
-| Sjanger | Hardstyle — hardt, industrielt, høy kontrast |
-| Teknologi | Ren HTML/CSS/JS. Ingen bygg-steg, ingen npm. |
+| Artistnavn | **NVRMND** (versaler) |
+| Sjanger | Hardstyle. Hardt, industrielt, høy kontrast |
+| Teknologi | Ren HTML/CSS/JS. Ingen bygg-steg, ingen npm, null avhengigheter |
 | Struktur | Én lang side (`index.html`) med scroll-navigasjon |
-| Språk på siden | Engelsk |
-| Seksjoner | Hero/intro, Musikk/releases, Om artisten, Booking/kontakt |
-| Bildemateriell | Ingen ekte bilder ennå — abstrakt generert grafikk + plassholdere |
-| Innhold | Plassholdertekst (dummy låtnavn, bio, e-post) — byttes ut senere |
-| Uttrykk | **Kraftig og aggressivt** — glitch, harde kontraster, rask marquee, stor typografi |
-| GitHub | [t-event/nvrmnd-website](https://github.com/t-event/nvrmnd-website) — offentlig |
-| Live | **https://t-event.github.io/nvrmnd-website/** (GitHub Pages, `main` / rot) |
-| Commit-forfatter | Mathias &lt;mathias@t-event.no&gt; — bekreftet riktig |
+| Språk på siden | Engelsk. Dokumentasjonen i repoet er på norsk |
+| Seksjoner | Hero, Musikk, Om artisten, Kontakt |
+| Uttrykk | **Kraftig og aggressivt.** Glitch, harde kontraster, rask marquee |
+| Identitet | Anonym. Marius navngis ikke på siden |
+| GitHub | [t-event/nvrmnd-website](https://github.com/t-event/nvrmnd-website), offentlig |
+| Live | **https://t-event.github.io/nvrmnd-website/** (Pages, `main` / rot) |
+| Lisens | Alle rettigheter forbeholdt. Ingen åpen kildekode-lisens |
+| Commit-forfatter | Mathias &lt;mathias@t-event.no&gt;, bekreftet riktig |
+
+### Skrivestil på siden
+
+**Ingen lange tankestreker i teksten på nettsiden.** Bruk hele setninger,
+punktum, eller skråstrek som skilletegn. Dette gjelder også `<title>`,
+meta-beskrivelser og alt-tekster.
 
 ## 3. Farger
 
-Svært mørk lilla base med skarp rød aksent. Rødt brukes **sparsomt** — linjer,
-hover, knapper, tall — slik at det biter.
+Svært mørk lilla base med skarp rød aksent. Rødt brukes **sparsomt** (linjer,
+hover, knapper, tall) slik at det biter når det først dukker opp.
 
 | Rolle | Verdi | Bruk |
 |---|---|---|
 | Bakgrunn | `#0D0410` | Sidebakgrunn, nesten svart-lilla |
 | Bakgrunn 2 | `#150720` | Seksjoner som skal løftes litt |
 | Lilla dyp | `#2A0B3D` | Flater, kort, kanter |
-| Lilla lys | `#7B2CBF` | Glød, gradienter, sekundær aksent |
-| **Rød aksent** | `#FF1F3D` | Aksentfarge — hover, linjer, knapper, tall |
-| Rød mørk | `#C4001A` | Skygge/dybde under rødt |
+| Lilla lys | `#7B2CBF` | Glød og gradienter |
+| **Rød aksent** | `#FF1F3D` | Hover, linjer, knapper, tall |
+| Rød mørk | `#C4001A` | Skygge og dybde under rødt |
+| **Cyan** | `#22D6E8` | Tredjefarge, hentet fra coveret |
 | Tekst | `#F2E9F7` | Brødtekst og overskrifter |
-| Tekst dempet | `#9E86AE` | Etiketter, metadata |
+| Tekst dempet | `#9E86AE` | Etiketter og metadata |
 
-Alle farger ligger som CSS-variabler øverst i `css/style.css` — endre der, så slår
-det gjennom på hele siden.
+Alle ligger som CSS-variabler øverst i `css/style.css`.
+
+**Om cyan:** Need Me-coveret er cyan og magenta på svart, mens siden var lilla og
+rød. Cyan ble lagt til 6. september for å binde de to sammen. Den brukes tre
+steder og skal ikke brukes flere: glitch-kanalen på hero-tittelen, den forskjøvede
+rammen bak coveret ved hover, og et svakt skjær i bakgrunnen av musikk-seksjonen.
 
 ## 4. Typografi
 
-- **Anton** — display/overskrifter. Bred, tung, condensed. Bærer hardstyle-uttrykket.
-- **Space Grotesk** — brødtekst.
-- **JetBrains Mono** — små etiketter, tall, tekniske detaljer (`[ 01 ]`, `BPM 150`).
+- **Anton.** Overskrifter, marquee, logo, tall. Bred og tung, bærer uttrykket.
+- **Space Grotesk.** Brødtekst.
+- **JetBrains Mono.** Etiketter, metadata, knappetekst.
 
-Hentes fra Google Fonts. Fallback-stack er satt, så siden fungerer offline også.
+Fra Google Fonts, med fallback-stack.
 
-## 5. Bevegelige effekter (alle bekreftet ønsket)
+## 5. Bevegelige effekter
 
-1. **Preloader** — teller 0→100 med scramble-tall, deretter gardin som trekkes opp.
-2. **Scroll-avsløring** — elementer glir/fader inn via IntersectionObserver.
-3. **Egendefinert markør** — ring som følger med forsinkelse, vokser over lenker og
-   viser etikett («PLAY», «OPEN»). Skjules automatisk på touch-enheter.
-4. **Magnetiske knapper** — knapper trekkes mot musepekeren.
-5. **Tekst-scramble** — bokstaver stokkes før de lander (hero-tittel, e-post ved hover).
-6. **Marquee** — store rullende tekstbånd, snur retning ved scroll oppover.
-7. **Parallakse** — lag som beveger seg i ulik hastighet i hero og om-seksjonen.
-8. **Horisontal scroll** — musikk-seksjonen scroller sidelengs mens du scroller ned.
+Alle åtte var ønsket fra start:
 
-Alt respekterer `prefers-reduced-motion`: brukere som har slått av animasjoner
-i systemet får en rolig, statisk versjon.
+1. **Preloader.** Teller 0 til 100, deretter gardin som trekkes opp.
+2. **Scroll-avsløring.** IntersectionObserver.
+3. **Egendefinert markør.** Prikk følger eksakt, ring henger litt etter.
+4. **Magnetiske knapper.** Trekkes mot musepekeren.
+5. **Tekst-scramble.** Bokstaver stokkes før de lander.
+6. **Marquee.** Rullende tekstbånd som skjevstilles av scroll-farten.
+7. **Parallakse.** Lag i ulik hastighet i hero og om-seksjonen.
+8. **Horisontal scroll.** Ligger klar, men er slått av. Se punkt 6 under.
 
-### Aggressivitets-runde (valgt 2026-09-06)
+Alt respekterer `prefers-reduced-motion`.
+
+### Aggressivitets-runde
 
 Etter første gjennomsyn ble uttrykket skrudd opp:
 
-- **Glitch på hero-tittelen** — rød/lilla kanaldeling som blinker ca. hvert 7. sekund
-- **Kick-puls** — rødt glød i booking-seksjonen pumper i takt med 150 BPM (0,4 s)
-- **Raskere marquee** — nesten dobbel grunnfart, og båndene skjevstilles med scroll-farten
-- **Større typografi** — hero opp til 22,5vw, footer-ordet med rød kontur i stedet for grå
-- **Hardere kanter** — 2px røde rammer på marquee og cover, rød glød på hover
-- **Skjeve kort** — release-raden lener seg i fartsretningen når den scroller sidelengs
+- **Glitch på hero-tittelen.** Rød og cyan kanaldeling ca. hvert 7. sekund
+- **Kick-puls.** Rødt glød i kontaktseksjonen pumper i takt med 150 BPM
+- **Raskere marquee.** Nesten dobbel grunnfart, skjevstilles med scroll-farten
+- **Større typografi.** Hero opp til 22,5vw, footer-ordet med rød kontur
+- **Hardere kanter.** 2px røde rammer, rød glød ved hover
 
-## 6. Filstruktur
+### Markøren ble fikset
+
+Første versjon fungerte dårlig. Årsaken: systemets egen
+musepeker ble aldri skjult, så man så to pekere samtidig. Rettet 6. september ved
+å skjule den via `body.has-cursor`, stramme inn forsinkelsen fra 0.16 til 0.24,
+og fjerne `mix-blend-mode: difference` som ga rare farger over grain-laget.
+Markøren vises nå kun ved `pointer: fine`, og systempekeren kommer tilbake så
+snart brukeren trykker Tab.
+
+## 6. Musikk-seksjonen har to moduser
+
+Katalogen er på én låt, så seksjonen viser **én utgivelse i stort format**.
+Den horisontale scroll-raden ligger klar, kommentert ut i `index.html`.
+
+Slik slås den på når det finnes fire eller flere låter:
+
+1. Legg klassen `music--rail` på `<section class="music">`
+2. Bytt seksjonsinnholdet med den kommenterte blokken
+3. Fyll inn ett kort per låt
+
+All CSS og JS for raden ligger allerede inne og virker. Se `SPEC.md`.
+
+## 7. Filstruktur
 
 ```
 NVRMND nettside/
-├── index.html        # hele siden
-├── css/style.css     # all styling, variabler øverst
-├── js/main.js        # alle animasjoner, én fil, kommentert seksjonsvis
-└── PROSJEKT.md       # denne fila
+├── index.html            Hele siden
+├── css/style.css         All styling, variabler øverst
+├── js/main.js            Alle animasjoner, 11 nummererte seksjoner
+├── assets/               Coverbilder
+├── PROSJEKT.md           Denne fila
+├── SPEC.md               Teknisk spesifikasjon
+├── PLACEHOLDERS.md       Hva som gjenstår av innhold
+├── README.md             Inngangsport til repoet
+├── CONTRIBUTING.md       For den som skal endre noe
+├── SECURITY.md           Melde fra om sikkerhetsproblemer
+├── CODE_OF_CONDUCT.md    Retningslinjer for oppførsel
+└── LICENSE.md            Alle rettigheter forbeholdt
 ```
 
-## 7. Hva må byttes ut senere (plassholdere)
+## 8. Innhold på siden
 
-Alle er merket med `<!-- PLASSHOLDER -->` i `index.html`:
+### Ekte, bekreftet
 
-- Låttitler, årstall og strømmelenker i musikk-seksjonen (6 stk.)
-- Bio-teksten i om-seksjonen
-- Tallene i statistikk-raden (shows, streams, BPM)
-- Booking-e-post: `booking@nvrmnd.com`
-- Sosiale lenker: Instagram, TikTok, YouTube, Spotify, Apple Music (alle `href="#"`)
-- Coverbilder: erstatt `.release-art` sine CSS-gradienter med `<img>`
+| Element | Detaljer |
+|---|---|
+| **Need Me** | Debutsingel, ute 28. august 2026, 2:24, katalognr. NVR001 |
+| Coverbildet | Hentet fra Apple Musics katalog i 1400×1400 |
+| **Random Nostalgia (NVRMND Remix)** | Kun på SoundCloud |
+| Plattformer | Spotify, Apple Music, Tidal, SoundCloud, YouTube, Amazon |
+| Instagram | `@nvrmnd.hardstyle` |
+| Sted | Mo i Rana. Studio i leiligheten hans |
 
-## 8. Åpne spørsmål / neste steg
+### Gjenstår
 
-- [ ] Ekte låtnavn og lenker til Spotify/Apple Music
-- [ ] Ekte booking-e-post og sosiale handles
-- [ ] Bio-tekst på engelsk
-- [ ] Pressebilder / cover-artwork
-- [ ] Skal det inn en konsert-/turnéseksjon senere? (ikke valgt nå)
-- [x] ~~Skal siden publiseres?~~ Live på GitHub Pages siden 2026-09-06
-- [ ] Eget domene? (f.eks. nvrmnd.no — settes opp under Settings → Pages → Custom domain)
+Se **[PLACEHOLDERS.md](PLACEHOLDERS.md)** for full liste med fremgangsmåte.
+Kort oppsummert: booking-e-post, pressebilde, bio i Marius' egen stemme,
+nytt SoundCloud-brukernavn, TikTok-profil.
 
-## Slik publiseres endringer
+### Feil hos distributøren
 
-Alt som pushes til `main` går automatisk live på
-https://t-event.github.io/nvrmnd-website/ etter ca. ett minutt.
+To lenker peker til feil kontoer. Vi lenker likevel, etter Mathias' valg, fordi
+de tross alt fører til musikken:
+
+- **YouTube.** Need Me er publisert på feil kanal
+- **Amazon Music.** Artistprofilen blander inn en annen artist med samme navn
+
+Begge må meldes til distributøren.
+
+## 9. Åpne spørsmål
+
+- [ ] Booking-e-post opprettes, så byttes plassholderen ut
+- [ ] Marius døper om SoundCloud til `soundcloud.com/nvrmnd`, så oppdateres lenkene
+- [ ] Pressebilde
+- [ ] Bio i hans egen stemme
+- [ ] TikTok-profil
+- [ ] Konsertseksjon når det finnes datoer
+- [ ] Eget domene? (Settings → Pages → Custom domain)
+- [x] ~~Skal siden publiseres?~~ Live siden 6. september 2026
+
+## 10. Slik publiseres endringer
+
+Alt som pushes til `main` går live etter ca. ett minutt.
 
 ```bash
 git add -A
@@ -125,15 +186,19 @@ git commit -m "beskrivelse av endringen"
 git push
 ```
 
-## 9. Samtalelogg
+## 11. Beslutningslogg
 
-**2026-09-06** — Oppstart. Tom mappe. Avklart alle valgene i tabellen over gjennom
-tre spørsmålsrunder. Bygget første versjon av siden med alle åtte effektene.
+**6. sep 2026.** Oppstart, tom mappe. Alle valgene i tabellen over avklart gjennom
+tre avklaringsrunder. Bygget første versjon med alle åtte effektene.
 
-**2026-09-06** — Mathias ba om GitHub-kobling. `gh` installert via Homebrew,
-`git init` kjørt, første commit laget lokalt (branch `main`). Repo opprettet som
-offentlig under kontoen **t-event**, pushet, og GitHub Pages slått på fra `main`
-(rotmappa). Første bygg gikk grønt — siden er live.
+**6. sep 2026.** GitHub-kobling. `gh` installert via Homebrew, repo opprettet som
+offentlig under kontoen **t-event**, Pages slått på fra `main`. Siden er live.
 
-**2026-09-06** — Etter førsteinntrykk: uttrykket skrudd opp til «kraftigere /
-mer aggressivt». Se avsnittet over.
+**6. sep 2026.** Uttrykket skrudd opp til «kraftigere og mer aggressivt».
+
+**6. sep 2026.** Ekte innhold kom inn: Need Me, remixen, alle plattformlenker,
+coverbildet. Musikk-seksjonen bygget om fra seks plassholdere til én featured
+release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
+verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
+
+**6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.

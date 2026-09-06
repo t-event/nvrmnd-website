@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NVRMND — main.js
+   NVRMND / main.js
    Alle animasjoner. Ingen biblioteker, ingen bygg-steg.
    Seksjoner: 0 Hjelpere · 1 Preloader · 2 Markør · 3 Magnetisk · 4 Nav
               5 Scroll-avsløring · 6 Scramble · 7 Marquee · 8 Parallakse
@@ -93,31 +93,60 @@
   const mouse = { x: vw / 2, y: vh / 2 };
   const ring  = { x: vw / 2, y: vh / 2 };
 
+  // Bare presise pekere (mus/styrepute), aldri touch, aldri penn uten hover
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  let cursorOn = false;
+  let cursorDown = false;
+
   function initCursor() {
-    if (!cursor || reduced || isTouch) { cursor?.remove(); return; }
+    if (!cursor) return;
+
+    if (reduced || isTouch || !finePointer) { cursor.remove(); return; }
+
+    cursorOn = true;
+    document.body.classList.add('has-cursor');
 
     window.addEventListener('mousemove', e => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      // Prikken følger eksakt, ringen henger litt etter (settes i rAF-løkka)
       cDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     }, { passive: true });
 
-    // Hover-tilstander: data-cursor="hover" vokser ringen,
-    // andre verdier vises som etikett inni ringen ("play" → PLAY)
-    $$('[data-cursor]').forEach(el => {
-      const mode = el.dataset.cursor;
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('is-hover');
-        cLabel.textContent = mode === 'hover' ? '' : mode;
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('is-hover');
-        cLabel.textContent = '';
-      });
+    // Hover via delegering, fungerer også for elementer som legges til senere.
+    // data-cursor="hover" vokser bare ringen, andre verdier vises som etikett.
+    document.addEventListener('mouseover', e => {
+      const t = e.target.closest?.('[data-cursor]');
+      if (!t) return;
+      cursor.classList.add('is-hover');
+      cLabel.textContent = t.dataset.cursor === 'hover' ? '' : t.dataset.cursor;
     });
 
+    document.addEventListener('mouseout', e => {
+      const t = e.target.closest?.('[data-cursor]');
+      if (!t) return;
+      // Ikke slipp hover-tilstanden når pekeren bare flytter seg internt i elementet
+      if (e.relatedTarget?.closest?.('[data-cursor]') === t) return;
+      cursor.classList.remove('is-hover');
+      cLabel.textContent = '';
+    });
+
+    // Liten respons på klikk
+    document.addEventListener('mousedown', () => cursorDown = true);
+    document.addEventListener('mouseup',   () => cursorDown = false);
+
+    // Skjul når pekeren forlater vinduet, vis igjen når den kommer tilbake
     document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
     document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+
+    // Fysisk tastaturbruk skal ikke være verre enn før: viser systempekeren
+    // igjen så snart brukeren tabber seg gjennom siden
+    window.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      document.body.classList.remove('has-cursor');
+      cursorOn = false;
+    }, { once: true });
   }
 
 
@@ -275,7 +304,7 @@
   }
 
   function updateMarquees() {
-    // Skjevstilling som følger scroll-farten — gir fart og aggresjon
+    // Skjevstilling som følger scroll-farten, gir fart og aggresjon
     const skew = clamp(velocity * 0.22, -7, 7);
 
     marquees.forEach(m => {
@@ -354,7 +383,11 @@
   function countUp(el) {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || '';
-    if (reduced) { el.textContent = target + suffix; return; }
+    const pad    = Number(el.dataset.pad || 0);   // data-pad="2" → "01"
+
+    const show = n => String(n).padStart(pad, '0') + suffix;
+
+    if (reduced) { el.textContent = show(target); return; }
 
     const dur = 1500;
     const start = performance.now();
@@ -362,7 +395,7 @@
     const frame = (now) => {
       const p = clamp((now - start) / dur, 0, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = show(Math.round(target * eased));
       if (p < 1) requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
@@ -376,10 +409,13 @@
     velocity = lerp(velocity, scrollY - lastScroll, 0.25);
     lastScroll = scrollY;
 
-    if (cursor && !isTouch) {
-      ring.x = lerp(ring.x, mouse.x, 0.16);
-      ring.y = lerp(ring.y, mouse.y, 0.16);
-      cRing.style.transform = `translate(${ring.x.toFixed(2)}px, ${ring.y.toFixed(2)}px)`;
+    if (cursorOn) {
+      // Strammere enn før, ringen skal føles festet til pekeren, ikke slepe etter
+      ring.x = lerp(ring.x, mouse.x, 0.24);
+      ring.y = lerp(ring.y, mouse.y, 0.24);
+      const s = cursorDown ? 0.82 : 1;
+      cRing.style.transform =
+        `translate(${ring.x.toFixed(2)}px, ${ring.y.toFixed(2)}px) scale(${s})`;
     }
 
     updateMarquees();

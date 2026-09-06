@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NVRMND — Hardstyle</title>
-<meta name="description" content="NVRMND — hardstyle producer. Raw kicks, no mercy.">
+<title>NVRMND | Hardstyle</title>
+<meta name="description" content="NVRMND. Hardstyle from Mo i Rana, Norway. Debut single Need Me out now.">
 <meta name="theme-color" content="#0D0410">
 
+<!-- Delingskort (Instagram, Messenger, Discord osv.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="NVRMND | Hardstyle">
+<meta property="og:description" content="Debut single Need Me out now. Hardstyle from Mo i Rana, Norway.">
+<meta property="og:image" content="assets/need-me.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/need-me-small.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -46,7 +54,7 @@
   <nav class="nav__links" aria-label="Main">
     <a href="#music"   class="nav__link" data-cursor="hover" data-text="Music"><span>Music</span></a>
     <a href="#about"   class="nav__link" data-cursor="hover" data-text="About"><span>About</span></a>
-    <a href="#booking" class="nav__link" data-cursor="hover" data-text="Booking"><span>Booking</span></a>
+    <a href="#booking" class="nav__link" data-cursor="hover" data-text="Contact"><span>Contact</span></a>
   </nav>
 
   <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -58,7 +66,7 @@
 <div class="menu" id="menu">
   <a href="#music"   class="menu__link">Music</a>
   <a href="#about"   class="menu__link">About</a>
-  <a href="#booking" class="menu__link">Booking</a>
+  <a href="#booking" class="menu__link">Contact</a>
 </div>
 
 <main>
@@ -74,7 +82,7 @@
 
   <div class="hero__content">
     <p class="hero__eyebrow" data-reveal>
-      <span class="tick"></span> Hardstyle <span class="sep">/</span> Raw kicks <span class="sep">/</span> No mercy
+      <span class="tick"></span> Hardstyle <span class="sep">/</span> Mo i Rana, Norway <span class="sep">/</span> NVR001 out now
     </p>
 
     <h1 class="hero__title" data-parallax="-0.06">
@@ -84,10 +92,9 @@
     </h1>
 
     <div class="hero__foot">
-      <!-- PLASSHOLDER: bytt ut med ekte beskrivelse -->
       <p class="hero__sub" data-reveal data-delay="1">
-        Producer and DJ from Norway. Distorted kicks, screeching leads<br>
-        and a sound engineered for the front row.
+        Hardstyle built in an apartment studio above the Arctic Circle.<br>
+        Distorted kicks, screeching leads, nothing polished that shouldn't be.
       </p>
       <a href="#music" class="btn" data-magnetic data-cursor="hover">
         <span class="btn__label" data-scramble-hover="Hear it">Hear it</span>
@@ -105,101 +112,109 @@
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track" data-marquee>
-    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
-    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
-    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
-    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Need Me <i>◆</i> Out now <i>◆</i> Remember <i>◆</i> NVRMND <i>◆</i></span>
   </div>
 </div>
 
-<!-- ============ MUSIC — HORIZONTAL SCROLL ============ -->
+<!-- ============ MUSIC ============ -->
+<!--
+  NB: Denne seksjonen viser én utgivelse i stort format fordi katalogen er liten.
+  Den horisontale scroll-raden ligger klar lenger nede i denne fila, kommentert ut.
+  Når det finnes 4+ låter: bytt inn den blokken og legg klassen "music--rail" på
+  <section class="music">. All CSS og JS for raden er allerede på plass.
+-->
 <section class="music" id="music">
-  <div class="music__sticky">
+  <div class="music__head">
+    <p class="label" data-reveal><span class="tick"></span> 01 / Music</p>
+    <h2 class="music__title" data-reveal data-delay="1">Out <em>now</em></h2>
+  </div>
 
+  <article class="featured">
+    <a class="featured__art"
+       href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ"
+       target="_blank" rel="noopener"
+       data-cursor="play" data-reveal
+       aria-label="Listen to Need Me on Spotify">
+      <img src="assets/need-me.jpg" alt="Cover art for NVRMND, Need Me"
+           width="1400" height="1400" fetchpriority="high">
+      <span class="featured__cat">NVR001</span>
+    </a>
+
+    <div class="featured__info">
+      <p class="label" data-reveal data-delay="1">Debut single <span class="dot">·</span> 28 Aug 2026 <span class="dot">·</span> 2:24</p>
+      <h3 class="featured__title" data-reveal data-delay="2">Need Me</h3>
+      <p class="featured__desc" data-reveal data-delay="3">
+        The first one out. A kick tuned until it stopped sounding like a sample,
+        a lead that sits right on the edge of too much, and a build that holds
+        one beat longer than it should.
+      </p>
+
+      <ul class="platforms" data-reveal data-delay="4">
+        <li><a class="platform" href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a></li>
+        <li><a class="platform" href="https://music.apple.com/no/album/need-me/6806555357?i=6806555358" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Apple Music</span><i>↗</i></a></li>
+        <li><a class="platform" href="https://tidal.com/track/556694168" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Tidal</span><i>↗</i></a></li>
+        <li><a class="platform" href="https://soundcloud.com/marius-hagensen/need-me" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>SoundCloud</span><i>↗</i></a></li>
+        <li><a class="platform" href="https://www.youtube.com/watch?v=Cu71go7IyKI" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>YouTube</span><i>↗</i></a></li>
+        <li><a class="platform" href="https://music.amazon.com/tracks/B0HH3XDYPG" target="_blank" rel="noopener" data-magnetic data-cursor="hover"><span>Amazon Music</span><i>↗</i></a></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Remix, kun på SoundCloud -->
+  <aside class="more" data-reveal>
+    <div class="more__text">
+      <p class="label"><span class="tick"></span> SoundCloud only</p>
+      <h3 class="more__title">Random Nostalgia <em>(NVRMND Remix)</em></h3>
+      <p class="more__desc">Not on the streaming platforms. This one lives on SoundCloud.</p>
+    </div>
+    <a class="btn btn--ghost" href="https://soundcloud.com/marius-hagensen/random-nostalgia-nvrmnd-remix" target="_blank" rel="noopener" data-magnetic data-cursor="hover">
+      <span class="btn__label">Play remix</span><span class="btn__arrow">↗</span>
+    </a>
+  </aside>
+</section>
+
+<!--
+  ============ HORISONTAL SCROLL-RAD, KLAR TIL BRUK ============
+  Slik slår du den på når det er nok låter:
+    1. Legg til klassen "music--rail" på <section class="music" id="music">
+    2. Bytt ut innholdet i seksjonen med blokken under
+    3. Fyll inn tittel, år og lenke per kort, og legg coveret i /assets
+
+  <div class="music__sticky">
     <div class="music__head">
-      <p class="label" data-reveal><span class="tick"></span> 01 — Releases</p>
+      <p class="label" data-reveal><span class="tick"></span> 01 / Releases</p>
       <h2 class="music__title" data-reveal data-delay="1">Latest<br><em>drops</em></h2>
       <p class="music__hint" data-reveal data-delay="2">Keep scrolling →</p>
     </div>
 
     <div class="music__rail" data-rail>
-      <!-- PLASSHOLDER: alle 6 releases — bytt tittel, år, lenke og cover -->
       <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play Bloodline">
-          <div class="release__art release__art--1"><span class="release__num">01</span></div>
+        <a class="release__link" href="#" aria-label="Play Need Me">
+          <div class="release__art"><img src="assets/need-me.jpg" alt=""></div>
           <div class="release__meta">
-            <h3 class="release__title">Bloodline</h3>
+            <h3 class="release__title">Need Me</h3>
             <p class="release__info">Single <span>·</span> 2026</p>
           </div>
         </a>
       </article>
 
-      <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play Concrete Heart">
-          <div class="release__art release__art--2"><span class="release__num">02</span></div>
-          <div class="release__meta">
-            <h3 class="release__title">Concrete Heart</h3>
-            <p class="release__info">Single <span>·</span> 2026</p>
-          </div>
-        </a>
-      </article>
-
-      <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play No Mercy">
-          <div class="release__art release__art--3"><span class="release__num">03</span></div>
-          <div class="release__meta">
-            <h3 class="release__title">No Mercy</h3>
-            <p class="release__info">EP <span>·</span> 2025</p>
-          </div>
-        </a>
-      </article>
-
-      <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play Static Prayer">
-          <div class="release__art release__art--4"><span class="release__num">04</span></div>
-          <div class="release__meta">
-            <h3 class="release__title">Static Prayer</h3>
-            <p class="release__info">Single <span>·</span> 2025</p>
-          </div>
-        </a>
-      </article>
-
-      <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play Aftershock">
-          <div class="release__art release__art--5"><span class="release__num">05</span></div>
-          <div class="release__meta">
-            <h3 class="release__title">Aftershock</h3>
-            <p class="release__info">Remix <span>·</span> 2025</p>
-          </div>
-        </a>
-      </article>
-
-      <article class="release" data-cursor="play">
-        <a class="release__link" href="#" aria-label="Play Nevermind">
-          <div class="release__art release__art--6"><span class="release__num">06</span></div>
-          <div class="release__meta">
-            <h3 class="release__title">Nevermind</h3>
-            <p class="release__info">Single <span>·</span> 2024</p>
-          </div>
-        </a>
-      </article>
+      ... flere .release-kort her ...
 
       <div class="rail-end">
         <p class="label">Full catalogue</p>
-        <!-- PLASSHOLDER: lenke til Spotify-artistside -->
-        <a href="#" class="btn btn--ghost" data-magnetic data-cursor="hover">
+        <a href="https://open.spotify.com/artist/6vSV3iI3VMqzfy0wnWcI8E" class="btn btn--ghost" data-magnetic data-cursor="hover">
           <span class="btn__label">Spotify</span><span class="btn__arrow">↗</span>
-        </a>
-        <!-- PLASSHOLDER: lenke til Apple Music -->
-        <a href="#" class="btn btn--ghost" data-magnetic data-cursor="hover">
-          <span class="btn__label">Apple Music</span><span class="btn__arrow">↗</span>
         </a>
       </div>
     </div>
 
     <div class="music__progress" aria-hidden="true"><span data-rail-progress></span></div>
   </div>
-</section>
+  ============================================================
+-->
 
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
@@ -209,34 +224,34 @@
       <div class="about__img"><span>PRESS PHOTO</span></div>
     </div>
     <div class="about__frame about__frame--small" data-parallax="-0.14">
-      <!-- PLASSHOLDER: sekundært bilde -->
-      <div class="about__img about__img--alt"><span>LIVE</span></div>
+      <img src="assets/need-me.jpg" alt="Cover art for Need Me" loading="lazy" width="1400" height="1400">
     </div>
   </div>
 
   <div class="about__text">
-    <p class="label" data-reveal><span class="tick"></span> 02 — About</p>
+    <p class="label" data-reveal><span class="tick"></span> 02 / About</p>
     <h2 class="about__title" data-reveal data-delay="1">Built for<br><em>the drop</em></h2>
 
-    <!-- PLASSHOLDER: ekte bio -->
+    <!-- PLASSHOLDER: bio-utkast. Marius bør lese gjennom og gjøre teksten til sin egen. -->
     <div class="about__body">
       <p data-reveal data-delay="2">
-        NVRMND started in a bedroom studio outside Trondheim with a cracked kick sample
-        and too much time. Six years later the same kick — heavier, uglier, tuned to
-        the floor — is the signature.
+        NVRMND is hardstyle out of Mo i Rana, a town on the Norwegian coast just
+        south of the Arctic Circle. No studio complex, no session players. Every
+        kick, lead and scream gets built in an apartment, on a pair of monitors,
+        one late night at a time.
       </p>
       <p data-reveal data-delay="3">
-        The sound sits where raw hardstyle meets something colder and more industrial:
-        distorted low end, screeching leads, and long builds that hold the room a beat
-        longer than comfortable before letting go.
+        The sound sits where raw hardstyle meets something colder and more
+        industrial: distorted low end, screeching leads, and long builds that
+        hold the room a beat longer than comfortable before letting go.
+        <em class="soft">Need Me</em> is the first one out. It won't be the last.
       </p>
     </div>
 
     <div class="stats">
-      <!-- PLASSHOLDER: ekte tall -->
-      <div class="stat" data-reveal data-delay="4"><span class="stat__num" data-count="150">0</span><span class="stat__label">BPM</span></div>
-      <div class="stat" data-reveal data-delay="5"><span class="stat__num" data-count="84">0</span><span class="stat__label">Shows played</span></div>
-      <div class="stat" data-reveal data-delay="6"><span class="stat__num" data-count="12" data-suffix="M">0</span><span class="stat__label">Streams</span></div>
+      <div class="stat" data-reveal data-delay="4"><span class="stat__num" data-count="1" data-pad="2">0</span><span class="stat__label">Release out now</span></div>
+      <div class="stat" data-reveal data-delay="5"><span class="stat__num" data-count="2026">0</span><span class="stat__label">Debut year</span></div>
+      <div class="stat" data-reveal data-delay="6"><span class="stat__num">NVR001</span><span class="stat__label">Catalogue no.</span></div>
     </div>
   </div>
 </section>
@@ -244,30 +259,42 @@
 <!-- ============ MARQUEE 2 ============ -->
 <div class="marquee marquee--red" aria-hidden="true">
   <div class="marquee__track" data-marquee data-direction="-1">
-    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
-    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
-    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
-    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
+    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Mo i Rana <i>◆</i> 2026 <i>◆</i></span>
+    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Mo i Rana <i>◆</i> 2026 <i>◆</i></span>
+    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Mo i Rana <i>◆</i> 2026 <i>◆</i></span>
+    <span class="marquee__item">Remember <i>◆</i> NVRMND <i>◆</i> Mo i Rana <i>◆</i> 2026 <i>◆</i></span>
   </div>
 </div>
 
-<!-- ============ BOOKING ============ -->
+<!-- ============ CONTACT ============ -->
 <section class="booking" id="booking">
   <div class="booking__inner">
-    <p class="label" data-reveal><span class="tick"></span> 03 — Booking</p>
+    <p class="label" data-reveal><span class="tick"></span> 03 / Contact</p>
     <h2 class="booking__title" data-reveal data-delay="1">Let's make it<br><em>loud</em></h2>
 
-    <!-- PLASSHOLDER: ekte booking-e-post -->
-    <a href="mailto:booking@nvrmnd.com" class="booking__mail" data-cursor="hover" data-scramble-hover="booking@nvrmnd.com" data-reveal data-delay="2">
-      booking@nvrmnd.com
-    </a>
+    <!--
+      PLASSHOLDER: booking-e-post er ikke satt opp ennå.
+      Når adressen finnes: slett .booking__soon under og fjern kommentaren rundt lenka.
+
+      <a href="mailto:ADRESSE" class="booking__mail" data-cursor="hover"
+         data-scramble-hover="ADRESSE" data-reveal data-delay="2">ADRESSE</a>
+    -->
+    <p class="booking__soon" data-reveal data-delay="2">
+      <span class="booking__soon-label">Booking email</span>
+      <span class="booking__soon-text">Coming soon. DM on Instagram in the meantime</span>
+    </p>
 
     <div class="socials" data-reveal data-delay="3">
-      <!-- PLASSHOLDER: ekte lenker til sosiale medier -->
-      <a href="#" class="social" data-magnetic data-cursor="hover"><span>Instagram</span><i>↗</i></a>
-      <a href="#" class="social" data-magnetic data-cursor="hover"><span>TikTok</span><i>↗</i></a>
-      <a href="#" class="social" data-magnetic data-cursor="hover"><span>YouTube</span><i>↗</i></a>
-      <a href="#" class="social" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a>
+      <a href="https://www.instagram.com/nvrmnd.hardstyle" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Instagram</span><i>↗</i></a>
+      <a href="https://soundcloud.com/marius-hagensen" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>SoundCloud</span><i>↗</i></a>
+      <a href="https://open.spotify.com/artist/6vSV3iI3VMqzfy0wnWcI8E" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a>
+      <a href="https://music.apple.com/no/artist/nvrmnd/6806555186" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Apple Music</span><i>↗</i></a>
+      <a href="https://tidal.com/artist/85185574" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Tidal</span><i>↗</i></a>
+      <a href="https://www.youtube.com/watch?v=Cu71go7IyKI" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>YouTube</span><i>↗</i></a>
+      <a href="https://music.amazon.com/artists/B01GB1HH3Y/nvrmnd" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>Amazon Music</span><i>↗</i></a>
+      <!-- PLASSHOLDER: TikTok-profil finnes ikke ennå. Fjern kommentaren når den er laget
+      <a href="#" target="_blank" rel="noopener" class="social" data-magnetic data-cursor="hover"><span>TikTok</span><i>↗</i></a>
+      -->
     </div>
   </div>
 
@@ -281,7 +308,7 @@
   <div class="footer__word" aria-hidden="true">NVRMND</div>
   <div class="footer__row">
     <span>© 2026 NVRMND</span>
-    <span>All rights reserved</span>
+    <span>Mo i Rana, Norway</span>
     <a href="#hero" data-cursor="hover" class="footer__top">Back to top ↑</a>
   </div>
 </footer>
