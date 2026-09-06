@@ -83,6 +83,14 @@ a{ color:inherit; text-decoration:none; }
   background:var(--red);
   display:inline-block;
   box-shadow:0 0 12px var(--red);
+  transform-origin:left center;
+  /* Samme 150 BPM som gløden i kontaktseksjonen. Hele siden får én puls. */
+  animation:tickKick .4s cubic-bezier(.2,.8,.3,1) infinite;
+}
+@keyframes tickKick{
+  0%  { transform:scaleX(1);   box-shadow:0 0 14px var(--red); }
+  55% { transform:scaleX(.78); box-shadow:0 0 4px  var(--red); }
+  100%{ transform:scaleX(1);   box-shadow:0 0 14px var(--red); }
 }
 
 em{
@@ -752,7 +760,11 @@ body.has-cursor [data-cursor]{ cursor:none; }
   height:auto;
   aspect-ratio:1;
   object-fit:cover;
-  transition:transform .8s var(--ease), filter .5s var(--ease);
+  /* --gx/--gy settes av gyro-parallaksen, --zoom av scroll. Hover bygger
+     videre på dem i stedet for å overskrive. */
+  transform:translate3d(var(--gx,0px), var(--gy,0px), 0) scale(var(--zoom,1));
+  transition:transform .35s var(--ease), filter .5s var(--ease);
+  will-change:transform;
 }
 /* Skannelinjer over coveret, som resten av siden */
 .featured__art::after{
@@ -770,7 +782,10 @@ body.has-cursor [data-cursor]{ cursor:none; }
     14px 14px 0 -1px rgba(34,214,232,.4),
     0 30px 80px rgba(255,31,61,.25);
 }
-.featured__art:hover img{ transform:scale(1.05); filter:saturate(1.15) contrast(1.05); }
+.featured__art:hover img{
+  transform:translate3d(var(--gx,0px), var(--gy,0px), 0) scale(calc(var(--zoom,1) * 1.05));
+  filter:saturate(1.15) contrast(1.05);
+}
 
 .featured__cat{
   position:absolute;
@@ -1485,6 +1500,21 @@ a.booking__soon-text:hover{ color:var(--red); }
   /* Full skjermhøyde ga over halve skjermen tom på mobil. Litt kortere,
      så tittelen kommer høyere opp uten å miste luften over. */
   .hero{ min-height:88svh; padding-top:6rem; padding-bottom:3.5rem; }
+
+  /* Glødkulene er satt i vw og ble 200px på en telefon, borte i 90px blur.
+     Her får de skjermbredden som mål, mindre blur og mer kraft. */
+  .orb{ filter:blur(55px); }
+  .orb--1{ width:120vw; top:-8%; right:-35%; opacity:.7; }
+  .orb--2{ width:95vw;  bottom:-6%; left:-30%; opacity:.55; }
+
+  /* Kick-gløden i kontaktseksjonen: bredere, mindre blur, og løftet opp så
+     pulsen faktisk synes bak overskriften på en smal skjerm */
+  .booking__glow{
+    width:220vw;
+    bottom:-18%;
+    filter:blur(45px);
+    background:radial-gradient(ellipse at center, rgba(255,31,61,.42), transparent 60%);
+  }
   .hero__foot{ align-items:flex-start; flex-direction:column; }
   .music--rail{ height:300vh; }
   .music--rail .music__sticky{ justify-content:flex-start; padding-top:6.5rem; }
@@ -1513,6 +1543,9 @@ a.booking__soon-text:hover{ color:var(--red); }
   .grain{ display:none; }
   .cursor{ display:none; }
   [data-reveal]{ opacity:1; transform:none; }
+  /* Løkka som åpner wipen kjører ikke ved redusert bevegelse */
+  [data-wipe]{ clip-path:none !important; }
+  .tick{ animation:none; }
   .hero__title .l{ transform:none; }
   .music--rail{ height:auto; }
   .music--rail .music__sticky{ position:static; height:auto; }
@@ -1618,3 +1651,40 @@ a.booking__soon-text:hover{ color:var(--red); }
   opacity:1;
   transform:none;
 }
+
+
+/* ==========================================================================
+   EFFEKTER SOM VIRKER PÅ MOBIL
+   ========================================================================== */
+
+/* --- Bilde-wipe: avsløres ovenfra med skarp kant, i stedet for å fade --- */
+.js [data-wipe][data-reveal]{
+  opacity:1;
+  transform:none;
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.1s var(--ease);
+}
+.js [data-wipe][data-reveal].is-in{ clip-path:inset(0 0 0 0); }
+
+/* Avsløringsregelen over slår ellers ut hover-løftet på coveret */
+.js .featured__art.is-in:hover{ transform:translateY(-8px); }
+
+/* --- Trykk-effekter, kun berøringsskjerm --- */
+.hero__title .l.is-hit{
+  color:var(--red);
+  transform:translateY(-2%) skewX(-6deg);
+  transition:color .1s, transform .25s var(--ease);
+}
+.about__frame.is-glitch img{ animation:photoGlitch .55s steps(2,end) 1; }
+@keyframes photoGlitch{
+  0%  { transform:translate(0,0);    filter:contrast(1.14) brightness(1.08); }
+  20% { transform:translate(-9px,3px); filter:contrast(1.6) brightness(1.3) hue-rotate(-25deg); }
+  40% { transform:translate(7px,-4px); filter:contrast(1.14) brightness(1.08); clip-path:inset(30% 0 40% 0); }
+  60% { transform:translate(-4px,0);  filter:contrast(1.8) hue-rotate(20deg); clip-path:inset(0 0 0 0); }
+  80% { transform:translate(3px,2px);  filter:contrast(1.14) brightness(1.08); }
+  100%{ transform:translate(0,0);    filter:contrast(1.14) brightness(1.08); }
+}
+
+/* Etiketter som stokkes på plass: mono-skrift har lik bokstavbredde, så
+   teksten hopper ikke mens den scrambles */
+.scr{ display:inline; }

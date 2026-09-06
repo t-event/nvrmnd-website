@@ -86,6 +86,10 @@ Alle ligger i `js/main.js`, nummerert i samme rekkefølge som her.
 | 4 | Nav + meny | Klasse-toggling, `clip-path` på mobilmenyen |
 | 5 | Scroll-avsløring | `IntersectionObserver`, `unobserve` etter første treff |
 | 5b | Ordvis avsløring | Overskrifter med `data-split` deles i ord, hvert med egen forsinkelse |
+| 5b2 | Bilde-wipe | `data-wipe` klippes med clip-path og åpnes fra rAF-løkka. Observatøren ser ikke klippede elementer |
+| 5c | Etikett-scramble | Tekstbiter i `.label` pakkes i `.scr` og stokkes på plass ved avsløring |
+| 5d | Trykk-effekter | Kun `pointer: coarse`. Skjevstilling på bokstaver, glitch på pressebildet |
+| 5e | Cover: zoom og gyro | Scroll-drevet zoom 1.12 til 1.0, og `deviceorientation` på mobil. Skriver CSS-variabler |
 | 6 | Tekst-scramble | rAF som bytter ut bokstaver til de "lander" fra venstre |
 | 7 | Marquee | `translate3d` per frame, hopper tilbake én elementbredde. Skjevstilles av scroll-farten |
 | 8 | Parallakse | Avstand fra skjermsenter × `data-parallax`-verdi, lerpet |

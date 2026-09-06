@@ -143,7 +143,7 @@
     frame.src = box.dataset.embedSrc;
     frame.title = box.dataset.embedTitle || 'Player';
     frame.height = box.dataset.embedHeight || '166';
-    frame.loading = 'lazy';
+    frame.loading = 'eager';   // hentes i bakgrunnen, ikke først når den synes
     frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
 
@@ -405,17 +405,24 @@
         entry.target.classList.add('is-in');
         observer.unobserve(entry.target);
         if (entry.target.dataset.count !== undefined) countUp(entry.target);
+        scrambleLabels(entry.target);
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
-    revealItems.forEach(el => observer.observe(el));
+    // Elementer med data-wipe starter helt klippet bort med clip-path, og
+    // Chrome regner da arealet som null, så observatøren fyrer aldri på dem.
+    // De sjekkes i stedet i rAF-løkka, se updateWipes.
+    revealItems.filter(el => !el.hasAttribute('data-wipe')).forEach(el => observer.observe(el));
     $$('[data-count]').forEach(el => observer.observe(el));
   }
 
   // Kjøres etter preloader: alt som allerede er i view skal vises med en gang
   function revealVisible() {
     revealItems.forEach(el => {
-      if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('is-in');
+      if (el.getBoundingClientRect().top < vh * 0.92) {
+        el.classList.add('is-in');
+        scrambleLabels(el);
+      }
     });
   }
 
@@ -450,6 +457,138 @@
       };
       wrap(heading);
     });
+  }
+
+
+  /* ---------- 5b2. BILDE-WIPE ------------------------------------------- */
+
+  // getBoundingClientRect bryr seg ikke om clip-path, i motsetning til
+  // IntersectionObserver. Derfor sjekkes disse for hånd hver frame.
+  let wipeItems = $$('[data-wipe]');
+
+  function updateWipes() {
+    if (!wipeItems.length) return;
+    wipeItems = wipeItems.filter(el => {
+      if (el.getBoundingClientRect().top > vh * 0.88) return true;
+      el.classList.add('is-in');
+      scrambleLabels(el);
+      return false;
+    });
+  }
+
+
+  /* ---------- 5c. ETIKETTER SOM STOKKES PÅ PLASS -------------------------- */
+
+  // Tekstbitene i .label og .hero__eyebrow pakkes i .scr-spans, så scramble
+  // kan bytte bokstaver uten å rive med seg streken, skilletegnene og lenkene.
+  function prepareLabels() {
+    if (reduced) return;
+    $$('.label, .hero__eyebrow').forEach(label => {
+      [...label.childNodes].forEach(node => {
+        if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) return;
+        const span = document.createElement('span');
+        span.className = 'scr';
+        span.dataset.text = node.textContent;
+        span.textContent = node.textContent;
+        node.replaceWith(span);
+      });
+    });
+  }
+
+  // Kalles på alt som avsløres. Finner .scr inni, om det finnes noen.
+  function scrambleLabels(root) {
+    if (reduced) return;
+    const targets = root.matches?.('.scr') ? [root] : $$('.scr', root);
+    targets.forEach(s => scramble(s, s.dataset.text, 650));
+  }
+
+
+  /* ---------- 5d. TRYKK-EFFEKTER, KUN BERØRINGSSKJERM --------------------- */
+
+  // Mobilens erstatning for hover. Bokstavene i NVRMND skjevstilles ved trykk,
+  // pressebildet glitcher. Coveret er utelatt fordi det er en lenke.
+  function initTapEffects() {
+    if (reduced || !isTouch) return;
+
+    $$('.hero__title .l').forEach(l => {
+      l.addEventListener('pointerdown', () => {
+        l.classList.add('is-hit');
+        setTimeout(() => l.classList.remove('is-hit'), 450);
+      }, { passive: true });
+    });
+
+    const frame = $('.about__frame');
+    if (frame) {
+      frame.addEventListener('pointerdown', () => {
+        frame.classList.remove('is-glitch');
+        void frame.offsetWidth;          // start animasjonen på nytt
+        frame.classList.add('is-glitch');
+      }, { passive: true });
+    }
+  }
+
+
+  /* ---------- 5e. COVERET: SCROLL-ZOOM OG GYRO-PARALLAKSE ---------------- */
+
+  const coverImg = $('.featured__art img');
+  const cover = { baseTop: 0, height: 0, zoom: 1.12, gx: 0, gy: 0, tgx: 0, tgy: 0 };
+
+  function measureCover() {
+    if (!coverImg) return;
+    const art = coverImg.closest('.featured__art');
+    const t = art.style.transform;
+    art.style.transform = 'none';
+    const r = art.getBoundingClientRect();
+    cover.baseTop = r.top + window.scrollY;
+    cover.height  = r.height;
+    art.style.transform = t;
+  }
+
+  function updateCover() {
+    if (!coverImg) return;
+
+    // Zoom: 1.12 når toppen av coveret passerer bunnen av skjermen,
+    // 1.0 når det har kommet 60 % opp. Setter seg i takt med scrollen.
+    const top = cover.baseTop - scrollY;
+    const t = clamp((vh - top) / (vh * 0.6), 0, 1);
+    const targetZoom = 1.12 - 0.12 * t;
+    cover.zoom = lerp(cover.zoom, targetZoom, 0.12);
+
+    // Gyro, lerpet så det ikke rykker
+    cover.gx = lerp(cover.gx, cover.tgx, 0.08);
+    cover.gy = lerp(cover.gy, cover.tgy, 0.08);
+
+    coverImg.style.setProperty('--zoom', cover.zoom.toFixed(4));
+    coverImg.style.setProperty('--gx', cover.gx.toFixed(1) + 'px');
+    coverImg.style.setProperty('--gy', cover.gy.toFixed(1) + 'px');
+  }
+
+  // Telefonens helling flytter coveret et lite stykke. Android sender data
+  // med en gang. iPhone krever et samtykke som må utløses av et trykk, så der
+  // ber vi om det ved første berøring. Nekter brukeren, skjer ingenting.
+  function initGyro() {
+    if (reduced || !isTouch || !coverImg || !('DeviceOrientationEvent' in window)) return;
+
+    const onTilt = (e) => {
+      if (e.gamma == null || e.beta == null) return;
+      // gamma: venstre/høyre (-90..90). beta: fram/tilbake, ca 45 når man
+      // holder telefonen normalt. Begge klippes til et lite utslag.
+      cover.tgx = clamp(e.gamma / 45, -1, 1) * 14;
+      cover.tgy = clamp((e.beta - 45) / 45, -1, 1) * 10;
+    };
+
+    const start = () => window.addEventListener('deviceorientation', onTilt, { passive: true });
+
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      const ask = () => {
+        DeviceOrientationEvent.requestPermission()
+          .then(state => { if (state === 'granted') start(); })
+          .catch(() => { /* nektet eller ikke tilgjengelig, ingen effekt */ });
+      };
+      window.addEventListener('touchend', ask, { once: true, passive: true });
+    } else {
+      start();
+    }
   }
 
 
@@ -654,6 +793,8 @@
 
     updateMarquees();
     updateParallax();
+    updateCover();
+    updateWipes();
     updateRail();
 
     requestAnimationFrame(loop);
@@ -667,6 +808,7 @@
     vw = window.innerWidth;
     measureMarquees();
     measureParallax();
+    measureCover();
     measureRail();
   }
 
@@ -681,6 +823,9 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   splitWords();          // før initReveal, så observatøren ser ordene
+  prepareLabels();       // samme grunn
+  initTapEffects();
+  initGyro();
   initCursor();
   initMagnetic();
   initEmbeds();
@@ -694,10 +839,12 @@
   window.addEventListener('load', () => {
     measureMarquees();
     measureParallax();
+    measureCover();
     measureRail();
   });
   measureMarquees();
   measureParallax();
+  measureCover();
   measureRail();
 
   runPreloader();

@@ -86,6 +86,32 @@ Alle åtte var ønsket fra start:
 
 Alt respekterer `prefers-reduced-motion`.
 
+### Effekter lagt til for mobil (6. september)
+
+Nesten alt som manglet på mobil var hover-effekter, som ikke kan finnes uten
+musepeker. Disse seks virker på begge, og alle ble valgt av Mathias:
+
+1. **Bilde-wipe.** Coveret og pressebildet avsløres ovenfra med skarp kant.
+   NB: Chrome lar `clip-path` telle med i IntersectionObserver, så et element
+   klippet til null areal fyrer aldri. Wipe-elementene sjekkes derfor i
+   rAF-løkka med `getBoundingClientRect`, som ignorerer clip-path.
+2. **Scramble på etikettene.** «01 / Music» osv. stokkes på plass ved scroll.
+3. **Trykk-effekter**, kun berøringsskjerm. Bokstavene i NVRMND skjevstilles,
+   pressebildet glitcher. Coveret er utelatt fordi det er en lenke.
+4. **Gyro-parallakse på coveret.** Android rett ut av boksen. iPhone ber om
+   tillatelse ved første berøring, og gjør ingenting hvis det nektes.
+5. **Scroll-drevet zoom på coveret**, fra 1.12 til 1.0 idet det ruller inn.
+6. **Kick-puls på de røde strekene**, samme 150 BPM som gløden i kontakt.
+
+Coverets transform styres av CSS-variabler (`--gx`, `--gy`, `--zoom`), slik
+at JS og hover ikke overskriver hverandre.
+
+Samtidig: glødkulene i hero og kick-gløden i kontakt var satt i `vw` og
+forsvant på smal skjerm. Skalert opp under 720px. Spillerne hentes nå i
+bakgrunnen (`loading="eager"`) straks samtykke finnes, ikke først når de
+ruller inn. «Back to top» pekte på headeren, som er `position:fixed` og
+derfor ikke kan scrolles til; ankeret ligger nå på `<main>`.
+
 ### Aggressivitets-runde
 
 Etter første gjennomsyn ble uttrykket skrudd opp:
