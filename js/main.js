@@ -522,17 +522,20 @@
 
   /* ---------- 5d. TRYKK-EFFEKTER, KUN BERØRINGSSKJERM --------------------- */
 
-  // Mobilens erstatning for hover. Bokstavene i NVRMND skjevstilles ved trykk,
-  // pressebildet glitcher. Coveret er utelatt fordi det er en lenke.
+  // Bokstavene i NVRMND skjevstilles ved trykk, kun på berøringsskjerm, siden
+  // desktop har hover for det samme. Pressebildet glitcher ved trykk og klikk
+  // overalt. Coveret er utelatt fordi det er en lenke.
   function initTapEffects() {
-    if (reduced || !isTouch) return;
+    if (reduced) return;
 
-    $$('.hero__title .l').forEach(l => {
-      l.addEventListener('pointerdown', () => {
-        l.classList.add('is-hit');
-        setTimeout(() => l.classList.remove('is-hit'), 450);
-      }, { passive: true });
-    });
+    if (isTouch) {
+      $$('.hero__title .l').forEach(l => {
+        l.addEventListener('pointerdown', () => {
+          l.classList.add('is-hit');
+          setTimeout(() => l.classList.remove('is-hit'), 450);
+        }, { passive: true });
+      });
+    }
 
     const frame = $('.about__frame');
     if (frame) {
