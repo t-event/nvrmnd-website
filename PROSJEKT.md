@@ -151,6 +151,32 @@ tre filer, og kilden til delingsbildet i en midlertidig mappe. Verktøy i
 404 peker på Spotify-artistprofilen, ikke låten, så de slipper å endres
 ved ny musikk.
 
+### Ytelse på svake enheter (6. september, sent)
+
+Mathias meldte at siden er treg på gamle enheter. Funnet og rettet:
+
+- **Kick-pulsen på strekene animerte `box-shadow`**, som tegnes på nytt
+  hver frame. Nå kun `transform`.
+- **Wipe-elementene leste `getBoundingClientRect` hver frame**, etter at
+  parallaksen hadde skrevet transforms, altså tvunget layout 60 ganger i
+  sekundet. Posisjonen måles nå én gang, og på nytt ved resize.
+- **Spillerne ble satt inn før `window.load`**, så preloaderen ventet på at
+  Spotify og SoundCloud var ferdig lastet. På treg linje kunne det ta lenge.
+  Nå settes de inn 300 ms etter at resten av siden er klar.
+- **Lett modus.** `html.lite` slås på ved hint fra nettleseren (lite minne,
+  få kjerner, Save-Data) eller når målt bildefrekvens de første tre
+  sekundene ligger under ca. 35 fps. Da skrus det dyreste av: korn-laget,
+  blend-modene, de store blurene, glitch, kick-puls, skjevstilling på
+  båndene og gyro. Siden ser fortsatt ut som seg selv, den står bare
+  stillere. Test med `?lite=1` og `?lite=0` i adressen.
+- **Målingen går mens preloaderen står på**, så avgjørelsen er tatt før
+  gardinen åpner. Preloaderen dekker lasting, ikke tegning, og kan ikke i
+  seg selv gjøre siden raskere etterpå. Men den er et godt sted å måle.
+
+Det som gjenstår på treg linje er skriftene fra Google Fonts, som
+preloaderen venter på. Selvhosting ble valgt bort tidligere. Det valget
+kan tas opp igjen hvis treg linje viser seg å være et reelt problem.
+
 ### Aggressivitets-runde
 
 Etter første gjennomsyn ble uttrykket skrudd opp:

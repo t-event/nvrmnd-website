@@ -20,6 +20,43 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
+  // Lett modus for svake enheter. Slås på av hint fra nettleseren, eller av
+  // målt bildefrekvens de første sekundene. ?lite=1 og ?lite=0 overstyrer,
+  // for testing. Hva som skrus av står i CSS under html.lite.
+  const params = new URLSearchParams(location.search);
+  let lite = params.get('lite') === '1' || (
+    params.get('lite') !== '0' && (
+      (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) ||
+      (navigator.connection && navigator.connection.saveData)
+    )
+  );
+  if (lite) document.documentElement.classList.add('lite');
+
+  function enableLite() {
+    if (lite) return;
+    lite = true;
+    document.documentElement.classList.add('lite');
+  }
+
+  // Måler hvor lang tid hver frame tar de første tre sekundene, mens
+  // preloaderen står på. Ligger mer enn en tredel av framene over 28 ms,
+  // altså under ca. 35 fps, går vi lett før gardinen åpner. Da starter
+  // siden i riktig modus i stedet for å bytte midt i.
+  function watchFrameRate() {
+    if (lite || reduced || params.get('lite') === '0') return;
+    let frames = 0, slow = 0, last = performance.now();
+    const start = last;
+    const tick = (now) => {
+      const dt = now - last; last = now;
+      frames++;
+      if (dt > 28) slow++;
+      if (now - start < 3000) { requestAnimationFrame(tick); return; }
+      if (frames > 30 && slow / frames > 0.35) enableLite();
+    };
+    requestAnimationFrame(tick);
+  }
+
   let scrollY    = window.scrollY;
   let lastScroll = scrollY;
   let velocity   = 0;   // brukes av marquee for fartsfølelse
@@ -202,7 +239,14 @@
 
     const saved = consent.get();
 
-    if (saved === 'granted')      applyConsent('granted');
+    if (saved === 'granted') {
+      // Settes inn i bakgrunnen, men først når resten av siden er lastet.
+      // Ellers venter preloaderen på Spotify og SoundCloud, som er tunge.
+      if (banner) banner.hidden = true;
+      const go = () => setTimeout(() => applyConsent('granted'), 300);
+      if (document.readyState === 'complete') go();
+      else window.addEventListener('load', go, { once: true });
+    }
     else if (saved === 'denied')  applyConsent('denied');
     else {
       // Ikke bestemt seg: ingenting lastes, og banneret vises
@@ -477,11 +521,22 @@
 
   // getBoundingClientRect bryr seg ikke om clip-path, i motsetning til
   // IntersectionObserver. Derfor sjekkes disse for hånd hver frame.
-  const wipeItems = $$('[data-wipe]');
+  const wipeItems = $$('[data-wipe]').map(el => ({ el, baseTop: 0 }));
+
+  // Posisjonen måles én gang, og på nytt ved resize. Å lese
+  // getBoundingClientRect hver frame tvinger fram layout hver frame.
+  function measureWipes() {
+    wipeItems.forEach(w => {
+      const t = w.el.style.transform;
+      w.el.style.transform = 'none';
+      w.baseTop = w.el.getBoundingClientRect().top + window.scrollY;
+      w.el.style.transform = t;
+    });
+  }
 
   function updateWipes() {
-    wipeItems.forEach(el => {
-      const top = el.getBoundingClientRect().top;
+    wipeItems.forEach(({ el, baseTop }) => {
+      const top = baseTop - scrollY;
       const isIn = el.classList.contains('is-in');
       if (!isIn && top < vh * 0.88) {
         el.classList.add('is-in');
@@ -587,7 +642,7 @@
   // med en gang. iPhone krever en tillatelsesdialog som må utløses av et
   // trykk, og det steget vil vi ikke ha. Der hoppes effekten over.
   function initGyro() {
-    if (reduced || !isTouch || !coverImg || !('DeviceOrientationEvent' in window)) return;
+    if (reduced || lite || !isTouch || !coverImg || !('DeviceOrientationEvent' in window)) return;
     if (typeof DeviceOrientationEvent.requestPermission === 'function') return;
 
     const onTilt = (e) => {
@@ -673,7 +728,7 @@
 
   function updateMarquees() {
     // Skjevstilling som følger scroll-farten, gir fart og aggresjon
-    const skew = clamp(velocity * 0.22, -7, 7);
+    const skew = lite ? 0 : clamp(velocity * 0.22, -7, 7);
 
     marquees.forEach(m => {
       if (!m.itemW) return;
@@ -819,6 +874,7 @@
     measureMarquees();
     measureParallax();
     measureCover();
+    measureWipes();
     measureRail();
   }
 
@@ -832,6 +888,7 @@
   const yearEl = $('#year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  watchFrameRate();      // først, så målingen går mens preloaderen står på
   splitWords();          // før initReveal, så observatøren ser ordene
   prepareLabels();       // samme grunn
   initTapEffects();
@@ -850,11 +907,13 @@
     measureMarquees();
     measureParallax();
     measureCover();
+    measureWipes();
     measureRail();
   });
   measureMarquees();
   measureParallax();
   measureCover();
+  measureWipes();
   measureRail();
 
   runPreloader();

@@ -176,6 +176,17 @@ er lesbar før skriftene er nede, og hvis de aldri kommer.
 
 ## 9. Ytelse
 
+**Lett modus:** `html.lite` settes av `main.js` på svake enheter, ut fra
+hint (`deviceMemory`, `hardwareConcurrency`, `saveData`) eller målt
+bildefrekvens de første tre sekundene. CSS under `.lite` skrur av det som
+koster mest: korn-laget, blend-modene, de store blurene, glitch og
+kick-puls. `?lite=1` og `?lite=0` i adressen overstyrer, for testing.
+
+Regler som holder resten billig: animer kun `transform` og `opacity`, aldri
+`box-shadow`. Ingen `getBoundingClientRect` i rAF-løkka; posisjoner måles
+én gang og ved resize. Tredjeparts iframes settes inn etter `window.load`.
+
+
 - Ingen JS-biblioteker. `main.js` er ~13 kB ukomprimert.
 - Coveret lastes i to størrelser: 1400px til featured, 600px som favicon.
 - `fetchpriority="high"` på coveret, `loading="lazy"` på bildet i om-seksjonen.
