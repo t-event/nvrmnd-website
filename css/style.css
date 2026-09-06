@@ -110,7 +110,8 @@ em.soft{ text-shadow:none; }
   gap:.85rem;
   padding:1.05rem 2rem;
   background:var(--red);
-  color:#fff;
+  /* Mørk tekst på rødt: 5.2:1. Hvit på rødt var 3.8:1, under kravet på 4.5. */
+  color:var(--bg);
   font-family:var(--font-mono);
   font-size:.75rem;
   letter-spacing:.18em;
@@ -141,7 +142,7 @@ em.soft{ text-shadow:none; }
   border-color:var(--line);
 }
 .btn--ghost::before{ background:var(--red); }
-.btn--ghost:hover{ color:#fff; border-color:var(--red); }
+.btn--ghost:hover{ color:var(--bg); border-color:var(--red); }
 .btn--ghost:hover .btn__arrow{ transform:translate(3px,-3px); }
 
 /* ==========================================================================
@@ -662,6 +663,7 @@ body.has-cursor [data-cursor]{ cursor:none; }
   background:var(--red);
   border-color:var(--red);
 }
+/* Stor tekst, kravet er 3:1. Hvit på rødt er 3.8. */
 .marquee--red .marquee__item{ color:#fff; }
 .marquee--red .marquee__item i{ color:var(--bg); }
 
@@ -794,7 +796,7 @@ body.has-cursor [data-cursor]{ cursor:none; }
   left:0; bottom:0;
   z-index:2;
   background:var(--red);
-  color:#fff;
+  color:var(--bg);
   font-family:var(--font-mono);
   font-size:.6875rem;
   letter-spacing:.22em;
@@ -848,8 +850,8 @@ body.has-cursor [data-cursor]{ cursor:none; }
   will-change:transform;
 }
 .platform i{ font-style:normal; color:var(--red); transition:transform .4s var(--ease), color .4s; }
-.platform:hover{ background:var(--red); border-color:var(--red); color:#fff; }
-.platform:hover i{ transform:translate(2px,-2px); color:#fff; }
+.platform:hover{ background:var(--red); border-color:var(--red); color:var(--bg); }
+.platform:hover i{ transform:translate(2px,-2px); color:var(--bg); }
 
 /* --- Innebygde spillere --------------------------------------------------- */
 
@@ -1192,7 +1194,7 @@ body.has-cursor .footer__reset{ cursor:none; }
   left:0; bottom:0;
   z-index:3;
   background:var(--red);
-  color:#fff;
+  color:var(--bg);
   font-family:var(--font-mono);
   font-size:.625rem;
   letter-spacing:.22em;
@@ -1297,9 +1299,9 @@ a.booking__soon-text:hover{ color:var(--red); }
 .social--primary{
   background:var(--red);
   border-color:var(--red);
-  color:#fff;
+  color:var(--bg);
 }
-.social.social--primary i{ color:#fff; }
+.social.social--primary i{ color:var(--bg); }
 .social--primary:hover{ background:var(--text); border-color:var(--text); color:var(--bg); }
 .social.social--primary:hover i{ color:var(--bg); }
 
@@ -1325,8 +1327,8 @@ a.booking__soon-text:hover{ color:var(--red); }
   will-change:transform;
 }
 .social i{ font-style:normal; color:var(--red); transition:transform .4s var(--ease), color .4s; }
-.social:hover{ background:var(--red); border-color:var(--red); color:#fff; }
-.social:hover i{ transform:translate(2px,-2px); color:#fff; }
+.social:hover{ background:var(--red); border-color:var(--red); color:var(--bg); }
+.social:hover i{ transform:translate(2px,-2px); color:var(--bg); }
 
 .booking__glow{
   position:absolute;

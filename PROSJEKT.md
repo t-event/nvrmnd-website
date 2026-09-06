@@ -181,6 +181,17 @@ tegningen i 750 ms, og lastes nå uten å blokkere, siden preloaderen
 uansett venter på skriftene. Fire målefunksjoner som hver tvang fram
 layout er slått sammen til én. Verktøy for bildevarianter: `tools/images.mjs`.
 
+Lighthouse-rapport fra Mathias (versjon 2312) ga i tillegg: kontrast på
+røde flater, hvit på rød er 3.8:1 og kravet er 4.5. Alle røde knapper og
+merker har nå mørk tekst, 5.3:1. Det røde båndet beholder hvit tekst, stor
+størrelse har krav 3:1. «READY» og «100» i preloaderen ble flagget fordi
+verktøyet traff uttoningen; preloaderen er nå `aria-hidden` idet den er
+ferdig. LCP lå på 2.6 s fordi preloaderen ventet på coveret, som ligger
+under folden. Den venter nå på skriftene og DOMContentLoaded, ikke på
+bilder, og telleren går dobbelt så fort. Minifisering av CSS og JS er
+bevisst ikke gjort: gevinsten er noen få KiB etter gzip, prisen er et
+bygg-steg. Buffer-TTL på ti minutter er GitHub Pages sin regel.
+
 Det som gjenstår på treg linje er skriftene fra Google Fonts, som
 preloaderen venter på. Selvhosting ble valgt bort tidligere. Det valget
 kan tas opp igjen hvis treg linje viser seg å være et reelt problem.

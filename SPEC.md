@@ -170,9 +170,10 @@ er lesbar før skriftene er nede, og hvis de aldri kommer.
   ikke havner under hjemindikatoren på iPhone.
 - **Alle bilder** har `alt`-tekst. Dekorative lag har `aria-hidden`.
 - **Semantisk markup**: `header`, `nav`, `main`, `section`, `article`, `footer`.
-- Kjente svakheter: fokusmarkering er ikke egendesignet, og fargekontrasten på
-  `--muted` mot `--bg` ligger rundt 4.6:1, greit for brødtekst, i knappeste
-  laget for de minste etikettene.
+- Målt kontrast: `--muted` på `--bg` 6.2:1, rød på mørk 5.3:1, mørk tekst
+  på rød 5.3:1. Hvit på rød var 3.8:1 og er derfor byttet til mørk tekst på
+  alle røde flater. Det røde tekstbåndet har hvit tekst i stor størrelse, der
+  kravet er 3:1.
 
 ## 9. Ytelse
 

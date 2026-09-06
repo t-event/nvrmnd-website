@@ -86,27 +86,18 @@
     // 1. Skriftene. Uten dem hopper all typografi når de lander.
     tasks.push(document.fonts ? document.fonts.ready : Promise.resolve());
 
-    // 2. Coveret, det tyngste bildet på siden.
-    const cover = $('.featured__art img');
-    if (cover) {
-      tasks.push(cover.complete && cover.naturalWidth
-        ? Promise.resolve()
-        : new Promise(res => {
-            cover.addEventListener('load',  res, { once: true });
-            cover.addEventListener('error', res, { once: true });
-          }));
-    }
-
-    // 3. Alt annet: stilark, resten av bildene.
-    tasks.push(document.readyState === 'complete'
+    // 2. Dokumentet er parset. Ikke window.load: den venter også på bilder
+    //    under folden, som coveret, og ingen ser dem når gardinen åpner.
+    //    Å vente på dem utsatte bare LCP.
+    tasks.push(document.readyState !== 'loading'
       ? Promise.resolve()
-      : new Promise(res => window.addEventListener('load', res, { once: true })));
+      : new Promise(res => document.addEventListener('DOMContentLoaded', res, { once: true })));
 
     const total = tasks.length;
     let done = 0;
     tasks.forEach(p => p.then(() => done++, () => done++));
 
-    const MIN_MS = 450;    // så den ikke bare blinker på rask linje
+    const MIN_MS = 350;    // så den ikke bare blinker på rask linje
     const MAX_MS = 6000;   // sikkerhetsnett hvis noe henger
     const start  = performance.now();
 
@@ -117,8 +108,10 @@
       const elapsed = now - start;
       const target = (done / total) * 100;
 
-      // Baren glir mot den reelle verdien i stedet for å hoppe
-      shown = lerp(shown, target, 0.09);
+      // Baren glir mot den reelle verdien i stedet for å hoppe. 0.18 gir
+      // rundt et halvt sekund fra 0 til 100; 0.09 tok nesten det dobbelte
+      // og var den største enkeltposten i LCP på rask linje.
+      shown = lerp(shown, target, 0.18);
       if (target - shown < 0.4) shown = target;
 
       fill.style.width = shown + '%';
@@ -141,6 +134,9 @@
     function finish(delay) {
       setTimeout(() => {
         preloader.classList.add('is-done');
+        // Ferdig betyr dekorativ. Uten dette måler tilgjengelighetsverktøy
+        // kontrast på teksten midt i uttoningen, over gjennomsiktig bakgrunn.
+        preloader.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('is-locked');
         startHero();
         setTimeout(() => preloader.remove(), 1400);
