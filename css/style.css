@@ -832,16 +832,80 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .platform:hover{ background:var(--red); border-color:var(--red); color:#fff; }
 .platform:hover i{ transform:translate(2px,-2px); color:#fff; }
 
+/* --- Klikk for å laste: innebygde spillere --------------------------------
+   Ingenting hentes fra Spotify eller SoundCloud før noen trykker. Det holder
+   siden rask, og gjør at det ikke settes tredjeparts informasjonskapsler
+   uten at den besøkende har bedt om det. */
+
+.embed{ margin-top:2rem; }
+
+.embed__load{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  width:100%;
+  text-align:left;
+  padding:1rem 1.25rem;
+  background:rgba(242,233,247,.03);
+  border:1px dashed var(--line);
+  color:var(--text);
+  font-family:inherit;
+  cursor:pointer;
+  transition:border-color .35s var(--ease), background-color .35s var(--ease);
+}
+.embed__load:hover{
+  border-color:var(--red);
+  border-style:solid;
+  background:rgba(255,31,61,.07);
+}
+body.has-cursor .embed__load{ cursor:none; }
+
+.embed__play{
+  flex:0 0 auto;
+  width:38px; height:38px;
+  display:grid;
+  place-items:center;
+  background:var(--red);
+  border-radius:50%;
+  color:#fff;
+  font-size:.75rem;
+  padding-left:2px;
+  transition:transform .35s var(--ease);
+}
+.embed__load:hover .embed__play{ transform:scale(1.1); }
+
+.embed__text{ display:flex; flex-direction:column; gap:.2rem; min-width:0; }
+.embed__label{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.embed__note{
+  font-family:var(--font-mono);
+  font-size:.625rem;
+  letter-spacing:.06em;
+  color:var(--muted);
+}
+
+.embed iframe{
+  display:block;
+  width:100%;
+  border:0;
+}
+
 /* --- Remix-blokk under featured --- */
 .more{
+  margin-top:clamp(3rem,7vh,5rem);
+  padding-top:clamp(2rem,4vh,3rem);
+  border-top:1px solid var(--line);
+}
+.more__head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:2rem;
   flex-wrap:wrap;
-  margin-top:clamp(3rem,7vh,5rem);
-  padding-top:clamp(2rem,4vh,3rem);
-  border-top:1px solid var(--line);
 }
 .more__title{
   font-family:var(--font-display);
@@ -978,34 +1042,56 @@ body.has-cursor [data-cursor]{ cursor:none; }
   /* width:100% er nødvendig. Uten den, med bare max-width og auto-marger,
      slutter grid-elementet å strekke seg og krymper til tekstbredden. */
   width:100%;
-  max-width:420px;
-  justify-self:center;
+  justify-self:stretch;
 }
 .about__frame{
+  position:relative;
+  margin:0;
   overflow:hidden;
   border:1px solid var(--line);
   box-shadow:0 30px 80px rgba(13,4,16,.6);
   will-change:transform;
 }
-/* Bildet fyller rammen uansett hvilke mål originalfila har */
+/* Liggende format, tett på originalens 1178x747. Nesten ingen beskjæring. */
 .about__frame img{
   width:100%;
   height:auto;
-  aspect-ratio:3/4;
+  aspect-ratio:16/10;
   object-fit:cover;
 }
 
-.about__img{
-  aspect-ratio:3/4;
-  display:grid;
-  place-items:center;
-  background:
-    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(13,4,16,.35) 3px 4px),
-    linear-gradient(150deg, var(--purple-bright), var(--purple-deep) 55%, var(--red-dark));
+/* Bildet er tatt i grønt scenelys. Dette laget trekker fargene mot sidens
+   palett uten å vaske ut motivet. Fjern .about__frame::before for original. */
+.about__frame img{ filter:contrast(1.14) brightness(1.08); }
+.about__frame::before{
+  content:'';
+  position:absolute; inset:0;
+  z-index:1;
+  background:linear-gradient(150deg, var(--purple-bright), var(--red) 75%);
+  mix-blend-mode:color;
+  opacity:.72;
+  pointer-events:none;
+}
+/* Skannelinjer, som på coveret og resten av siden */
+.about__frame::after{
+  content:'';
+  position:absolute; inset:0;
+  z-index:2;
+  background:repeating-linear-gradient(to bottom, transparent 0 3px, rgba(13,4,16,.3) 3px 4px);
+  pointer-events:none;
+}
+
+.about__cap{
+  position:absolute;
+  left:0; bottom:0;
+  z-index:3;
+  background:var(--red);
+  color:#fff;
   font-family:var(--font-mono);
-  font-size:.6875rem;
-  letter-spacing:.24em;
-  color:rgba(242,233,247,.6);
+  font-size:.625rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  padding:.45rem .85rem;
 }
 
 .about__title{
@@ -1232,7 +1318,7 @@ body.has-cursor [data-cursor]{ cursor:none; }
   .music--rail .music__sticky{ justify-content:flex-start; padding-top:6.5rem; }
   .release{ width:70vw; }
   .stats{ gap:1.75rem; }
-  .more{ flex-direction:column; align-items:flex-start; }
+  .more__head{ flex-direction:column; align-items:flex-start; }
 }
 
 /* Peker-enheter uten mus: skjul egendefinert markør */
@@ -1265,3 +1351,6 @@ body.has-cursor [data-cursor]{ cursor:none; }
   }
   .release{ scroll-snap-align:start; }
 }
+
+.footer__link{ transition:color .3s; }
+.footer__link:hover{ color:var(--red); }

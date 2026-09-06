@@ -42,24 +42,64 @@
 
     document.body.classList.add('is-locked');
 
-    let value = 0;
-    const tick = () => {
-      // Ujevn "ekte" lasting: store hopp tidlig, tregere mot slutten
-      value += Math.random() * (value < 70 ? 9 : 3.5);
-      value = Math.min(value, 100);
+    // Telleren følger faktisk innlasting. Hver oppgave er en reell ressurs
+    // siden trenger før den ser ferdig ut.
+    const tasks = [];
 
-      fill.style.width = value + '%';
-      count.textContent = String(Math.floor(value)).padStart(3, '0');
-      if (value > 55 && value < 100) status.textContent = 'LOADING KICKS';
+    // 1. Skriftene. Uten dem hopper all typografi når de lander.
+    tasks.push(document.fonts ? document.fonts.ready : Promise.resolve());
 
-      if (value < 100) {
-        setTimeout(tick, 60 + Math.random() * 90);
-      } else {
+    // 2. Coveret, det tyngste bildet på siden.
+    const cover = $('.featured__art img');
+    if (cover) {
+      tasks.push(cover.complete && cover.naturalWidth
+        ? Promise.resolve()
+        : new Promise(res => {
+            cover.addEventListener('load',  res, { once: true });
+            cover.addEventListener('error', res, { once: true });
+          }));
+    }
+
+    // 3. Alt annet: stilark, resten av bildene.
+    tasks.push(document.readyState === 'complete'
+      ? Promise.resolve()
+      : new Promise(res => window.addEventListener('load', res, { once: true })));
+
+    const total = tasks.length;
+    let done = 0;
+    tasks.forEach(p => p.then(() => done++, () => done++));
+
+    const MIN_MS = 450;    // så den ikke bare blinker på rask linje
+    const MAX_MS = 6000;   // sikkerhetsnett hvis noe henger
+    const start  = performance.now();
+
+    let shown = 0;
+    let finished = false;
+
+    const frame = (now) => {
+      const elapsed = now - start;
+      const target = (done / total) * 100;
+
+      // Baren glir mot den reelle verdien i stedet for å hoppe
+      shown = lerp(shown, target, 0.09);
+      if (target - shown < 0.4) shown = target;
+
+      fill.style.width = shown + '%';
+      count.textContent = String(Math.floor(shown)).padStart(3, '0');
+      if (shown > 45 && shown < 99) status.textContent = 'LOADING KICKS';
+
+      const ready = done === total && elapsed >= MIN_MS && shown > 99;
+      if (!finished && (ready || elapsed > MAX_MS)) {
+        finished = true;
+        fill.style.width = '100%';
+        count.textContent = '100';
         status.textContent = 'READY';
-        finish(650);
+        finish(320);
+        return;
       }
+      requestAnimationFrame(frame);
     };
-    setTimeout(tick, 260);
+    requestAnimationFrame(frame);
 
     function finish(delay) {
       setTimeout(() => {
@@ -69,6 +109,31 @@
         setTimeout(() => preloader.remove(), 1400);
       }, delay);
     }
+  }
+
+
+  /* ---------- 1b. INNEBYGDE SPILLERE, LASTES VED KLIKK ------------------- */
+
+  // Ingenting hentes fra Spotify eller SoundCloud før den besøkende trykker.
+  // Det holder siden rask og unngår tredjeparts informasjonskapsler for alle
+  // som bare leser.
+  function initEmbeds() {
+    $$('.embed[data-embed-src]').forEach(box => {
+      const btn = $('.embed__load', box);
+      if (!btn) return;
+
+      btn.addEventListener('click', () => {
+        const frame = document.createElement('iframe');
+        frame.src = box.dataset.embedSrc;
+        frame.title = box.dataset.embedTitle || 'Player';
+        frame.height = box.dataset.embedHeight || '166';
+        frame.loading = 'lazy';
+        frame.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+
+        box.replaceChildren(frame);
+      }, { once: true });
+    });
   }
 
   function startHero() {
@@ -474,6 +539,7 @@
 
   initCursor();
   initMagnetic();
+  initEmbeds();
   initNav();
   initReveal();
   initScramble();
