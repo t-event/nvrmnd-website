@@ -3,18 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NVRMND | Hardstyle</title>
-<meta name="description" content="NVRMND. Hardstyle from Mo i Rana, Norway. Debut single Need Me out now.">
+<title>NVRMND | Norwegian Hardstyle Producer</title>
+<meta name="description" content="NVRMND is a hardstyle producer from Mo i Rana, Norway. Debut single Need Me is out now on Spotify, Apple Music, Tidal and SoundCloud.">
 <meta name="theme-color" content="#0D0410">
+<meta name="author" content="NVRMND">
 
-<!-- Delingskort (Instagram, Messenger, Discord osv.) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="NVRMND | Hardstyle">
-<meta property="og:description" content="Debut single Need Me out now. Hardstyle from Mo i Rana, Norway.">
-<meta property="og:image" content="assets/need-me.jpg">
+<!-- Full indeksering, og store forhåndsvisningsbilder i søkeresultatene -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Delingskort (Instagram, Messenger, Discord osv.).
+     og:image og og:url MÅ være absolutte URL-er, ellers vises ikke kortet. -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="NVRMND">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="NVRMND | Norwegian Hardstyle Producer">
+<meta property="og:description" content="Debut single Need Me is out now. Hardstyle from Mo i Rana, Norway.">
+<meta property="og:url" content="https://t-event.github.io/nvrmnd-website/">
+<!-- Liggende 1200x630 fordi Facebook og LinkedIn beskjærer kvadratiske bilder -->
+<meta property="og:image" content="https://t-event.github.io/nvrmnd-website/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NVRMND. Debut single Need Me out now.">
+
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NVRMND | Norwegian Hardstyle Producer">
+<meta name="twitter:description" content="Debut single Need Me is out now. Hardstyle from Mo i Rana, Norway.">
+<meta name="twitter:image" content="https://t-event.github.io/nvrmnd-website/assets/og-image.jpg">
 
-<link rel="icon" href="assets/need-me-small.jpg">
+<link rel="canonical" href="https://t-event.github.io/nvrmnd-website/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+
+<!-- Settes før CSS lastes. Uten JavaScript får siden aldri klassen, og da
+     vises alt innhold med én gang i stedet for å bli liggende usynlig
+     bak preloaderen og scroll-avsløringen. -->
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- Strukturerte data. Dette er det søkemotorer og språkmodeller leser for å
+     forstå hvem artisten er og hva som er gitt ut. sameAs-lenkene knytter
+     profilene sammen til én enhet i Googles kunnskapsgraf. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      "@id": "https://t-event.github.io/nvrmnd-website/#artist",
+      "name": "NVRMND",
+      "genre": ["Hardstyle", "Hardcore", "Electronic"],
+      "description": "NVRMND is a hardstyle producer from Mo i Rana, Norway. Distorted kicks, screeching leads, and long builds, all made in an apartment studio.",
+      "url": "https://t-event.github.io/nvrmnd-website/",
+      "image": "https://t-event.github.io/nvrmnd-website/assets/need-me.jpg",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Mo i Rana",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mo i Rana",
+          "addressCountry": "NO"
+        }
+      },
+      "sameAs": [
+        "https://www.instagram.com/nvrmnd.hardstyle",
+        "https://soundcloud.com/marius-hagensen",
+        "https://open.spotify.com/artist/6vSV3iI3VMqzfy0wnWcI8E",
+        "https://music.apple.com/no/artist/nvrmnd/6806555186",
+        "https://tidal.com/artist/85185574",
+        "https://music.amazon.com/artists/B01GB1HH3Y/nvrmnd"
+      ]
+    },
+    {
+      "@type": "MusicRecording",
+      "@id": "https://t-event.github.io/nvrmnd-website/#need-me",
+      "name": "Need Me",
+      "byArtist": { "@id": "https://t-event.github.io/nvrmnd-website/#artist" },
+      "datePublished": "2026-08-28",
+      "duration": "PT2M24S",
+      "genre": "Hardstyle",
+      "image": "https://t-event.github.io/nvrmnd-website/assets/need-me.jpg",
+      "url": "https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ",
+      "sameAs": [
+        "https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ",
+        "https://music.apple.com/no/album/need-me/6806555357?i=6806555358",
+        "https://tidal.com/track/556694168",
+        "https://soundcloud.com/marius-hagensen/need-me",
+        "https://music.amazon.com/tracks/B0HH3XDYPG"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://t-event.github.io/nvrmnd-website/#website",
+      "url": "https://t-event.github.io/nvrmnd-website/",
+      "name": "NVRMND",
+      "inLanguage": "en",
+      "about": { "@id": "https://t-event.github.io/nvrmnd-website/#artist" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -138,8 +225,11 @@
        target="_blank" rel="noopener"
        data-cursor="play" data-reveal
        aria-label="Listen to Need Me on Spotify">
-      <img src="assets/need-me.jpg" alt="Cover art for NVRMND, Need Me"
-           width="1400" height="1400" fetchpriority="high">
+      <img src="assets/need-me-small.jpg"
+           srcset="assets/need-me-small.jpg 600w, assets/need-me.jpg 1400w"
+           sizes="(max-width: 900px) 90vw, 40vw"
+           alt="Cover art for NVRMND, Need Me"
+           width="1400" height="1400" loading="lazy" decoding="async">
       <span class="featured__cat">NVR001</span>
     </a>
 
@@ -219,12 +309,10 @@
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
   <div class="about__media">
-    <div class="about__frame" data-parallax="0.08">
-      <!-- PLASSHOLDER: bytt denne div-en med <img src="assets/press.jpg" alt="NVRMND"> -->
+    <div class="about__frame" data-parallax="0.05">
+      <!-- PLASSHOLDER: bytt denne div-en med
+           <img src="assets/press.jpg" alt="NVRMND" width="900" height="1200"> -->
       <div class="about__img"><span>PRESS PHOTO</span></div>
-    </div>
-    <div class="about__frame about__frame--small" data-parallax="-0.14">
-      <img src="assets/need-me.jpg" alt="Cover art for Need Me" loading="lazy" width="1400" height="1400">
     </div>
   </div>
 
@@ -307,8 +395,12 @@
 <footer class="footer">
   <div class="footer__word" aria-hidden="true">NVRMND</div>
   <div class="footer__row">
-    <span>© 2026 NVRMND</span>
+    <!-- Årstallet settes av JS. 2026 står her som fallback uten JavaScript. -->
+    <span>© <span id="year">2026</span> NVRMND</span>
     <span>Mo i Rana, Norway</span>
+    <span class="footer__credit">
+      Site by <a href="https://t-event.no" target="_blank" rel="noopener" data-cursor="hover">T-Event</a>
+    </span>
     <a href="#hero" data-cursor="hover" class="footer__top">Back to top ↑</a>
   </div>
 </footer>

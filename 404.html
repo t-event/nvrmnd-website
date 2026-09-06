@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 | NVRMND</title>
+<meta name="description" content="This page does not exist. Head back to nvrmnd.">
+<meta name="theme-color" content="#0D0410">
+<!-- Feilsider skal ikke ligge i søkeresultatene -->
+<meta name="robots" content="noindex, follow">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* Egen, enkel layout. Bruker de samme variablene som resten av siden. */
+  .lost{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding:var(--pad);
+    position:relative;
+    overflow:hidden;
+  }
+  .lost__bg{ position:absolute; inset:0; z-index:0; }
+  .lost__inner{ position:relative; z-index:2; max-width:56ch; }
+
+  .lost__code{
+    font-family:var(--font-display);
+    font-size:clamp(6rem,26vw,22rem);
+    line-height:.78;
+    letter-spacing:-.03em;
+    margin:0 0 1.5rem;
+    color:transparent;
+    -webkit-text-stroke:2px var(--red);
+    text-stroke:2px var(--red);
+    user-select:none;
+    pointer-events:none;
+  }
+  .lost__title{
+    font-family:var(--font-display);
+    font-size:clamp(1.75rem,5vw,3.25rem);
+    line-height:.95;
+    text-transform:uppercase;
+    margin:0 0 1.25rem;
+  }
+  .lost__text{
+    color:var(--muted);
+    margin:0 0 2.5rem;
+    max-width:44ch;
+  }
+  .lost__actions{ display:flex; gap:.75rem; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__label"></span></div>
+</div>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="nav">
+  <a href="index.html" class="nav__logo" data-cursor="hover">NVRMND</a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="index.html#music" class="nav__link" data-cursor="hover" data-text="Music"><span>Music</span></a>
+    <a href="index.html#about" class="nav__link" data-cursor="hover" data-text="About"><span>About</span></a>
+  </nav>
+</header>
+
+<main class="lost">
+  <div class="lost__bg" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__scan"></div>
+  </div>
+
+  <div class="lost__inner">
+    <p class="label"><span class="tick"></span> Error 404</p>
+
+    <h1 class="lost__code">404</h1>
+
+    <h2 class="lost__title">Nothing here. <em>Nevermind.</em></h2>
+    <p class="lost__text">
+      This page does not exist, or it moved. The music still does though.
+    </p>
+
+    <div class="lost__actions">
+      <a href="index.html" class="btn" data-magnetic data-cursor="hover">
+        <span class="btn__label">Back to start</span><span class="btn__arrow">↖</span>
+      </a>
+      <a href="https://open.spotify.com/track/4iiM7v8EZcTVfnWacZ7ghQ" target="_blank" rel="noopener"
+         class="btn btn--ghost" data-magnetic data-cursor="hover">
+        <span class="btn__label">Play Need Me</span><span class="btn__arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<div class="marquee marquee--red" aria-hidden="true">
+  <div class="marquee__track" data-marquee>
+    <span class="marquee__item">Lost <i>◆</i> 404 <i>◆</i> Nevermind <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Lost <i>◆</i> 404 <i>◆</i> Nevermind <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Lost <i>◆</i> 404 <i>◆</i> Nevermind <i>◆</i> NVRMND <i>◆</i></span>
+    <span class="marquee__item">Lost <i>◆</i> 404 <i>◆</i> Nevermind <i>◆</i> NVRMND <i>◆</i></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__row">
+    <span>© <span id="year">2026</span> NVRMND</span>
+    <span>Mo i Rana, Norway</span>
+    <span class="footer__credit">
+      Site by <a href="https://t-event.no" target="_blank" rel="noopener" data-cursor="hover">T-Event</a>
+    </span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

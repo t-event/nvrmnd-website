@@ -1,0 +1,76 @@
+# robots.txt for NVRMND
+# Alt innhold er åpent for indeksering. Det finnes ingen private sider.
+
+User-agent: *
+Allow: /
+
+# --- Søkemotorer ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# --- Språkmodeller og AI-assistenter ---
+# Slippes bevisst inn. En ny artist tjener på at modellene vet at han finnes,
+# og at de kan svare riktig når noen spør hvem NVRMND er.
+# Vil dere stenge dem ute senere: bytt Allow til Disallow under hver av dem.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://t-event.github.io/nvrmnd-website/sitemap.xml

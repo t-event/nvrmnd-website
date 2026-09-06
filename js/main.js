@@ -119,8 +119,12 @@
     document.addEventListener('mouseover', e => {
       const t = e.target.closest?.('[data-cursor]');
       if (!t) return;
+      const label = t.dataset.cursor === 'hover' ? '' : t.dataset.cursor;
+      cLabel.textContent = label;
       cursor.classList.add('is-hover');
-      cLabel.textContent = t.dataset.cursor === 'hover' ? '' : t.dataset.cursor;
+      // Ringen fylles kun når den har en etikett. Ellers ville flaten
+      // lagt seg oppå teksten på det man hovrer over.
+      cursor.classList.toggle('is-label', label !== '');
     });
 
     document.addEventListener('mouseout', e => {
@@ -128,7 +132,7 @@
       if (!t) return;
       // Ikke slipp hover-tilstanden når pekeren bare flytter seg internt i elementet
       if (e.relatedTarget?.closest?.('[data-cursor]') === t) return;
-      cursor.classList.remove('is-hover');
+      cursor.classList.remove('is-hover', 'is-label');
       cLabel.textContent = '';
     });
 
@@ -186,7 +190,7 @@
     let last = 0;
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
-      if (!menu.classList.contains('is-open')) {
+      if (nav && !menu?.classList.contains('is-open')) {
         nav.classList.toggle('is-hidden', y > last && y > 240);
       }
       last = y;
@@ -194,6 +198,9 @@
       const max = document.documentElement.scrollHeight - vh;
       if (bar) bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
     }, { passive: true });
+
+    // Undersider som 404 har ingen mobilmeny. Da er vi ferdige her.
+    if (!toggle || !menu) return;
 
     toggle.addEventListener('click', () => {
       const open = menu.classList.toggle('is-open');
@@ -299,7 +306,13 @@
 
   function measureMarquees() {
     marquees.forEach(m => {
-      m.itemW = m.el.children[0] ? m.el.children[0].getBoundingClientRect().width : 0;
+      if (!m.el.children[0]) { m.itemW = 0; return; }
+      // Nullstill transformasjonen før måling. Med skjevstillingen på ga
+      // getBoundingClientRect en for bred verdi, og båndet fikk et hopp.
+      const t = m.el.style.transform;
+      m.el.style.transform = 'none';
+      m.itemW = m.el.children[0].getBoundingClientRect().width;
+      m.el.style.transform = t;
     });
   }
 
@@ -324,15 +337,28 @@
   const parallaxItems = $$('[data-parallax]').map(el => ({
     el,
     speed: parseFloat(el.dataset.parallax),
+    baseMid: 0,   // elementets midtpunkt i dokumentet, uten forskyvning
     current: 0,
     target: 0
   }));
 
+  // Måles med transformasjonen av. Leste vi posisjonen mens elementet allerede
+  // var forskjøvet, gikk verdien inn i sin egen utregning og ga en annen
+  // effektiv hastighet enn den som står i data-parallax.
+  function measureParallax() {
+    parallaxItems.forEach(p => {
+      const t = p.el.style.transform;
+      p.el.style.transform = 'none';
+      const r = p.el.getBoundingClientRect();
+      p.baseMid = r.top + window.scrollY + r.height / 2;
+      p.el.style.transform = t;
+    });
+  }
+
   function updateParallax() {
     parallaxItems.forEach(p => {
-      const r = p.el.getBoundingClientRect();
       // Hvor langt elementets midtpunkt er fra skjermens midtpunkt
-      const offset = (r.top + r.height / 2) - vh / 2;
+      const offset = (p.baseMid - scrollY) - vh / 2;
       p.target  = offset * p.speed;
       p.current = lerp(p.current, p.target, 0.1);
       p.el.style.transform = `translate3d(0, ${p.current.toFixed(2)}px, 0)`;
@@ -432,6 +458,7 @@
     vh = window.innerHeight;
     vw = window.innerWidth;
     measureMarquees();
+    measureParallax();
     measureRail();
   }
 
@@ -441,17 +468,25 @@
     resizeTimer = setTimeout(onResize, 150);
   });
 
+  // Årstall i footeren, så det ikke må endres for hånd hver nyttårsaften
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   initCursor();
   initMagnetic();
   initNav();
   initReveal();
   initScramble();
 
+  // Måles én gang nå, og på nytt når skrifter og bilder er ferdig lastet,
+  // siden begge deler kan endre høyder og bredder.
   window.addEventListener('load', () => {
     measureMarquees();
+    measureParallax();
     measureRail();
   });
   measureMarquees();
+  measureParallax();
   measureRail();
 
   runPreloader();

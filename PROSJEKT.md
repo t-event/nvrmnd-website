@@ -125,7 +125,11 @@ NVRMND nettside/
 ├── index.html            Hele siden
 ├── css/style.css         All styling, variabler øverst
 ├── js/main.js            Alle animasjoner, 11 nummererte seksjoner
-├── assets/               Coverbilder
+├── 404.html              Egen feilside
+├── assets/               Coverbilder, favicon og delingsbilde
+├── favicon.ico           Ikon i fanen
+├── robots.txt            Åpner for søkemotorer og språkmodeller
+├── sitemap.xml           Nettstedskart for Google
 ├── PROSJEKT.md           Denne fila
 ├── SPEC.md               Teknisk spesifikasjon
 ├── PLACEHOLDERS.md       Hva som gjenstår av innhold
@@ -186,7 +190,23 @@ git commit -m "beskrivelse av endringen"
 git push
 ```
 
-## 11. Beslutningslogg
+## 11. Feil funnet i gjennomgangen 6. september
+
+Alle er rettet. Tatt med her fordi flere er feller som lett kommer tilbake.
+
+| Feil | Årsak |
+|---|---|
+| Coveret ble strukket til 1400 px høyde | `width`/`height`-attributtene i HTML setter også CSS-høyde. Uten `height:auto` låses høyden mens bredden skalerer. |
+| Press-bildet krympet til 104 px | `margin-inline:auto` på et grid-element slår av strekkingen, så bredden kollapset til tekstinnholdet. |
+| Knappetekst forsvant ved hover | Markørringen ble fylt rød og la seg oppå teksten. Fylles nå bare når den har en etikett. |
+| T-Event-lenken var ikke klikkbar | Det store NVRMND-ordet i footeren lå over den. Fikk `pointer-events:none`. |
+| Scroll-indikatoren lå over Hear it-knappen | Samme hjørne. Plass holdt av, og indikatoren fanger ikke lenger klikk. |
+| Preloaderen avslørte ingenting | Gardinen gled bort, men preloaderens egen bakgrunn lå igjen til elementet ble fjernet. |
+| Siden ble usynlig uten JavaScript | Preloader og scroll-avsløring skjulte alt. Nå gated på klassen `.js`. |
+| Mobilmenyens lenker lå i tabulator-rekkefølgen | Menyen var klippet bort, men ikke skjult. Fikk `visibility:hidden`. |
+| 404 på favicon.ico | Nettlesere ber om den uansett. Ekte ICO-fil lagt i rotmappa. |
+
+## 12. Beslutningslogg
 
 **6. sep 2026.** Oppstart, tom mappe. Alle valgene i tabellen over avklart gjennom
 tre avklaringsrunder. Bygget første versjon med alle åtte effektene.
@@ -202,3 +222,8 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Full gjennomgang med headless Chrome. Ni feil funnet og rettet,
+se avsnitt 12. SEO lagt inn: strukturerte data, robots.txt, sitemap, kanonisk
+URL og eget delingsbilde i 1200x630. Egen 404-side laget. Kreditering til
+T-Event i footeren. Årstallet i footeren settes nå automatisk.
