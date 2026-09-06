@@ -297,6 +297,9 @@ verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
 
+**6. sep 2026.** Follow og Contact byttet plass. Rekkefølgen er nå Music,
+About, Follow, Contact, nummerert 01 til 04, og menyen følger.
+
 **6. sep 2026.** Bioen skrevet om med fakta fra Mathias: NVRMND er en holdning
 (lang historie bak, ikke fortalt ennå), musikk i flere år uten utgivelse før
 Need Me, mange DJ-jobber via T-Event men aldri spilt egen musikk live, lytter

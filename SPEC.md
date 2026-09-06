@@ -53,10 +53,11 @@ i `index.html`. Det er med vilje: én fil per bekymring, ingen byggkjede.
 | · | Nav | Logo, tre lenker. Skjules ved scroll ned, kommer tilbake ved scroll opp |
 | 1 | Hero | NVRMND i stort, glitch, undertittel, knapp til musikk |
 | · | Marquee | Rullende tekstbånd |
-| 2 | Music | Need Me som featured release + seks plattformlenker + remix-blokk |
-| 3 | About | Bio, to bilder med parallakse, tre nøkkeltall |
+| 1 | Music | Need Me som featured release + seks plattformlenker + remix-blokk |
+| 2 | About | Bio, to bilder med parallakse, tre nøkkeltall |
 | · | Marquee | Rullende tekstbånd, motsatt retning, rød bakgrunn |
-| 4 | Contact | Booking-status og lenker til sosiale medier |
+| 3 | Follow | Sosiale lenker som rutenett, Instagram øverst i full bredde |
+| 4 | Contact | Booking, per nå som Instagram-DM |
 | · | Footer | NVRMND i konturskrift, copyright |
 
 ### Musikk-seksjonen har to moduser

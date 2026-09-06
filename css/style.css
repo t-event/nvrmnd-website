@@ -1336,7 +1336,9 @@ a.booking__soon-text:hover{ color:var(--red); }
 .follow{
   padding:clamp(5rem,12vh,9rem) var(--pad);
   background:var(--bg-2);
-  border-top:1px solid var(--line);
+  /* Ligger rett etter det røde tekstbåndet, som har egen kant. Streken
+     settes derfor under, mot kontaktseksjonen. */
+  border-bottom:1px solid var(--line);
 }
 .follow__inner{
   display:grid;
