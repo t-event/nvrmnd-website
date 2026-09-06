@@ -205,6 +205,13 @@ skiller dem. Ikke gjort: minifisering (5 KiB, krever bygg-steg),
 buffer-TTL (Pages), CSP-hoder (kan ikke settes på Pages, og en meta-CSP
 risikerer å knekke spillerne).
 
+**Lighthouse 23:53, etter selvhostede skrifter:** mobil 96 / 100 / 100 / 100,
+desktop 100 / 100 / 100 / 100. Mobil FCP 1,1 s, LCP 1,5 s, TBT 0, CLS 0.
+Det eneste som holder mobil under 100 er Speed Index 5,4 s, som måler hvor
+raskt skjermen slutter å endre seg. Det er intro-animasjonen selv: teller,
+scramble, gardin, bokstaver og glitch. Kan bare bedres ved å korte ned
+eller fjerne preloaderen, som er et designvalg Mathias eier.
+
 **Skriftene er selvhostet** fra 6. september, sent. Mathias trodde først
 det betydde at besøkende måtte ha skriftene installert; det betyr bare at
 filene ligger i vårt repo i stedet for hos Google. Tre `.woff2`-filer i

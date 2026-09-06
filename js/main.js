@@ -57,8 +57,10 @@
     requestAnimationFrame(tick);
   }
 
-  let scrollY    = window.scrollY;
-  let lastScroll = scrollY;
+  // Leses først i init. window.scrollY her ville tvunget fram layout før
+  // nettleseren har tegnet noe som helst.
+  let scrollY    = 0;
+  let lastScroll = 0;
   let velocity   = 0;   // brukes av marquee for fartsfølelse
   let vh = window.innerHeight;
   let vw = window.innerWidth;
@@ -864,6 +866,7 @@
   // nettleseren tegne preloaderen først, og layouten skjer der den hører
   // hjemme, i tegnepipelinen. Preloaderen er ren CSS fram til da.
   function init() {
+    scrollY = lastScroll = window.scrollY;
     watchFrameRate();      // først, så målingen går mens preloaderen står på
     splitWords();          // før initReveal, så observatøren ser ordene
     prepareLabels();       // samme grunn
