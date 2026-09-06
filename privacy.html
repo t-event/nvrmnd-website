@@ -13,14 +13,12 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Lastes uten å blokkere tegningen. Preloaderen venter uansett på
-     skriftene, så byttet fra reserveskrift er usynlig. -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="css/style.css?v=202609062340">
+<!-- Skriftene er selvhostet, se @font-face øverst i style.css. Forhåndslastes
+     så de kommer samtidig med stilarket. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/anton-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/jetbrains-mono-variable-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/space-grotesk-variable-latin.woff2">
+<link rel="stylesheet" href="css/style.css?v=202609062348">
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -98,10 +96,10 @@
   <p class="label"><span class="tick"></span> Privacy</p>
   <h1 class="doc__title">Privacy <em>policy</em></h1>
   <p class="doc__lead">
-    Short version: this site sets no cookies of its own, has no analytics, and
-    collects nothing about you. The music players from Spotify and SoundCloud
-    do set cookies, so they stay switched off until you allow them. Below is the
-    longer version.
+    Short version: this site sets no cookies of its own, has no analytics,
+    loads nothing from Google, and collects nothing about you. The music
+    players from Spotify and SoundCloud do set cookies, so they stay switched
+    off until you allow them. Below is the longer version.
   </p>
 
   <h2>What we collect</h2>
@@ -135,14 +133,9 @@
 
   <h2>Fonts</h2>
   <p>
-    The typefaces are loaded from Google Fonts. To deliver them, Google receives
-    your IP address and details about your browser. Google states that it does
-    not use this to build advertising profiles, and does not set cookies for
-    font requests. Even so, this is a transfer of data to Google that happens
-    without you being asked, so we would rather you know than not.
-  </p>
-  <p>
-    See <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts and privacy</a>.
+    The typefaces are served from this site, not from Google. No request goes
+    to Google when you load the page. The fonts themselves are open source
+    under the SIL Open Font License.
   </p>
 
   <h2>Embedded players</h2>
@@ -218,6 +211,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=202609062340" defer></script>
+<script src="js/main.js?v=202609062348" defer></script>
 </body>
 </html>

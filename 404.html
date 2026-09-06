@@ -13,14 +13,12 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Lastes uten å blokkere tegningen. Preloaderen venter uansett på
-     skriftene, så byttet fra reserveskrift er usynlig. -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="css/style.css?v=202609062340">
+<!-- Skriftene er selvhostet, se @font-face øverst i style.css. Forhåndslastes
+     så de kommer samtidig med stilarket. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/anton-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/jetbrains-mono-variable-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/space-grotesk-variable-latin.woff2">
+<link rel="stylesheet" href="css/style.css?v=202609062348">
 
 <style>
   /* Egen, enkel layout. Bruker de samme variablene som resten av siden. */
@@ -145,6 +143,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=202609062340" defer></script>
+<script src="js/main.js?v=202609062348" defer></script>
 </body>
 </html>

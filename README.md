@@ -27,7 +27,7 @@ index.html          Forsiden, hele innholdet
 privacy.html        Personvernerklæring
 css/style.css       All styling. Fargevariabler i :root øverst
 js/main.js          Alle animasjoner, delt i nummererte seksjoner
-assets/             Cover, pressebilde, delingsbilde, ikoner
+assets/             Cover, pressebilde, delingsbilde, ikoner, skrifter
 favicon.ico         Ikon i nettleserfanen
 robots.txt          Åpner for søkemotorer og språkmodeller
 sitemap.xml         Nettstedskart

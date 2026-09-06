@@ -148,14 +148,16 @@ tredje hovedfarge.
 
 ## 7. Typografi
 
-| Skrift | Bruk |
-|---|---|
-| Anton | Overskrifter, marquee, logo, tall |
-| Space Grotesk | Brødtekst |
-| JetBrains Mono | Etiketter, metadata, knappetekst |
+| Skrift | Bruk | Fil |
+|---|---|---|
+| Anton | Overskrifter, marquee, logo, tall | `anton-400-latin.woff2` |
+| Space Grotesk | Brødtekst | `space-grotesk-variable-latin.woff2` |
+| JetBrains Mono | Etiketter, metadata, knappetekst | `jetbrains-mono-variable-latin.woff2` |
 
-Lastes fra Google Fonts med `display=swap`. Alle har fallback-stack, så siden
-er lesbar før skriftene er nede, og hvis de aldri kommer.
+Selvhostet i `assets/fonts/`, 68 KiB totalt, latin-delsett. `@font-face`
+ligger øverst i `style.css` med `font-display: swap`, og filene forhånds-
+lastes i `<head>` så de kommer samtidig med stilarket. Ingen kall til
+Google. Alle har fallback-stack, så siden er lesbar før skriftene er nede.
 
 ## 8. Tilgjengelighet
 
@@ -210,8 +212,6 @@ omtrent ett minutt.
 ## 12. Kjente begrensninger
 
 - **Ingen analytics.** Vi vet ikke hvor mange som besøker siden.
-- **Skriftene kommer fra Google Fonts.** Det sender de besøkendes IP til
-  Google. Selvhosting ble vurdert og valgt bort. Forklart i `privacy.html`.
 - **Ingen nyhetsbrev.** Ingen måte å samle e-postadresser på.
 - **Ingen konsertoversikt.** Ikke bygget, legges til når det er datoer.
 - **Ingen CMS.** Nytt innhold krever at noen endrer HTML og pusher.

@@ -21,8 +21,8 @@ GitHub Pages krever det på gratiskonto, ikke fordi innholdet er fritt.
 
 ## Unntak
 
-- **Skriftene** (Anton, Space Grotesk, JetBrains Mono) lastes fra Google Fonts og
-  er lisensiert under [SIL Open Font License](https://openfontlicense.org/) av
+- **Skriftene** (Anton, Space Grotesk, JetBrains Mono) i `assets/fonts/` er
+  lisensiert under [SIL Open Font License](https://openfontlicense.org/) av
   sine respektive opphavspersoner. De omfattes ikke av lisensen over.
 - **Coverbildet** i `assets/` er hentet fra Apple Musics offentlige katalog-API
   og tilhører NVRMND som utgivende artist.

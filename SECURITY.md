@@ -51,14 +51,12 @@ Vi har ingen belønningsordning. Vi kan tilby en takk, og kreditering hvis du vi
 - Måter å kjøre fremmed JavaScript på siden (XSS)
 - Måter å endre innholdet som besøkende ser
 - Lekkasje av noe som ikke skulle ligget i repoet, nøkler, tokens, private filer
-- Problemer med hvordan Google Fonts eller andre eksterne ressurser lastes
+- Problemer med hvordan eksterne ressurser, som spillerne, lastes
 
 **Nei:**
 
 - Manglende `Content-Security-Policy` og andre sikkerhetsheadere. Vi kan ikke
   sette headere på GitHub Pages. Vi vet.
-- «Nettsiden bruker Google Fonts.» Ja, det er et bevisst valg, og det står
-  forklart i personvernerklæringen.
 - «Spillerne setter informasjonskapsler.» Ja, og derfor lastes de ikke uten
   samtykke. Finner du en måte å omgå det på, vil vi svært gjerne vite det.
 - Rapporter fra automatiske skannere uten at du har vist at det faktisk

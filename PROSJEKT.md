@@ -205,9 +205,13 @@ skiller dem. Ikke gjort: minifisering (5 KiB, krever bygg-steg),
 buffer-TTL (Pages), CSP-hoder (kan ikke settes på Pages, og en meta-CSP
 risikerer å knekke spillerne).
 
-Det som gjenstår på treg linje er skriftene fra Google Fonts, som
-preloaderen venter på: 68 KiB fordelt på tre filer, og FCP på mobil er i
-praksis tiden det tar å hente dem. Selvhosting ble valgt bort tidligere. Det valget
+**Skriftene er selvhostet** fra 6. september, sent. Mathias trodde først
+det betydde at besøkende måtte ha skriftene installert; det betyr bare at
+filene ligger i vårt repo i stedet for hos Google. Tre `.woff2`-filer i
+`assets/fonts/`, 68 KiB totalt, latin-delsett. Space Grotesk og JetBrains
+Mono er variable skrifter, så én fil dekker alle vektene. Forhåndslastes i
+`<head>`. Null kall til Google, verifisert med nettverkslogg. Personvern-
+siden og lisensen oppdatert. Skriftene er under SIL Open Font License. Selvhosting ble valgt bort tidligere. Det valget
 kan tas opp igjen hvis treg linje viser seg å være et reelt problem.
 
 ### Aggressivitets-runde
@@ -299,8 +303,8 @@ Begge må meldes til distributøren.
 
 ## 9. Samtykke og personvern
 
-Google Fonts beholdes, med personvernerklæring som forklarer at IP-adressen
-sendes til Google. Selvhosting ble vurdert og valgt bort.
+Skriftene er selvhostet siden 6. september. Ingen kall går til Google.
+Personvernerklæringen er beholdt likevel, for spillerne og for GitHub.
 
 Spotify- og SoundCloud-spillerne setter tredjeparts informasjonskapsler, og
 lastes derfor ikke før den besøkende har sagt ja i banneret. Svaret lagres
