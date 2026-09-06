@@ -30,6 +30,7 @@ js/main.js          Alle animasjoner, delt i nummererte seksjoner
 assets/             Cover, pressebilde, delingsbilde, ikoner, skrifter
 favicon.ico         Ikon i nettleserfanen
 robots.txt          Åpner for søkemotorer og språkmodeller
+llms.txt            Kort beskrivelse for språkmodeller
 sitemap.xml         Nettstedskart
 ```
 

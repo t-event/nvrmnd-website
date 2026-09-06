@@ -205,6 +205,17 @@ skiller dem. Ikke gjort: minifisering (5 KiB, krever bygg-steg),
 buffer-TTL (Pages), CSP-hoder (kan ikke settes på Pages, og en meta-CSP
 risikerer å knekke spillerne).
 
+**7. september, natt: det vi ikke hadde tenkt på.** SIL Open Font License
+krever at lisensteksten følger med skriftfilene; tre OFL-filer ligger nå i
+`assets/fonts/`. `llms.txt` lagt til for språkmodeller, som Lighthouse
+etterspør. `color-scheme: dark` så systemets egne kontroller ikke blir hvite.
+`tools/check-links.sh` sjekker alle eksterne lenker; kjørt: 19 av 19 svarer.
+W3C-validering kjørt for første gang: 404-siden hadde en ugyldig
+CSS-egenskap (`text-stroke` uten prefiks), rettet. Forsiden får tre
+informasjonsmeldinger om `--` i HTML-kommentarer (klassenavn som
+`music--rail`), som er ufarlige og bevisst latt stå. Strukturerte data
+parser som gyldig JSON.
+
 **Lighthouse 23:53, etter selvhostede skrifter:** mobil 96 / 100 / 100 / 100,
 desktop 100 / 100 / 100 / 100. Mobil FCP 1,1 s, LCP 1,5 s, TBT 0, CLS 0.
 Det eneste som holder mobil under 100 er Speed Index 5,4 s, som måler hvor

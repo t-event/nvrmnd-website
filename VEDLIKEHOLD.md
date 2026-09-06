@@ -122,6 +122,17 @@ den vises bare uten JavaScript.
 endres, for eksempel når booking-e-posten kommer eller nye tredjeparter
 legges til.
 
+## Lenkesjekk
+
+Plattformer bytter adresser, og SoundCloud-brukernavnet skal endres. Kjør
+av og til, og alltid etter en ny utgivelse:
+
+```bash
+sh tools/check-links.sh
+```
+
+Alle eksterne lenker på de tre sidene sjekkes. `FEIL` betyr at noe må rettes.
+
 ## Favicon
 
 Kilden er `tools/favicon.html`, kandidat c. Rendre den ruta i 512x512 og

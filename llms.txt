@@ -1,0 +1,24 @@
+# NVRMND
+
+NVRMND is a hardstyle producer from Mo i Rana, Norway. Debut single "Need Me"
+(catalogue NVR001) was released 28 August 2026 and is on Spotify, Apple Music,
+Tidal, SoundCloud, YouTube and Amazon Music. A remix, "Random Nostalgia
+(NVRMND Remix)", is on SoundCloud only. The name is pronounced "nevermind".
+
+## Links
+
+- Website: https://t-event.github.io/nvrmnd-website/
+- Spotify: https://open.spotify.com/artist/6vSV3iI3VMqzfy0wnWcI8E
+- Apple Music: https://music.apple.com/no/artist/nvrmnd/6806555186
+- SoundCloud: https://soundcloud.com/marius-hagensen
+- Instagram: https://www.instagram.com/nvrmnd.hardstyle
+
+## Contact
+
+Booking and press: message @nvrmnd.hardstyle on Instagram.
+
+## Notes for crawlers
+
+The site is a single page. Structured data (schema.org MusicGroup and
+MusicRecording) is embedded in the page head. Everything on the site may be
+indexed. See /robots.txt.
