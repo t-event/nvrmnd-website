@@ -135,6 +135,9 @@ em{
 }
 /* Låttitler inne i brødtekst, rødt, men uten den store gløden */
 em.soft{ text-shadow:none; }
+/* Låttittelen i bioen er en lenke opp til musikkseksjonen */
+.soft-link{ border-bottom:1px solid transparent; transition:border-color .3s; }
+.soft-link:hover{ border-bottom-color:var(--red); }
 
 /* --- Knapp --- */
 .btn{
@@ -540,6 +543,11 @@ body.has-cursor [data-cursor]{ cursor:none; }
 .hero__content{ position:relative; z-index:2; }
 
 .hero__eyebrow{
+  /* Over tittelen i stablingen. Treffområdet for tekst følger skriftens
+     mål, ikke boksen, og med line-height .78 på 345px stikker bokstavene i
+     NVRMND 70px opp over denne linja og stjal klikkene på lenka. */
+  position:relative;
+  z-index:3;
   font-family:var(--font-mono);
   font-size:.6875rem;
   letter-spacing:.24em;
@@ -900,6 +908,10 @@ body.has-cursor [data-cursor]{ cursor:none; }
   display:block;
   width:100%;
   border:0;
+  /* Siden har color-scheme: dark. Har et kryssdomene-iframe en annen
+     fargeordning enn elementet det ligger i, maler Chrome en ugjennomsiktig
+     hvit bakgrunn bak det, som stakk fram bak Spotifys runde hjørner. */
+  color-scheme:normal;
 }
 
 /* Innsiden av en iframe er et eget dokument. Vi får ingen musebevegelser
