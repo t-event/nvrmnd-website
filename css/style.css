@@ -963,17 +963,15 @@ body.has-cursor .footer__reset{ cursor:none; }
 
 /* --- Remix-blokk under featured --- */
 .more{
+  display:grid;
+  grid-template-columns:1fr minmax(0,480px);
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
   margin-top:clamp(3rem,7vh,5rem);
   padding-top:clamp(2rem,4vh,3rem);
   border-top:1px solid var(--line);
 }
-.more__head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:2rem;
-  flex-wrap:wrap;
-}
+.more__text .btn{ margin-top:1.75rem; }
 .more__title{
   font-family:var(--font-display);
   font-size:clamp(1.5rem,3.5vw,2.5rem);
@@ -1436,3 +1434,21 @@ body.has-cursor .footer__reset{ cursor:none; }
 
 .footer__link{ transition:color .3s; }
 .footer__link:hover{ color:var(--red); }
+
+/* SoundClouds visuelle spiller bruker coveret som bakgrunn, og blir derfor
+   svært dominerende i full bredde. Her holdes den i en egen kolonne.
+
+   Nederst i widgeten ligger en hvit stripe med SoundClouds egen
+   personvernlenke, som ikke kan slås av med parametere. Iframen får 300px
+   og beholderen 278px, slik at stripen faller utenfor. Lenken til
+   SoundClouds personvernerklæring står i stedet på vår egen privacy.html. */
+.more .embed{
+  margin:0;
+  height:278px;
+  overflow:hidden;
+}
+.more .embed iframe{ height:300px; }
+
+@media (max-width:900px){
+  .more{ grid-template-columns:1fr; }
+}
