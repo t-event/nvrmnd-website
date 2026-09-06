@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NVRMND — Hardstyle</title>
+<meta name="description" content="NVRMND — hardstyle producer. Raw kicks, no mercy.">
+<meta name="theme-color" content="#0D0410">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ FILM GRAIN OVERLAY ============ -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__label"></span></div>
+</div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__inner">
+    <div class="preloader__word" data-scramble="NVRMND">NVRMND</div>
+    <div class="preloader__meta">
+      <span class="preloader__status">LOADING SYSTEM</span>
+      <span class="preloader__count">000</span>
+    </div>
+    <div class="preloader__track"><span class="preloader__fill"></span></div>
+  </div>
+  <div class="preloader__curtain"></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__logo" data-cursor="hover">NVRMND</a>
+
+  <nav class="nav__links" aria-label="Main">
+    <a href="#music"   class="nav__link" data-cursor="hover" data-text="Music"><span>Music</span></a>
+    <a href="#about"   class="nav__link" data-cursor="hover" data-text="About"><span>About</span></a>
+    <a href="#booking" class="nav__link" data-cursor="hover" data-text="Booking"><span>Booking</span></a>
+  </nav>
+
+  <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="menu" id="menu">
+  <a href="#music"   class="menu__link">Music</a>
+  <a href="#about"   class="menu__link">About</a>
+  <a href="#booking" class="menu__link">Booking</a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="orb orb--1" data-parallax="0.18"></div>
+    <div class="orb orb--2" data-parallax="-0.12"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__scan"></div>
+  </div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow" data-reveal>
+      <span class="tick"></span> Hardstyle <span class="sep">/</span> Raw kicks <span class="sep">/</span> No mercy
+    </p>
+
+    <h1 class="hero__title" data-parallax="-0.06">
+      <span class="hero__title-line" data-glitch="NVRMND">
+        <span class="l">N</span><span class="l">V</span><span class="l">R</span><span class="l">M</span><span class="l">N</span><span class="l">D</span>
+      </span>
+    </h1>
+
+    <div class="hero__foot">
+      <!-- PLASSHOLDER: bytt ut med ekte beskrivelse -->
+      <p class="hero__sub" data-reveal data-delay="1">
+        Producer and DJ from Norway. Distorted kicks, screeching leads<br>
+        and a sound engineered for the front row.
+      </p>
+      <a href="#music" class="btn" data-magnetic data-cursor="hover">
+        <span class="btn__label" data-scramble-hover="Hear it">Hear it</span>
+        <span class="btn__arrow">↓</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <span class="hero__scroll-line"></span>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" data-marquee>
+    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
+    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
+    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
+    <span class="marquee__item">Hardstyle <i>◆</i> NVRMND <i>◆</i> 150 BPM <i>◆</i> Raw <i>◆</i></span>
+  </div>
+</div>
+
+<!-- ============ MUSIC — HORIZONTAL SCROLL ============ -->
+<section class="music" id="music">
+  <div class="music__sticky">
+
+    <div class="music__head">
+      <p class="label" data-reveal><span class="tick"></span> 01 — Releases</p>
+      <h2 class="music__title" data-reveal data-delay="1">Latest<br><em>drops</em></h2>
+      <p class="music__hint" data-reveal data-delay="2">Keep scrolling →</p>
+    </div>
+
+    <div class="music__rail" data-rail>
+      <!-- PLASSHOLDER: alle 6 releases — bytt tittel, år, lenke og cover -->
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play Bloodline">
+          <div class="release__art release__art--1"><span class="release__num">01</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">Bloodline</h3>
+            <p class="release__info">Single <span>·</span> 2026</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play Concrete Heart">
+          <div class="release__art release__art--2"><span class="release__num">02</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">Concrete Heart</h3>
+            <p class="release__info">Single <span>·</span> 2026</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play No Mercy">
+          <div class="release__art release__art--3"><span class="release__num">03</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">No Mercy</h3>
+            <p class="release__info">EP <span>·</span> 2025</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play Static Prayer">
+          <div class="release__art release__art--4"><span class="release__num">04</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">Static Prayer</h3>
+            <p class="release__info">Single <span>·</span> 2025</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play Aftershock">
+          <div class="release__art release__art--5"><span class="release__num">05</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">Aftershock</h3>
+            <p class="release__info">Remix <span>·</span> 2025</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="release" data-cursor="play">
+        <a class="release__link" href="#" aria-label="Play Nevermind">
+          <div class="release__art release__art--6"><span class="release__num">06</span></div>
+          <div class="release__meta">
+            <h3 class="release__title">Nevermind</h3>
+            <p class="release__info">Single <span>·</span> 2024</p>
+          </div>
+        </a>
+      </article>
+
+      <div class="rail-end">
+        <p class="label">Full catalogue</p>
+        <!-- PLASSHOLDER: lenke til Spotify-artistside -->
+        <a href="#" class="btn btn--ghost" data-magnetic data-cursor="hover">
+          <span class="btn__label">Spotify</span><span class="btn__arrow">↗</span>
+        </a>
+        <!-- PLASSHOLDER: lenke til Apple Music -->
+        <a href="#" class="btn btn--ghost" data-magnetic data-cursor="hover">
+          <span class="btn__label">Apple Music</span><span class="btn__arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="music__progress" aria-hidden="true"><span data-rail-progress></span></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about__media">
+    <div class="about__frame" data-parallax="0.08">
+      <!-- PLASSHOLDER: bytt denne div-en med <img src="assets/press.jpg" alt="NVRMND"> -->
+      <div class="about__img"><span>PRESS PHOTO</span></div>
+    </div>
+    <div class="about__frame about__frame--small" data-parallax="-0.14">
+      <!-- PLASSHOLDER: sekundært bilde -->
+      <div class="about__img about__img--alt"><span>LIVE</span></div>
+    </div>
+  </div>
+
+  <div class="about__text">
+    <p class="label" data-reveal><span class="tick"></span> 02 — About</p>
+    <h2 class="about__title" data-reveal data-delay="1">Built for<br><em>the drop</em></h2>
+
+    <!-- PLASSHOLDER: ekte bio -->
+    <div class="about__body">
+      <p data-reveal data-delay="2">
+        NVRMND started in a bedroom studio outside Trondheim with a cracked kick sample
+        and too much time. Six years later the same kick — heavier, uglier, tuned to
+        the floor — is the signature.
+      </p>
+      <p data-reveal data-delay="3">
+        The sound sits where raw hardstyle meets something colder and more industrial:
+        distorted low end, screeching leads, and long builds that hold the room a beat
+        longer than comfortable before letting go.
+      </p>
+    </div>
+
+    <div class="stats">
+      <!-- PLASSHOLDER: ekte tall -->
+      <div class="stat" data-reveal data-delay="4"><span class="stat__num" data-count="150">0</span><span class="stat__label">BPM</span></div>
+      <div class="stat" data-reveal data-delay="5"><span class="stat__num" data-count="84">0</span><span class="stat__label">Shows played</span></div>
+      <div class="stat" data-reveal data-delay="6"><span class="stat__num" data-count="12" data-suffix="M">0</span><span class="stat__label">Streams</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE 2 ============ -->
+<div class="marquee marquee--red" aria-hidden="true">
+  <div class="marquee__track" data-marquee data-direction="-1">
+    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
+    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
+    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
+    <span class="marquee__item">Booking <i>◆</i> Worldwide <i>◆</i> 2026 <i>◆</i> Available <i>◆</i></span>
+  </div>
+</div>
+
+<!-- ============ BOOKING ============ -->
+<section class="booking" id="booking">
+  <div class="booking__inner">
+    <p class="label" data-reveal><span class="tick"></span> 03 — Booking</p>
+    <h2 class="booking__title" data-reveal data-delay="1">Let's make it<br><em>loud</em></h2>
+
+    <!-- PLASSHOLDER: ekte booking-e-post -->
+    <a href="mailto:booking@nvrmnd.com" class="booking__mail" data-cursor="hover" data-scramble-hover="booking@nvrmnd.com" data-reveal data-delay="2">
+      booking@nvrmnd.com
+    </a>
+
+    <div class="socials" data-reveal data-delay="3">
+      <!-- PLASSHOLDER: ekte lenker til sosiale medier -->
+      <a href="#" class="social" data-magnetic data-cursor="hover"><span>Instagram</span><i>↗</i></a>
+      <a href="#" class="social" data-magnetic data-cursor="hover"><span>TikTok</span><i>↗</i></a>
+      <a href="#" class="social" data-magnetic data-cursor="hover"><span>YouTube</span><i>↗</i></a>
+      <a href="#" class="social" data-magnetic data-cursor="hover"><span>Spotify</span><i>↗</i></a>
+    </div>
+  </div>
+
+  <div class="booking__glow" aria-hidden="true"></div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__word" aria-hidden="true">NVRMND</div>
+  <div class="footer__row">
+    <span>© 2026 NVRMND</span>
+    <span>All rights reserved</span>
+    <a href="#hero" data-cursor="hover" class="footer__top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
