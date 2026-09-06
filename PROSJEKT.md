@@ -133,9 +133,15 @@ derfor ikke kan scrolles til; ankeret ligger nå på `<main>`.
   blant tre kandidater, som den minst Netflix-aktige. Kilde i
   `tools/favicon.html`. Størrelser: favicon.ico 64, favicon.png 192,
   apple-touch-icon 180, icon-512 til manifestet.
-- **Footer-ordet har effekt.** Bokstavene starter som kontur og fylles med
-  rødt én og én når footeren ruller inn, tømmes igjen ved scroll opp.
-  Ligger i den delte footeren, så alle tre sider har den.
+- **Footer-ordet har effekt, og konturen blir stående.** Mathias likte
+  det svarte innsiden med rød kant, så fyllet ble tatt bort igjen. Nå stiger
+  bokstavene inn én og én, og et rødt glimt går gjennom dem fra venstre mot
+  høyre før de lander som kontur. Tilbakestilles ved scroll opp. Ligger i
+  den delte footeren, så alle tre sider har den.
+- **Rad-blokken er testet.** Slått på i en kopi med seks kort: null
+  konsollfeil, sticky holder, raden flytter seg på desktop og mobil,
+  bildene fyller kortene. «Keep scrolling» fikk SVG-pil i stedet for
+  Unicode. Klar til bruk når det er fire låter.
 
 ### Vedlikeholdsfeller, målt og håndtert
 
