@@ -188,6 +188,28 @@ nederst på forsiden.
 **Dette er hele poenget med banneret:** et banner som ikke faktisk stopper
 lastingen er bare pynt, siden informasjonskapslene da allerede er satt.
 
+## 9b. Plan: bildemosaikk i om-seksjonen
+
+Besluttet 6. september etter ekstern vurdering, venter på materiale.
+
+**Hva:** 2 til 4 bilder eller korte klipp som bygger universet. Ikke flere.
+Typisk: ett artistfoto, ett studiofoto, ett live-bilde til, eventuelt ett
+klipp på 10 til 15 sekunder uten lyd.
+
+**Hvor:** Om-seksjonen. Det eksisterende pressebildet blir ett av dem.
+
+**Hvordan:** Et stramt rutenett under bioen, samme rammer og skannelinjer
+som pressebildet har i dag, samme fargelag hvis bildene trenger det. Klipp
+spilles av stumt i loop, uten kontroller. Ingen bildekarusell, ingen
+lightbox, ingen bildetekster utover en liten etikett som «Studio» eller
+«Live, 2026».
+
+**Hva det ikke skal bli:** Et galleri. Vurderingen advarte mot å gjøre siden
+til «enda en DJ-side», og fire bilder er grensen.
+
+**Filer:** Legg dem i `assets/` som `photo-1.jpg` og så videre, helst
+1600px på lengste side. Klipp som `.mp4`, H.264, under 3 MB.
+
 ## 10. Status ved dagens slutt
 
 Siden er **ferdig og live**. Alt av struktur, design, animasjon, SEO,
@@ -205,8 +227,9 @@ bare Marius kan levere, og to ting distributøren må rette.
 **Neste gang, i prioritert rekkefølge:**
 
 1. Booking-e-post opprettes og legges inn
-2. 2 til 4 bilder eller korte klipp: artistfoto, studio, live. Ikke flere.
-3. Marius skriver bioen med egne ord
+2. 2 til 4 bilder eller korte klipp, se avsnitt 9b. Venter på Marius.
+3. Bioen beholdes som den er. Marius er fornøyd. Kan finpusses med fakta
+   fra ham, se spørsmålene i beslutningsloggen.
 4. SoundCloud-brukernavnet endres til `nvrmnd`
 5. Meld fra til distributøren om YouTube-kanalen og Amazon-profilen
 6. Vurder eget domene
@@ -273,6 +296,13 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Follow-seksjon lagt til (04 / Follow) med de sosiale lenkene,
+slik at Instagram fortsatt har et hjem når booking-e-posten erstatter
+Instagram-lenken i kontaktboksen. Overskriften «Next one drops here» i stedet
+for «Follow me», for å holde stemmen. Bildemosaikk planlagt, se 9b.
+Beskjed om SoundCloud-brukernavn er gitt. Mo i Rana skal ikke inn i hero
+eller tekstbånd, det er bekreftet på nytt.
 
 **6. sep 2026.** Ekstern vurdering mottatt: 8,5/10. Sterk identitet og
 språk, men for «under construction» på booking, Instagram burde stikke ut,
