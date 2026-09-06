@@ -39,6 +39,7 @@ sitemap.xml         Nettstedskart
 |---|---|
 | [SPEC.md](SPEC.md) | Teknisk spesifikasjon. Hvordan siden er bygget og hvorfor |
 | [PLACEHOLDERS.md](PLACEHOLDERS.md) | Hva som fortsatt er midlertidig |
+| [VEDLIKEHOLD.md](VEDLIKEHOLD.md) | Sjekklister: ny utgivelse, nytt domene, delte blokker. Verktøyene i `tools/` |
 | [PROSJEKT.md](PROSJEKT.md) | Prosjektnotater, valg og logg |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | For deg som skal endre noe |
 | [SECURITY.md](SECURITY.md) | Melde fra om sikkerhetsproblemer |
@@ -77,6 +78,14 @@ du den på når det er fire eller flere låter:
 3. Fyll inn ett kort per låt
 
 All CSS og JS for raden ligger allerede inne.
+
+## Etter endringer i CSS eller JS
+
+```bash
+sh tools/bump.sh
+```
+
+Ellers ser folk gammel stil i ti minutter etter deploy. Se `VEDLIKEHOLD.md`.
 
 ## Publisering
 

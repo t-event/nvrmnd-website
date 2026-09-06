@@ -89,8 +89,8 @@ alt-tekster.
 
 ### Footeren skal være lik overalt
 
-De tre HTML-sidene har identisk footer. Endrer du den ett sted, endre den alle
-tre stedene.
+De tre HTML-sidene har identisk footer og ikonblokk. Rediger kun i
+`index.html`, og kjør `python3 tools/sync-shared.py` etterpå.
 
 ### Nytt tredjepartsinnhold må gjennom samtykke
 
@@ -155,7 +155,12 @@ gammel stil en stund:
 <script src="js/main.js?v=20260906d"></script>
 ```
 
-Bruk dato pluss en bokstav. Samme verdi i begge lenker, i alle tre filer.
+Enklest med verktøyet, som gjør det i alle tre filer og oppdaterer
+sitemap samtidig:
+
+```bash
+sh tools/bump.sh
+```
 
 ### Publisering
 
