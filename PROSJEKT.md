@@ -112,6 +112,20 @@ bakgrunnen (`loading="eager"`) straks samtykke finnes, ikke først når de
 ruller inn. «Back to top» pekte på headeren, som er `position:fixed` og
 derfor ikke kan scrolles til; ankeret ligger nå på `<main>`.
 
+### Justeringer etter første test av effektene
+
+- **Effektene går begge veier.** Et element mister `is-in` når det har
+  forlatt skjermen helt nedenfor, og spilles av på nytt neste gang det ruller
+  inn. Forlater det skjermen oppover står det urørt, så ingenting blinker
+  vekk når man rusler litt opp. Gjelder blokkavsløring, ordvis avsløring,
+  etikett-scramble, tellere og bilde-wipe.
+- **Gyro er borte på iPhone.** Tillatelsesdialogen var et ekstra steg
+  besøkende ville synes var rart. Android får effekten uten spørsmål.
+- **Alle piler er SVG-ikoner.** Unicode-tegnene ↗ ↑ ↓ tegnes som emoji på
+  iPhone, og så uprofesjonelt ut i hamburgermenyen. Tre symboler ligger
+  øverst i hver HTML-fil, brukt med `<use href="#i-ne">`. Fargen arves fra
+  teksten, så hover-reglene virker som før. Ikke bruk Unicode-piler.
+
 ### Aggressivitets-runde
 
 Etter første gjennomsyn ble uttrykket skrudd opp:

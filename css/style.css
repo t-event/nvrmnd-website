@@ -1688,3 +1688,24 @@ a.booking__soon-text:hover{ color:var(--red); }
 /* Etiketter som stokkes på plass: mono-skrift har lik bokstavbredde, så
    teksten hopper ikke mens den scrambles */
 .scr{ display:inline; }
+
+
+/* ==========================================================================
+   IKONER
+   Unicode-piler som ↗ tegnes som emoji på iPhone. Derfor inline SVG.
+   Fargen arves fra teksten rundt, så alle hover-regler virker som før.
+   ========================================================================== */
+.ico{
+  width:.85em;
+  height:.85em;
+  vertical-align:-.08em;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex:0 0 auto;
+}
+/* I lenkerader er teksten liten, så ikonet får litt mer plass enn teksten */
+.social i .ico,
+.platform i .ico{ width:1.05em; height:1.05em; }

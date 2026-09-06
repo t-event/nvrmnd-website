@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260906e">
+<link rel="stylesheet" href="css/style.css?v=20260906f">
 
 <script>document.documentElement.classList.add('js');</script>
 
@@ -65,6 +65,13 @@
 </style>
 </head>
 <body>
+
+<!-- Ikoner som inline SVG. Unicode-piler ble tegnet som emoji på iPhone. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+</svg>
 
 <div class="grain" aria-hidden="true"></div>
 
@@ -201,10 +208,10 @@
     <span class="footer__credit">
       Site by <a href="https://t-event.no" target="_blank" rel="noopener" data-cursor="hover">T-Event</a>
     </span>
-    <a href="#top" class="footer__top" data-cursor="hover">Back to top ↑</a>
+    <a href="#top" class="footer__top" data-cursor="hover">Back to top <svg class="ico" aria-hidden="true"><use href="#i-up"></use></svg></a>
   </div>
 </footer>
 
-<script src="js/main.js?v=20260906e"></script>
+<script src="js/main.js?v=20260906f"></script>
 </body>
 </html>

@@ -162,7 +162,8 @@
         '<div class="embed__blocked-actions">' +
           '<button type="button" class="embed__allow" data-consent="granted">Allow players</button>' +
           '<a class="embed__out" href="' + box.dataset.embedFallback + '" ' +
-             'target="_blank" rel="noopener">Open on ' + name + ' ↗</a>' +
+             'target="_blank" rel="noopener">Open on ' + name +
+             ' <svg class="ico" aria-hidden="true"><use href="#i-ne"></use></svg></a>' +
         '</div>' +
       '</div>';
   }
@@ -402,18 +403,30 @@
     observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
+        if (entry.target.classList.contains('is-in')) return;
         entry.target.classList.add('is-in');
-        observer.unobserve(entry.target);
         if (entry.target.dataset.count !== undefined) countUp(entry.target);
         scrambleLabels(entry.target);
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
+    // Nullstilling når man scroller opp igjen: elementet mister is-in først
+    // når det har forlatt skjermen helt nedenfor. Da spilles avsløringen av
+    // på nytt neste gang det ruller inn. Forlater det skjermen oppover
+    // (vanlig scroll nedover) står det urørt.
+    const exit = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) return;
+        if (entry.boundingClientRect.top > 0) entry.target.classList.remove('is-in');
+      });
+    }, { threshold: 0, rootMargin: '0px' });
+
     // Elementer med data-wipe starter helt klippet bort med clip-path, og
     // Chrome regner da arealet som null, så observatøren fyrer aldri på dem.
     // De sjekkes i stedet i rAF-løkka, se updateWipes.
-    revealItems.filter(el => !el.hasAttribute('data-wipe')).forEach(el => observer.observe(el));
-    $$('[data-count]').forEach(el => observer.observe(el));
+    const observed = revealItems.filter(el => !el.hasAttribute('data-wipe'));
+    observed.forEach(el => { observer.observe(el); exit.observe(el); });
+    $$('[data-count]').forEach(el => { observer.observe(el); exit.observe(el); });
   }
 
   // Kjøres etter preloader: alt som allerede er i view skal vises med en gang
@@ -464,15 +477,19 @@
 
   // getBoundingClientRect bryr seg ikke om clip-path, i motsetning til
   // IntersectionObserver. Derfor sjekkes disse for hånd hver frame.
-  let wipeItems = $$('[data-wipe]');
+  const wipeItems = $$('[data-wipe]');
 
   function updateWipes() {
-    if (!wipeItems.length) return;
-    wipeItems = wipeItems.filter(el => {
-      if (el.getBoundingClientRect().top > vh * 0.88) return true;
-      el.classList.add('is-in');
-      scrambleLabels(el);
-      return false;
+    wipeItems.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      const isIn = el.classList.contains('is-in');
+      if (!isIn && top < vh * 0.88) {
+        el.classList.add('is-in');
+        scrambleLabels(el);
+      } else if (isIn && top > vh) {
+        // Helt under skjermen igjen: klipp igjen, så wipen kan gjentas
+        el.classList.remove('is-in');
+      }
     });
   }
 
@@ -564,10 +581,11 @@
   }
 
   // Telefonens helling flytter coveret et lite stykke. Android sender data
-  // med en gang. iPhone krever et samtykke som må utløses av et trykk, så der
-  // ber vi om det ved første berøring. Nekter brukeren, skjer ingenting.
+  // med en gang. iPhone krever en tillatelsesdialog som må utløses av et
+  // trykk, og det steget vil vi ikke ha. Der hoppes effekten over.
   function initGyro() {
     if (reduced || !isTouch || !coverImg || !('DeviceOrientationEvent' in window)) return;
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') return;
 
     const onTilt = (e) => {
       if (e.gamma == null || e.beta == null) return;
@@ -577,18 +595,7 @@
       cover.tgy = clamp((e.beta - 45) / 45, -1, 1) * 10;
     };
 
-    const start = () => window.addEventListener('deviceorientation', onTilt, { passive: true });
-
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      const ask = () => {
-        DeviceOrientationEvent.requestPermission()
-          .then(state => { if (state === 'granted') start(); })
-          .catch(() => { /* nektet eller ikke tilgjengelig, ingen effekt */ });
-      };
-      window.addEventListener('touchend', ask, { once: true, passive: true });
-    } else {
-      start();
-    }
+    window.addEventListener('deviceorientation', onTilt, { passive: true });
   }
 
 

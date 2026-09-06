@@ -100,6 +100,18 @@ som spillerne: en tom `div` med `data-embed-src`, som JavaScript fyller først
 når samtykke finnes. Ellers settes informasjonskapslene før noen har fått
 velge, og samtykkebanneret blir meningsløst.
 
+### Ingen Unicode-piler eller emojier
+
+iPhone tegner ↗ ↑ ↓ og lignende som emoji. Bruk SVG-ikonene som ligger
+øverst i hver HTML-fil:
+
+```html
+<svg class="ico" aria-hidden="true"><use href="#i-ne"></use></svg>
+```
+
+Tilgjengelig: `i-ne` (utlenke), `i-up`, `i-down`. Trenger du et nytt, legg
+det til i symbolblokka i alle tre filene.
+
 ### Stil på koden
 
 - To mellomrom innrykk
