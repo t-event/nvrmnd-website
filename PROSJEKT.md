@@ -228,8 +228,8 @@ bare Marius kan levere, og to ting distributøren må rette.
 
 1. Booking-e-post opprettes og legges inn
 2. 2 til 4 bilder eller korte klipp, se avsnitt 9b. Venter på Marius.
-3. Bioen beholdes som den er. Marius er fornøyd. Kan finpusses med fakta
-   fra ham, se spørsmålene i beslutningsloggen.
+3. Bioen er skrevet om med fakta fra Mathias. Gjenstår: historien bak
+   navnet, når Marius selv vil fortelle den.
 4. SoundCloud-brukernavnet endres til `nvrmnd`
 5. Meld fra til distributøren om YouTube-kanalen og Amazon-profilen
 6. Vurder eget domene
@@ -296,6 +296,13 @@ release. Statistikk-raden byttet fra oppdiktede tall (shows, streams, BPM) til
 verifiserbare fakta. Cyan lagt til i paletten. Dokumentasjonen skrevet.
 
 **6. sep 2026.** Markøren fikset. Alle lange tankestreker fjernet fra siden.
+
+**6. sep 2026.** Bioen skrevet om med fakta fra Mathias: NVRMND er en holdning
+(lang historie bak, ikke fortalt ennå), musikk i flere år uten utgivelse før
+Need Me, mange DJ-jobber via T-Event men aldri spilt egen musikk live, lytter
+til Project One og Vertile, nye låter er påbegynt uten navn. T-Event er ikke
+nevnt i bioen. Follow-seksjonen bygget om til rutenett av rader med Instagram
+i full bredde øverst, og pila på den røde knappen fikset (rød på rødt).
 
 **6. sep 2026.** Follow-seksjon lagt til (04 / Follow) med de sosiale lenkene,
 slik at Instagram fortsatt har et hjem når booking-e-posten erstatter
